@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жизненные циклы (биоритмы)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Philosopher:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО ВВОДА ИМЕНИ И ПОЛА ===== -->
+    <div id="user-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 99999; backdrop-filter: blur(10px);">
+        <div style="background: rgba(20,30,50,0.95); border: 1px solid rgba(255,215,0,0.15); border-radius: 20px; padding: 40px; max-width: 420px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.8);">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <img src="images/vedagor.png" alt="Ведагор" style="width: 64px; height: 64px; object-fit: contain; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.35));">
+                <h2 style="color: #ffd700; font-size: 24px; margin: 10px 0 6px; font-family: 'Philosopher', serif;">Добро пожаловать!</h2>
+                <p style="color: #888; font-size: 14px;">Ведагор хочет знать, с кем говорит</p>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label style="color: #aaa; display: block; margin-bottom: 6px; font-size: 14px;">👤 Твоё имя</label>
+                <input type="text" id="userNameInput" placeholder="Введи своё имя..." style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; color: #e0e0e0; font-size: 16px; outline: none; font-family: 'Roboto', sans-serif;">
+            </div>
+            <div style="margin-bottom: 30px;">
+                <label style="color: #aaa; display: block; margin-bottom: 6px; font-size: 14px;">⚤ Твой род</label>
+                <div style="display: flex; gap: 12px;">
+                    <button id="genderMale" style="flex: 1; padding: 10px; background: rgba(68,136,255,0.08); border: 2px solid rgba(68,136,255,0.2); border-radius: 10px; color: #88bbff; cursor: pointer; font-size: 16px; transition: all 0.3s; font-family: 'Roboto', sans-serif;">👨 Мужской</button>
+                    <button id="genderFemale" style="flex: 1; padding: 10px; background: rgba(255,68,136,0.08); border: 2px solid rgba(255,68,136,0.2); border-radius: 10px; color: #ff88bb; cursor: pointer; font-size: 16px; transition: all 0.3s; font-family: 'Roboto', sans-serif;">👩 Женский</button>
+                </div>
+                <input type="hidden" id="userGenderInput" value="">
+            </div>
+            <button id="startBtn" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #ffd70033, #ffd70011); border: 1px solid #ffd70044; border-radius: 10px; color: #ffd700; font-size: 18px; cursor: pointer; transition: all 0.3s; font-family: 'Roboto', sans-serif;" disabled>🚀 Начать</button>
+            <p style="color: #555; font-size: 12px; text-align: center; margin-top: 14px;">Данные не сохраняются и используются только для обращения</p>
+        </div>
+    </div>
+
+    <!-- ===== ЗВЁЗДЫ ===== -->
+    <div class="stars" id="stars"></div>
+
+    <!-- ===== БОКОВОЕ МЕНЮ ===== -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="images/alatyr.png" alt="Алатырь" class="sidebar-logo-img">
+            <span class="sidebar-title">Ведаем РА</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="sidebar-link active">
+                <span class="sidebar-icon">📊</span>
+                <span class="sidebar-text">Биоритмы</span>
+            </a>
+            <a href="svarog-circle.html" class="sidebar-link">
+                <img src="images/svarog-circle/circle-icon.png" alt="Сварожий круг" class="sidebar-icon-img">
+                <span class="sidebar-text">Сварожий круг</span>
+            </a>
+            <a href="galactic-day.html" class="sidebar-link">
+                <img src="images/galactic-day/icon.png" alt="Галактические сутки" class="sidebar-icon-img">
+                <span class="sidebar-text">Галактические сутки</span>
+            </a>
+            <a href="atlas.html" class="sidebar-link">
+                <span class="sidebar-icon">🗺️</span>
+                <span class="sidebar-text">Атлас Судьбы</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <button onclick="logoutUser()" class="sidebar-logout">
+                <span class="sidebar-icon">🚪</span>
+                <span class="sidebar-text">Выйти</span>
+            </button>
+            <span style="color: #444; font-size: 11px; display: block; margin-top: 10px;">v1.0</span>
+        </div>
+    </aside>
+
+    <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
+    <main class="main-content">
+        <h1>🌙 Жизненные циклы (биоритмы)</h1>
+        <p class="subtitle">5 циклов: физический, эмоциональный, интеллектуальный, психокинетический, астро-ментальный</p>
+
+        <!-- ===== ПРИВЕТСТВИЕ С ИМЕНЕМ ===== -->
+        <div id="greeting-block" style="text-align: center; margin-bottom: 25px; display: none;">
+            <span id="greeting-text" style="font-family: 'Great Vibes', cursive; font-size: 32px; color: #ffd700; text-shadow: 0 0 30px rgba(255,215,0,0.15); letter-spacing: 2px;"></span>
+        </div>
+
+        <!-- ===== УПРАВЛЕНИЕ ===== -->
+        <div class="controls">
+            <div>
+                <label>📅 Дата рождения: <input type="date" id="birthdate"></label>
+            </div>
+            <div>
+                <label>🔍 Дата просмотра: <input type="date" id="viewdate"></label>
+            </div>
+            <div>
+                <label>📊 Период: 
+                    <select id="periodSelect">
+                        <option value="30">30 дней</option>
+                        <option value="60">60 дней</option>
+                        <option value="90" selected>90 дней</option>
+                        <option value="180">180 дней</option>
+                        <option value="365">Год</option>
+                    </select>
+                </label>
+            </div>
+            <button id="todayBtn">📍 Сегодня</button>
+            <button id="updateBtn">🔄 Обновить</button>
+        </div>
+
+        <!-- ===== ЛЕГЕНДА ===== -->
+        <div id="legend"></div>
+
+        <!-- ===== ВСПЛЫВАЮЩЕЕ ОКНО ДЛЯ ЦИКЛА ===== -->
+        <div id="cycle-tooltip">
+            <div class="cycle-name"></div>
+            <div class="cycle-desc"></div>
+            <div class="cycle-detail"></div>
+        </div>
+
+        <!-- ===== ЛУННАЯ ДОРОГА ===== -->
+        <div id="lunar-road"></div>
+
+        <!-- ===== ВСПЛЫВАЮЩЕЕ ОКНО ДЛЯ ЛУНЫ ===== -->
+        <div id="moon-tooltip">
+            <span class="phase-icon"></span>
+            <div class="phase-name"></div>
+            <div class="phase-short"></div>
+            <div class="phase-influence"></div>
+            <div class="phase-history"></div>
+        </div>
+
+        <!-- ===== ГРАФИК ===== -->
+        <div id="chart-container">
+            <canvas id="biorhythmChart"></canvas>
+        </div>
+
+        <!-- ===== КРИТИЧЕСКИЕ ДНИ (СПИСОК) ===== -->
+        <div id="critical-days"></div>
+
+        <!-- ===== ИНФО-ОКНО ДЛЯ КРИТИЧЕСКОГО ДНЯ ===== -->
+        <div id="critical-info">
+            <button class="close-btn" id="closeCriticalInfo">✕</button>
+            <div class="critical-date"></div>
+            <div class="critical-desc"></div>
+            <div class="critical-cycles"></div>
+        </div>
+
+        <!-- ===== ИНФО-ОКНО ДЛЯ ЛЮБОГО ДНЯ (ПОЛНОЕ ОПИСАНИЕ) ===== -->
+        <div id="day-info">
+            <button class="close-btn" id="closeDayInfo">✕</button>
+            <div class="day-date"></div>
+            <div class="day-moon"></div>
+            <div class="day-cycles"></div>
+            <div class="day-recommendation"></div>
+            <div class="day-history"></div>
+            <div class="day-ai-advice">
+                <div class="ai-loading">⏳ Запрашиваю совет у DeepSeek...</div>
+                <div class="ai-chat-area"></div>
+                <div class="ai-chat-input">
+                    <input type="text" id="chatInput" placeholder="Задай вопрос наставнику..." onkeypress="sendQuestionEnter(event)">
+                    <button onclick="sendQuestion()">📨</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ИНФО БЛОК ===== -->
+        <div id="info-block">
+            <strong>📖 Как читать график:</strong><br>
+            • <strong>Ось X</strong> — дни от выбранной даты<br>
+            • <strong>Ось Y</strong> — положительная (+) и отрицательная (-) зоны<br>
+            • <strong>Пересечение с осью X</strong> — <strong style="color:#ffd700;">критический день</strong> (отмечен золотыми точками)<br>
+            • Если <strong>3 цикла</strong> пересекают ось в одной точке — будьте осторожнее<br>
+            • Если <strong>5 циклов</strong> пересекают в одной точке — день <strong style="color:#ff4444;">опасный для жизни</strong><br>
+            • Если все графики в <strong>отрицательной зоне</strong> — лучше сменить деятельность
+        </div>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+    
+    <script>
+        // ===== ГЕНЕРАЦИЯ ЗВЁЗД =====
+        (function createStars() {
+            const container = document.getElementById('stars');
+            if (!container) return;
+            const count = 150;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                container.appendChild(star);
+            }
+        })();
+    </script>
+</body>
+</html>

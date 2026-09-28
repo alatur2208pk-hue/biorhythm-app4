@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Атлас Судьбы — Карта поясов</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/atlas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Philosopher:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===== ЗВЁЗДЫ ===== -->
+    <div class="stars" id="stars"></div>
+
+    <!-- ===== БОКОВОЕ МЕНЮ ===== -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="images/alatyr.png" alt="Алатырь" class="sidebar-logo-img">
+            <span class="sidebar-title">Ведаем РА</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="sidebar-link">
+                <span class="sidebar-icon">📊</span>
+                <span class="sidebar-text">Биоритмы</span>
+            </a>
+            <a href="svarog-circle.html" class="sidebar-link">
+                <span class="sidebar-icon">🧙‍♂️</span>
+                <span class="sidebar-text">Сварожий круг</span>
+            </a>
+            <a href="galactic-day.html" class="sidebar-link">
+                <img src="images/galactic-day/icon.png" alt="Галактические сутки" class="sidebar-icon-img">
+                <span class="sidebar-text">Галактические сутки</span>
+            </a>
+            <a href="atlas.html" class="sidebar-link active">
+                <span class="sidebar-icon">🗺️</span>
+                <span class="sidebar-text">Атлас Судьбы</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <button onclick="logoutUser()" class="sidebar-logout">
+                <span class="sidebar-icon">🚪</span>
+                <span class="sidebar-text">Выйти</span>
+            </button>
+            <span style="color: #444; font-size: 11px; display: block; margin-top: 10px;">v1.0</span>
+        </div>
+    </aside>
+
+    <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
+    <main class="main-content">
+        <h1>🗺️ Атлас Судьбы</h1>
+        <p class="subtitle" style="text-align: center;">Карта пространства времени</p>
+
+        <!-- ===== СВИТОК: ЧТО ТАКОЕ АТЛАС СУТЬБЫ ===== -->
+        <div id="atlas-scroll">
+            <div class="scroll-roller scroll-roller-top">
+                <span class="scroll-rune">ᚱ</span>
+                <span class="scroll-rune">ᚢ</span>
+                <span class="scroll-rune">ᚾ</span>
+                <span class="scroll-rune">ᚨ</span>
+                <span class="scroll-rune">ᛚ</span>
+                <span class="scroll-rune">ᛟ</span>
+                <span class="scroll-rune">ᚦ</span>
+                <span class="scroll-rune">ᛗ</span>
+            </div>
+
+            <div class="scroll-parchment">
+                <div class="scroll-tie scroll-tie-left"></div>
+                <div class="scroll-tie scroll-tie-right"></div>
+
+                <button id="atlas-scroll-toggle" class="scroll-toggle">
+                    <span class="scroll-toggle-icon">📜</span>
+                    <span class="scroll-toggle-text">Что такое Атлас Сутьбы?</span>
+                    <span class="scroll-toggle-arrow">▼</span>
+                </button>
+
+                <div id="atlas-scroll-body" class="scroll-body">
+                    <div class="scroll-content">
+                        <div class="scroll-text">
+
+                            <p>«Атлас Сутьбы» — это инструмент, с помощью которого можно мысленно определить местоположение и вектор движения жизненного пути не только отдельного человека, но и целого народа, и всего человечества, и даже космических содружеств.</p>
+
+                            <p>Это карта, на которой прочерчены дороги судеб. Карта, где масштабом служат не километры, а пространство времени, по которому движутся мириады сущностей. Карта, где компас указывает не на север, а на степень близости души к свету или тьме.</p>
+
+                            <h3>🏹 Грех — Отклонение от Гармоничного Полёта</h3>
+
+                            <p>Я хочу начать рассказывать об устройстве Атласа с глубинного понимания слова <strong>грех</strong>. Представь себе мишень для стрельбы из лука. Ты — стрела. Лук и натянутая тетива — это божественные силы, дающие в момент рождения и подготовки к нему импульс для жизни, с заложенной в твоём нравственном ядре наиболее благоприятной траекторией полёта. Назовём это <strong>божественной волей</strong>, или божьим планом на твою жизнь.</p>
+
+                            <p>Божественная воля имеет свой простор — некие рамки божьего промысла, внутри которых ты имеешь собственную волю. Ты, как волшебная стрела, запущен вперёд во времени и не в силах этого изменить, но ты можешь менять траекторию своего полёта исходя из внутренних желаний и потребностей.</p>
+
+                            <p>Небесные силы непрерывно, через <strong>совесть</strong>, звучащую в сердце, наставляют тебя в момент сложного морально-этического выбора на наиболее гармоничную траекторию полёта, чтобы ты всегда попадал в яблочко. Твоё же невежество и силы мрака, пользующиеся им, наоборот, уводят стрелу твоего духа от цели — как говорится, «в молоко». Отклонение от гармоничного полёта и есть <strong>поГрешность</strong>, то есть грех.</p>
+
+                            <p>Блуд — это грех, он не даст построить гармоничную семью и познать настоящую любовь. То же самое относится к зависти и всем остальным порокам — как проявленным, так и внутренним. Пороки не дадут тебе исполнить предназначение и познать уготованное Богами счастье.</p>
+
+                            <h3>🌊 Поток Времени — Канал Судьбы</h3>
+
+                            <p>Для удобства понимания давай представим поток времени, в котором стрела духа летит к цели, в виде <strong>цилиндрического луча</strong>. Он течёт из прошлого в будущее, пронизывая настоящее. Этот энергоинформационный, жизньродящий поток дарован Творцом как главный ресурс жизни. Без этого беЗконечного потока невозможно ничто: ни мысли, ни чувства, ни действия, ни рост, ни падение, ни сама жизнь.</p>
+
+                            <p><strong>Атлас Сутьбы</strong> в этом смысле является своеобразной координатной системой, описывающей сферу квантового потока времени, в котором разворачивается событийный ряд жизни человека, народа или всего человечества. Да, этой самой стрелой можно представить не только отдельного человека, но и целый народ, и всё человечество в целом.</p>
+
+                            <p>Атлас разграничивает цилиндрический канал квантового потока времени на равные слои, которые называются <strong>поясами сутьбы</strong>. В Атласе Судьбы есть четыре пояса и центральный стержень <strong>«ЯрГа»</strong> — ядро Золотого Пути Восхождения. ЯрГа — это идеальная траектория для стрелы нашего духа. Эти элементы есть не что иное, как качественно отличные друг от друга сектора квантового пространства, в которых находятся энергии, соответствующие определённым качествам событий в событийном ряду сутьбы. Каждый пояс включает в себя определённый частотный диапазон энергий.</p>
+
+                            <h3>💡 Луч Фонарика — Свет и Тьма Поясов</h3>
+
+                            <p>Канал судьбы — это условно, для удобства восприятия, цилиндрическая сфера, в которой течёт поток времени и летит стрела нашего духа. Она подобна реке: чем ближе к центру канала, тем сильнее течение, несущее дух к светлым мирам, тем чище и мощнее энергия. А ты помнишь, что высокочастотная энергия имеет бОльшую информационную ёмкость, а значит, и сущность, резонирующая с этой частотой и питаемая этой энергией, имеет более ёмкое и мощное сознание — а значит, большее могущество и стойкость духа к проделкам воплощённой в бесах тьмы.</p>
+
+                            <p>Чем дальше от центра, тем частота ниже, тем больше тьма покрывает свет, и сознание становится более затуманенным и слабым, а значит — более уязвимым.</p>
+
+                            <p>Представь себе луч фонарика. В центре — самый яркий, чистый, мощный свет. По краям свет рассеивается, смешивается с тьмой, становится тусклым, неясным.</p>
+
+                            <p>Так и здесь:</p>
+
+                            <ul class="scroll-list">
+                                <li><span class="dot dot-light"></span><strong>Центральные пояса</strong> — высокочастотные, светлые. Здесь правят высшие ценности: совесть, любовь, справедливость, творчество, осознанность и т.д.</li>
+                                <li><span class="dot dot-mid"></span><strong>Срединные пояса</strong> — смешанные, серые. Здесь человек мечется между светом и тьмой.</li>
+                                <li><span class="dot dot-dark"></span><strong>Крайние пояса</strong> — низкочастотные, тёмные. Здесь царят невежество, порок, эгоизм, гордыня, страхи. Здесь душа, шагнув за черту Грани Миров, может потерять ориентир света навсегда…</li>
+                            </ul>
+
+                            <h3>🪞 Где Ты Находишься?</h3>
+
+                            <p>Если, например, человек или народ пребывает на поясе, названном <strong>Пояс Порока</strong>, — о каких благородных и счастливых свершениях может идти речь? Там — слабость духа и низменные похоти, разрушающие судьбу. Там — тщеславие, невежество, эгоизм, гордыня, рабство. Если же сущность движется в пространстве светлых поясов — её ждёт иная судьба. Светлая, осознанная, счастливая.</p>
+
+                            <p>Вопрос лишь в том: где ты находишься? Но не забывай — ты, являясь частичкой соборной души народа и человечества, разделяешь коллективную сутьбу своей семьи, рода и народа. Поэтому ты <strong>в ответе за всё</strong>, что происходит в рамках твоего зрения и в поле твоего понимания!</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-roller scroll-roller-bottom">
+                <span class="scroll-rune">ᛞ</span>
+                <span class="scroll-rune">ᚹ</span>
+                <span class="scroll-rune">ᛖ</span>
+                <span class="scroll-rune">ᚷ</span>
+                <span class="scroll-rune">ᛁ</span>
+                <span class="scroll-rune">ᛋ</span>
+                <span class="scroll-rune">ᚺ</span>
+                <span class="scroll-rune">ᛏ</span>
+            </div>
+        </div>
+
+        <!-- ===== СХЕМА ===== -->
+        <div id="atlas-wrap">
+            <svg id="atlas-svg" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+                <!-- Схема рисуется через JS -->
+            </svg>
+        </div>
+
+        <!-- ===== ВСПЛЫВАЮЩАЯ КАРТОЧКА ПРИ НАВЕДЕНИИ ===== -->
+        <div id="atlas-tooltip">
+            <div class="atlas-tooltip-name"></div>
+        </div>
+
+        <!-- ===== ИНФО-ПАНЕЛЬ (при клике) ===== -->
+        <div id="atlas-info-panel" style="display: none;">
+            <div class="atlas-info-roller-top">
+                <span class="scroll-rune">ᚱ</span>
+                <span class="scroll-rune">ᚢ</span>
+                <span class="scroll-rune">ᚾ</span>
+                <span class="scroll-rune">ᚨ</span>
+                <span class="scroll-rune">ᛚ</span>
+                <span class="scroll-rune">ᛟ</span>
+                <span class="scroll-rune">ᚦ</span>
+                <span class="scroll-rune">ᛗ</span>
+            </div>
+
+            <div class="atlas-info-parchment">
+                <button class="close-btn" id="closeAtlasInfo">✕</button>
+                <div class="atlas-info-content">
+                    <!-- Содержимое через JS -->
+                </div>
+            </div>
+
+            <div class="atlas-info-roller-bottom">
+                <span class="scroll-rune">ᛞ</span>
+                <span class="scroll-rune">ᚹ</span>
+                <span class="scroll-rune">ᛖ</span>
+                <span class="scroll-rune">ᚷ</span>
+                <span class="scroll-rune">ᛁ</span>
+                <span class="scroll-rune">ᛋ</span>
+                <span class="scroll-rune">ᚺ</span>
+                <span class="scroll-rune">ᛏ</span>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="js/atlas.js"></script>
+    
+    <script>
+        // ===== ГЕНЕРАЦИЯ ЗВЁЗД =====
+        (function createStars() {
+            const container = document.getElementById('stars');
+            if (!container) return;
+            const count = 150;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                container.appendChild(star);
+            }
+        })();
+
+        // ===== ФУНКЦИЯ ВЫХОДА (СБРОС ДАННЫХ) =====
+        window.logoutUser = function() {
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userGender');
+            window._userName = null;
+            window._userGender = null;
+            window.location.href = 'index.html';
+        };
+    </script>
+</body>
+</html>

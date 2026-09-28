@@ -1,0 +1,894 @@
+/* ============================================
+   СТИЛИ ДЛЯ СТРАНИЦЫ "АТЛАС СУДЬБЫ"
+   ============================================ */
+
+/* ===== 1. ОБЩИЕ ===== */
+#atlas-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 30px;
+    max-width: 800px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    padding: 10px;
+}
+
+#atlas-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ===== 2. КЛИКАБЕЛЬНЫЕ ЭЛЕМЕНТЫ ===== */
+.atlas-item {
+    cursor: pointer;
+    transition: filter 0.25s ease;
+}
+
+/* ===== 3. ПОЯСА (невидимые кликабельные зоны) ===== */
+.atlas-ring {
+    fill: none;
+    pointer-events: stroke;
+    transition: opacity 0.25s ease;
+}
+
+.atlas-ring:hover {
+    opacity: 0.4 !important;
+    stroke: rgba(255, 215, 0, 0.08) !important;
+}
+
+/* ===== 4. КВАНТОВЫЕ РУБЕЖИ ===== */
+.atlas-border {
+    fill: none;
+    stroke: #FFD700;
+    stroke-width: 4;
+    pointer-events: stroke;
+    transition: stroke-width 0.25s ease;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+}
+
+.atlas-border:hover {
+    stroke-width: 6;
+}
+
+/* ===== 5. ГРАНЬ МИРОВ ===== */
+.atlas-edge {
+    fill: none;
+    stroke: #888;
+    stroke-width: 3;
+    pointer-events: stroke;
+    transition: stroke-width 0.25s ease;
+}
+
+.atlas-edge:hover {
+    stroke-width: 5;
+    stroke: #fff;
+}
+
+/* ===== 6. ЯРГА (прозрачная зона поверх градиента) ===== */
+.atlas-yarga {
+    fill: transparent;
+    stroke: none;
+    pointer-events: all;
+    transition: filter 0.25s ease;
+}
+
+.atlas-yarga:hover {
+    filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
+}
+
+.atlas-yarga-text {
+    fill: #FFD700;
+    font-family: 'Philosopher', serif;
+    font-size: 30px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: central;
+    pointer-events: none;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+}
+
+/* ===== 7. ПВД ===== */
+.atlas-pvd {
+    fill: #1E90FF;
+    stroke: #FFD700;
+    stroke-width: 2;
+    pointer-events: all;
+    transition: all 0.25s ease;
+    filter: drop-shadow(0 0 15px rgba(30, 144, 255, 0.8));
+}
+
+.atlas-pvd:hover {
+    fill: #44AAFF;
+    filter: drop-shadow(0 0 25px rgba(30, 144, 255, 1));
+}
+
+/* ===== 8. ТОЧКИ ВЫБОРА ===== */
+.atlas-choice {
+    fill: #8B00FF;
+    stroke: #fff;
+    stroke-width: 2;
+    pointer-events: all;
+    transition: all 0.25s ease;
+    filter: drop-shadow(0 0 12px rgba(139, 0, 255, 0.8));
+}
+
+.atlas-choice:hover {
+    fill: #B040FF;
+    filter: drop-shadow(0 0 20px rgba(139, 0, 255, 1));
+}
+
+/* ===== 9. ТОЧКА ВОПЛОЩЕНИЯ ===== */
+.atlas-incarnation {
+    fill: #fff;
+    stroke: #1E90FF;
+    stroke-width: 2;
+    pointer-events: all;
+    transition: all 0.25s ease;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+.atlas-incarnation:hover {
+    fill: #FFFFCC;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 1));
+}
+
+/* ===== 10. ЛИНИЯ ЖИЗНИ ===== */
+.atlas-life-line {
+    fill: none;
+    stroke: #44FF44;
+    stroke-width: 3;
+    pointer-events: stroke;
+    filter: drop-shadow(0 0 8px rgba(68, 255, 68, 0.6));
+    transition: stroke-width 0.25s ease;
+}
+
+.atlas-life-line:hover {
+    stroke-width: 5;
+    filter: drop-shadow(0 0 15px rgba(68, 255, 68, 1));
+}
+
+/* ===== 11. ЛИНИЯ ПРОШЛОЙ ЖИЗНИ ===== */
+.atlas-past-line {
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 2;
+    stroke-dasharray: 8 6;
+    pointer-events: stroke;
+    opacity: 0.7;
+    transition: opacity 0.25s ease;
+}
+
+.atlas-past-line:hover {
+    opacity: 1;
+    stroke-width: 3;
+}
+
+/* ===== 12. ВЕКТОР СИЛ СВЕТА ===== */
+.atlas-vector-light {
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.atlas-vector-light:hover .atlas-vector-light-arrow {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 1));
+}
+
+.atlas-vector-light-arrow {
+    stroke: #FFFFFF;
+    stroke-width: 2;
+    transition: filter 0.25s ease;
+}
+
+.atlas-vector-light-text {
+    fill: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    text-anchor: middle;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+/* ===== 13. ВЕКТОР СИЛ ТЬМЫ ===== */
+.atlas-vector-dark {
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.atlas-vector-dark:hover .atlas-vector-dark-arrow {
+    filter: drop-shadow(0 0 12px rgba(255, 68, 68, 1));
+}
+
+.atlas-vector-dark-arrow {
+    stroke: #FF4444;
+    stroke-width: 2;
+    transition: filter 0.25s ease;
+}
+
+.atlas-vector-dark-text {
+    fill: #FF4444;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    text-anchor: middle;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+/* ===== 14. ВСПЛЫВАЮЩАЯ КАРТОЧКА ===== */
+#atlas-tooltip {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    background: rgba(20, 30, 50, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 12px;
+    padding: 10px 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    transform: translate(-50%, -120%);
+    transition: opacity 0.15s ease;
+}
+
+#atlas-tooltip .atlas-tooltip-name {
+    color: #FFD700;
+    font-family: 'Philosopher', serif;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* ============================================
+   ИНФО-ПАНЕЛЬ — СВИТОК
+   ============================================ */
+
+#atlas-info-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 30px auto;
+    max-width: 900px;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+    animation: scrollUnroll 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-origin: top center;
+}
+
+/* ===== ВЕРХНИЙ ВАЛИК ИНФО-ПАНЕЛИ ===== */
+.atlas-info-roller-top,
+.atlas-info-roller-bottom {
+    position: relative;
+    height: 24px;
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg,
+            #2a1a0a 0%,
+            #4a2f1a 15%,
+            #6b4426 35%,
+            #8b5a2b 50%,
+            #6b4426 65%,
+            #4a2f1a 85%,
+            #2a1a0a 100%);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.7),
+        inset 0 2px 3px rgba(255, 215, 0, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.atlas-info-roller-top::before,
+.atlas-info-roller-top::after,
+.atlas-info-roller-bottom::before,
+.atlas-info-roller-bottom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 35%, #ffe680 0%, #d4a017 40%, #8b6914 70%, #4a3508 100%);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.7),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+        inset 0 2px 3px rgba(255, 235, 150, 0.6);
+    z-index: 4;
+}
+
+.atlas-info-roller-top::before,
+.atlas-info-roller-bottom::before { left: -5px; }
+
+.atlas-info-roller-top::after,
+.atlas-info-roller-bottom::after { right: -5px; }
+
+.atlas-info-roller-top { margin-bottom: -5px; }
+.atlas-info-roller-bottom { margin-top: -5px; }
+
+/* ===== ПЕРГАМЕНТ ИНФО-ПАНЕЛИ ===== */
+.atlas-info-parchment {
+    position: relative;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(139, 90, 43, 0.12) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(139, 90, 43, 0.10) 0%, transparent 20%),
+        radial-gradient(circle at 30% 75%, rgba(139, 90, 43, 0.08) 0%, transparent 22%),
+        radial-gradient(circle at 70% 85%, rgba(139, 90, 43, 0.11) 0%, transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(160, 110, 60, 0.06) 0%, transparent 60%),
+        linear-gradient(180deg, #f0dbb5 0%, #e8d2a6 30%, #e0c896 70%, #d8bd85 100%);
+    border-radius: 2px;
+    padding: 32px 46px 36px;
+    margin: 0 -5px;
+    box-shadow:
+        inset 0 0 60px rgba(139, 90, 43, 0.18),
+        inset 0 0 120px rgba(90, 60, 20, 0.08),
+        inset 0 0 0 1px rgba(120, 80, 30, 0.25);
+    z-index: 1;
+    color: #3a2a15;
+    font-family: 'Philosopher', serif;
+}
+
+.atlas-info-parchment::before,
+.atlas-info-parchment::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.atlas-info-parchment::before {
+    top: 0;
+    background: linear-gradient(180deg,
+        rgba(90, 60, 20, 0.25) 0%,
+        rgba(120, 80, 30, 0.08) 40%,
+        transparent 100%);
+}
+
+.atlas-info-parchment::after {
+    bottom: 0;
+    background: linear-gradient(0deg,
+        rgba(90, 60, 20, 0.25) 0%,
+        rgba(120, 80, 30, 0.08) 40%,
+        transparent 100%);
+}
+
+/* ===== КНОПКА ЗАКРЫТИЯ ===== */
+#atlas-info-panel .close-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: rgba(139, 90, 43, 0.15);
+    border: 1px solid rgba(139, 90, 43, 0.4);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    color: #4a2f1a;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#atlas-info-panel .close-btn:hover {
+    background: #8b5a2b;
+    color: #f5e6c8;
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(139, 90, 43, 0.6);
+}
+
+/* ===== КОНТЕНТ ===== */
+.atlas-info-content {
+    position: relative;
+    z-index: 1;
+}
+
+.atlas-info-content h2 {
+    font-family: 'Philosopher', serif;
+    font-size: 28px;
+    color: #4a2f1a;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.atlas-info-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, #8b5a2b, #c9a86a, transparent);
+    border-radius: 2px;
+}
+
+.atlas-info-content .atlas-sub {
+    color: #7a5a3a;
+    font-size: 14px;
+    margin-bottom: 18px;
+    font-style: italic;
+    font-family: 'Philosopher', serif;
+}
+
+.atlas-info-content .atlas-desc {
+    color: #3a2a15;
+    font-size: 16px;
+    line-height: 1.85;
+    background: rgba(255, 250, 235, 0.35);
+    padding: 18px 22px;
+    border-radius: 4px;
+    border-left: 3px solid #8b5a2b;
+    box-shadow: inset 0 0 30px rgba(139, 90, 43, 0.06);
+    font-family: 'Roboto', sans-serif;
+    text-align: justify;
+}
+
+@keyframes scrollUnroll {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.05);
+        filter: brightness(0.6);
+    }
+    40% {
+        opacity: 1;
+        transform: scaleY(0.5);
+        filter: brightness(0.85);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        filter: brightness(1);
+    }
+}
+
+@keyframes rollerSway {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-1px) rotate(0.3deg);
+    }
+}
+
+/* ============================================
+   СВИТОК "ЧТО ТАКОЕ АТЛАС СУТЬБЫ"
+   ============================================ */
+
+#atlas-scroll {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+}
+
+/* ===== ВАЛИКИ (сверху и снизу) — УМЕНЬШЕНА ВЫСОТА ===== */
+.scroll-roller {
+    position: relative;
+    height: 24px;
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg,
+            #2a1a0a 0%,
+            #4a2f1a 15%,
+            #6b4426 35%,
+            #8b5a2b 50%,
+            #6b4426 65%,
+            #4a2f1a 85%,
+            #2a1a0a 100%);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.7),
+        inset 0 2px 3px rgba(255, 215, 0, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 3;
+    overflow: hidden;
+}
+
+/* ===== ЗОЛОТЫЕ НАКОНЕЧНИКИ ВАЛИКОВ ===== */
+.scroll-roller::before,
+.scroll-roller::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 35%, #ffe680 0%, #d4a017 40%, #8b6914 70%, #4a3508 100%);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.7),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+        inset 0 2px 3px rgba(255, 235, 150, 0.6);
+    z-index: 4;
+}
+
+.scroll-roller::before { left: -5px; }
+.scroll-roller::after  { right: -5px; }
+
+.scroll-roller-top {
+    margin-bottom: -5px;
+}
+
+.scroll-roller-bottom {
+    margin-top: -5px;
+}
+
+/* ===== РУНЫ НА ВАЛИКАХ ===== */
+.scroll-rune {
+    font-family: 'Philosopher', serif;
+    font-size: 14px;
+    color: #d4a017;
+    text-shadow:
+        0 0 8px rgba(255, 215, 0, 0.4),
+        0 1px 2px rgba(0, 0, 0, 0.9);
+    opacity: 0.85;
+    user-select: none;
+    line-height: 1;
+}
+
+/* ===== ПЕРГАМЕНТ (тело свитка) ===== */
+.scroll-parchment {
+    position: relative;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(139, 90, 43, 0.12) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(139, 90, 43, 0.10) 0%, transparent 20%),
+        radial-gradient(circle at 30% 75%, rgba(139, 90, 43, 0.08) 0%, transparent 22%),
+        radial-gradient(circle at 70% 85%, rgba(139, 90, 43, 0.11) 0%, transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(160, 110, 60, 0.06) 0%, transparent 60%),
+        linear-gradient(180deg, #f0dbb5 0%, #e8d2a6 30%, #e0c896 70%, #d8bd85 100%);
+    border-radius: 2px;
+    padding: 22px 40px 24px;
+    margin: 0 -5px;
+    box-shadow:
+        inset 0 0 60px rgba(139, 90, 43, 0.18),
+        inset 0 0 120px rgba(90, 60, 20, 0.08),
+        inset 0 0 0 1px rgba(120, 80, 30, 0.25);
+    z-index: 1;
+}
+
+/* ===== КРАЯ ПЕРГАМЕНТА (потёртости) ===== */
+.scroll-parchment::before,
+.scroll-parchment::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.scroll-parchment::before {
+    top: 0;
+    background: linear-gradient(180deg,
+        rgba(90, 60, 20, 0.25) 0%,
+        rgba(120, 80, 30, 0.08) 40%,
+        transparent 100%);
+}
+
+.scroll-parchment::after {
+    bottom: 0;
+    background: linear-gradient(0deg,
+        rgba(90, 60, 20, 0.25) 0%,
+        rgba(120, 80, 30, 0.08) 40%,
+        transparent 100%);
+}
+
+/* ===== БЕЧЁВКА (навязанная по бокам) ===== */
+.scroll-tie {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 52px;
+    border-radius: 6px;
+    background:
+        repeating-linear-gradient(45deg,
+            #8b6a3a 0px,
+            #8b6a3a 3px,
+            #6b4f28 3px,
+            #6b4f28 6px,
+            #a07a44 6px,
+            #a07a44 9px);
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.6),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+        inset 0 2px 2px rgba(255, 220, 140, 0.2);
+    z-index: 5;
+}
+
+.scroll-tie::before,
+.scroll-tie::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 7px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 40% 40%, #a07a44 0%, #6b4f28 60%, #3a2a10 100%);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.7),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-tie::before { top: -5px; }
+.scroll-tie::after  { bottom: -5px; }
+
+.scroll-tie-left  { left: 6px; }
+.scroll-tie-right { right: 6px; }
+
+/* ===== КНОПКА-ЗАГОЛОВОК ===== */
+.scroll-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed rgba(120, 80, 30, 0.35);
+    color: #4a2f1a;
+    font-family: 'Philosopher', serif;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+.scroll-toggle:hover {
+    color: #2a1a0a;
+    background: rgba(139, 90, 43, 0.06);
+    border-bottom-color: rgba(120, 80, 30, 0.6);
+}
+
+.scroll-toggle.active {
+    border-bottom-color: transparent;
+}
+
+.scroll-toggle-icon {
+    font-size: 22px;
+    filter: drop-shadow(0 0 6px rgba(139, 90, 43, 0.4));
+}
+
+.scroll-toggle-text {
+    flex: 1;
+    text-align: center;
+}
+
+.scroll-toggle-arrow {
+    font-size: 13px;
+    transition: transform 0.3s ease;
+    color: #8b5a2b;
+}
+
+/* ===== ТЕЛО СВИТКА (раскрывающийся контент) ===== */
+.scroll-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.scroll-content {
+    padding: 18px 8px 6px;
+    color: #3a2a15;
+    font-family: 'Philosopher', serif;
+}
+
+.scroll-text {
+    font-family: 'Roboto', sans-serif;
+    color: #3a2a15;
+    font-size: 15px;
+    line-height: 1.85;
+    text-align: justify;
+}
+
+.scroll-text p {
+    margin-bottom: 14px;
+}
+
+.scroll-text p:last-child {
+    margin-bottom: 0;
+}
+
+.scroll-text h3 {
+    font-family: 'Philosopher', serif;
+    font-size: 18px;
+    color: #6b4426;
+    margin: 22px 0 12px;
+    padding-left: 12px;
+    border-left: 3px solid #8b5a2b;
+    letter-spacing: 0.5px;
+}
+
+.scroll-text h3:first-child {
+    margin-top: 0;
+}
+
+.scroll-list {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 18px;
+}
+
+.scroll-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    background: rgba(255, 250, 235, 0.4);
+    border-radius: 6px;
+    border-left: 3px solid #8b5a2b;
+    box-shadow: inset 0 0 20px rgba(139, 90, 43, 0.05);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.scroll-list .dot {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-top: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dot-light { background: #FFD700; box-shadow: 0 0 12px rgba(255, 215, 0, 0.8); }
+.dot-mid   { background: #888;    box-shadow: 0 0 10px rgba(136, 136, 136, 0.6); }
+.dot-dark  { background: #1a1a1a; box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); }
+
+/* ============================================
+   17. АНИМАЦИЯ ОБЩАЯ
+   ============================================ */
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   18. АДАПТИВНОСТЬ
+   ============================================ */
+
+@media (max-width: 768px) {
+    #atlas-wrap {
+        max-width: 100%;
+        padding: 0;
+        margin: 10px auto 16px;
+    }
+
+    #atlas-info-panel {
+        margin: 12px 4px;
+    }
+
+    .atlas-info-roller-top,
+    .atlas-info-roller-bottom {
+        height: 16px;
+        padding: 0 12px;
+    }
+
+    .atlas-info-roller-top::before,
+    .atlas-info-roller-top::after,
+    .atlas-info-roller-bottom::before,
+    .atlas-info-roller-bottom::after {
+        width: 12px;
+        height: 12px;
+    }
+
+    .atlas-info-parchment {
+        padding: 14px 14px 16px;
+    }
+
+    .atlas-info-content h2 {
+        font-size: 18px;
+    }
+
+    .atlas-info-content .atlas-desc {
+        font-size: 13px;
+        padding: 12px 14px;
+    }
+
+    #atlas-info-panel .close-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 13px;
+        top: 8px;
+        right: 10px;
+    }
+
+    /* ===== СВИТОК "ЧТО ТАКОЕ АТЛАС СУТЬБЫ" ===== */
+    #atlas-scroll {
+        margin: 0 4px 16px;
+    }
+
+    .scroll-roller {
+        height: 16px;
+        padding: 0 12px;
+    }
+
+    .scroll-roller::before,
+    .scroll-roller::after {
+        width: 12px;
+        height: 12px;
+    }
+
+    .scroll-rune {
+        font-size: 10px;
+    }
+
+    .scroll-parchment {
+        padding: 14px 14px 16px;
+    }
+
+    .scroll-tie {
+        width: 8px;
+        height: 36px;
+    }
+
+    .scroll-toggle {
+        font-size: 14px;
+        padding: 8px 10px;
+        gap: 6px;
+    }
+
+    .scroll-toggle-icon {
+        font-size: 16px;
+    }
+
+    .scroll-content {
+        padding: 10px 4px 4px;
+    }
+
+    .scroll-text {
+        font-size: 13px;
+    }
+
+    .scroll-text h3 {
+        font-size: 15px;
+    }
+
+    .scroll-list li {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}

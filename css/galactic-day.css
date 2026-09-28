@@ -1,0 +1,980 @@
+/* ============================================
+   СТИЛИ ДЛЯ СТРАНИЦЫ "ГАЛАКТИЧЕСКИЕ СУТКИ"
+   ============================================ */
+
+/* ===== 1. ОБЩИЕ ===== */
+#galactic-clock-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 30px;
+    max-width: 700px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+#gc-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 0 60px rgba(255, 215, 0, 0.08));
+    z-index: 1;
+}
+
+#gc-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* ===== 2. СЕКТОРА-ЗОНЫ КЛИКА ===== */
+.gc-sector {
+    cursor: pointer;
+    pointer-events: all;
+    transition: opacity 0.25s ease;
+    fill: transparent;
+}
+
+.gc-sector:hover {
+    fill: rgba(255, 215, 0, 0.15);
+}
+
+.gc-sector.active {
+    fill: rgba(255, 215, 0, 0.3);
+}
+
+/* ===== 3. ОРБИТЫ ПЛАНЕТ ===== */
+.gc-planet-orbit {
+    pointer-events: none;
+    fill: none;
+    stroke: rgba(255, 215, 0, 0.15);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 8;
+    opacity: 0.5;
+}
+
+.gc-planet {
+    pointer-events: none;
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.5));
+}
+
+/* ===== 4. АНИМАЦИЯ ВРАЩЕНИЯ ПЛАНЕТ ===== */
+.gc-orbit-1,
+.gc-orbit-2,
+.gc-orbit-3,
+.gc-orbit-4,
+.gc-orbit-5,
+.gc-orbit-6,
+.gc-orbit-7,
+.gc-orbit-8 {
+    transform-origin: center;
+    animation-name: planetOrbit;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.gc-orbit-1 { animation-duration: 20s; }
+.gc-orbit-2 { animation-duration: 32s; }
+.gc-orbit-3 { animation-duration: 48s; }
+.gc-orbit-4 { animation-duration: 62s; }
+.gc-orbit-5 { animation-duration: 85s; }
+.gc-orbit-6 { animation-duration: 110s; }
+.gc-orbit-7 { animation-duration: 140s; }
+.gc-orbit-8 { animation-duration: 175s; }
+
+@keyframes planetOrbit {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ===== 5. СОЛНЦЕ В ЦЕНТРЕ ===== */
+.gc-sun-glow {
+    pointer-events: none;
+}
+
+.gc-sun-rays {
+    pointer-events: none;
+    transform-origin: center;
+    animation: sunRaysSpin 120s linear infinite;
+}
+
+.gc-sun-core {
+    pointer-events: none;
+    filter: drop-shadow(0 0 30px rgba(255, 165, 0, 0.9)) drop-shadow(0 0 60px rgba(255, 100, 0, 0.5));
+}
+
+.gc-sun-highlight {
+    pointer-events: none;
+    opacity: 0.7;
+    filter: blur(8px);
+}
+
+@keyframes sunRaysSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ============================================
+   СТРЕЛКА-ЛУЧИК (HTML-СЛОЙ ПОВЕРХ ВСЕГО)
+   ============================================ */
+
+#gc-arrow-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    transform-origin: 50% 50%;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Луч — от солнца к внешнему краю Сварожьего круга */
+/* top = 50% - (длина луча). Луч идёт от края солнца до внешнего края. */
+#gc-arrow-beam {
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    width: 6px;
+    height: 28%;
+    margin-left: -3px;
+    background: linear-gradient(to top,
+        rgba(255, 215, 0, 0.3) 0%,
+        #FFD700 15%,
+        #FFFFFF 50%,
+        #FFD700 85%,
+        rgba(255, 215, 0, 0.3) 100%);
+    border-radius: 3px;
+    box-shadow:
+        0 0 10px #FFD700,
+        0 0 20px rgba(255, 215, 0, 0.9),
+        0 0 40px rgba(255, 165, 0, 0.7);
+}
+
+/* Наконечник — треугольник */
+#gc-arrow-head {
+    position: absolute;
+    top: 20.5%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -18px;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 26px solid #FFFFFF;
+    filter:
+        drop-shadow(0 0 10px #FFD700)
+        drop-shadow(0 0 20px rgba(255, 215, 0, 1))
+        drop-shadow(0 0 40px rgba(255, 165, 0, 0.8));
+}
+
+/* ============================================
+   СВИТОК "ЧТО ТАКОЕ СВАРОЖИЙ КРУГ"
+   ============================================ */
+
+#galactic-scroll {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+}
+
+.scroll-roller {
+    position: relative;
+    height: 24px;
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg,
+            #2a1a0a 0%,
+            #4a2f1a 15%,
+            #6b4426 35%,
+            #8b5a2b 50%,
+            #6b4426 65%,
+            #4a2f1a 85%,
+            #2a1a0a 100%);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.7),
+        inset 0 2px 3px rgba(255, 215, 0, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.scroll-roller::before,
+.scroll-roller::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 35%, #ffe680 0%, #d4a017 40%, #8b6914 70%, #4a3508 100%);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.7),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+        inset 0 2px 3px rgba(255, 235, 150, 0.6);
+    z-index: 4;
+}
+
+.scroll-roller::before { left: -5px; }
+.scroll-roller::after  { right: -5px; }
+
+.scroll-roller-top { margin-bottom: -5px; }
+.scroll-roller-bottom { margin-top: -5px; }
+
+.scroll-rune {
+    font-family: 'Philosopher', serif;
+    font-size: 14px;
+    color: #d4a017;
+    text-shadow:
+        0 0 8px rgba(255, 215, 0, 0.4),
+        0 1px 2px rgba(0, 0, 0, 0.9);
+    opacity: 0.85;
+    user-select: none;
+    line-height: 1;
+}
+
+.scroll-parchment {
+    position: relative;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(139, 90, 43, 0.12) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(139, 90, 43, 0.10) 0%, transparent 20%),
+        radial-gradient(circle at 30% 75%, rgba(139, 90, 43, 0.08) 0%, transparent 22%),
+        radial-gradient(circle at 70% 85%, rgba(139, 90, 43, 0.11) 0%, transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(160, 110, 60, 0.06) 0%, transparent 60%),
+        linear-gradient(180deg, #f0dbb5 0%, #e8d2a6 30%, #e0c896 70%, #d8bd85 100%);
+    border-radius: 2px;
+    padding: 22px 40px 24px;
+    margin: 0 -5px;
+    box-shadow:
+        inset 0 0 60px rgba(139, 90, 43, 0.18),
+        inset 0 0 120px rgba(90, 60, 20, 0.08),
+        inset 0 0 0 1px rgba(120, 80, 30, 0.25);
+    z-index: 1;
+}
+
+.scroll-parchment::before,
+.scroll-parchment::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.scroll-parchment::before {
+    top: 0;
+    background: linear-gradient(180deg,
+        rgba(90, 60, 20, 0.25) 0%,
+        rgba(120, 80, 30, 0.08) 40%,
+        transparent 100%);
+}
+
+.scroll-parchment::after {
+    bottom: 0;
+    background: linear-gradient(0deg,
+        rgba(90, 60, 20, 0.25) 0%,
+        rgba(120, 80, 30, 0.08) 40%,
+        transparent 100%);
+}
+
+.scroll-tie {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 52px;
+    border-radius: 6px;
+    background:
+        repeating-linear-gradient(45deg,
+            #8b6a3a 0px, #8b6a3a 3px,
+            #6b4f28 3px, #6b4f28 6px,
+            #a07a44 6px, #a07a44 9px);
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.6),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+        inset 0 2px 2px rgba(255, 220, 140, 0.2);
+    z-index: 5;
+}
+
+.scroll-tie::before,
+.scroll-tie::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 7px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 40% 40%, #a07a44 0%, #6b4f28 60%, #3a2a10 100%);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.7),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-tie::before { top: -5px; }
+.scroll-tie::after  { bottom: -5px; }
+
+.scroll-tie-left  { left: 6px; }
+.scroll-tie-right { right: 6px; }
+
+.scroll-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed rgba(120, 80, 30, 0.35);
+    color: #4a2f1a;
+    font-family: 'Philosopher', serif;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+.scroll-toggle:hover {
+    color: #2a1a0a;
+    background: rgba(139, 90, 43, 0.06);
+    border-bottom-color: rgba(120, 80, 30, 0.6);
+}
+
+.scroll-toggle.active {
+    border-bottom-color: transparent;
+}
+
+.scroll-toggle-icon {
+    font-size: 22px;
+    filter: drop-shadow(0 0 6px rgba(139, 90, 43, 0.4));
+}
+
+.scroll-toggle-text {
+    flex: 1;
+    text-align: center;
+}
+
+.scroll-toggle-arrow {
+    font-size: 13px;
+    transition: transform 0.3s ease;
+    color: #8b5a2b;
+}
+
+.scroll-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.scroll-content {
+    padding: 18px 8px 6px;
+    color: #3a2a15;
+    font-family: 'Philosopher', serif;
+}
+
+.scroll-text {
+    font-family: 'Roboto', sans-serif;
+    color: #3a2a15;
+    font-size: 15px;
+    line-height: 1.85;
+    text-align: justify;
+}
+
+.scroll-text-scrollable {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 18px;
+}
+
+.scroll-text-scrollable::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-text-scrollable::-webkit-scrollbar-track {
+    background: rgba(139, 90, 43, 0.1);
+    border-radius: 4px;
+}
+
+.scroll-text-scrollable::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8b5a2b, #6b4426);
+    border-radius: 4px;
+    box-shadow: inset 0 0 6px rgba(255, 215, 0, 0.3);
+}
+
+.scroll-text-scrollable::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #a06a30, #7b5028);
+}
+
+.scroll-text-scrollable {
+    scrollbar-width: thin;
+    scrollbar-color: #8b5a2b rgba(139, 90, 43, 0.1);
+}
+
+.scroll-text p {
+    margin-bottom: 14px;
+}
+
+.scroll-text p:last-child {
+    margin-bottom: 0;
+}
+
+.scroll-text h3 {
+    font-family: 'Philosopher', serif;
+    font-size: 18px;
+    color: #6b4426;
+    margin: 22px 0 12px;
+    padding-left: 12px;
+    border-left: 3px solid #8b5a2b;
+    letter-spacing: 0.5px;
+}
+
+.scroll-text h3:first-child {
+    margin-top: 0;
+}
+
+.scroll-list {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 18px;
+}
+
+.scroll-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    background: rgba(255, 250, 235, 0.4);
+    border-radius: 6px;
+    border-left: 3px solid #8b5a2b;
+    box-shadow: inset 0 0 20px rgba(139, 90, 43, 0.05);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.scroll-list .dot {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-top: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dot-light { background: #FFD700; box-shadow: 0 0 12px rgba(255, 215, 0, 0.8); }
+.dot-mid   { background: #888;    box-shadow: 0 0 10px rgba(136, 136, 136, 0.6); }
+.dot-dark  { background: #1a1a1a; box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); }
+
+.scroll-table-wrap {
+    margin: 14px 0 18px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.scroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    background: rgba(255, 250, 235, 0.5);
+}
+
+.scroll-table thead {
+    background: linear-gradient(180deg, #8b5a2b, #6b4426);
+}
+
+.scroll-table thead th {
+    padding: 10px 8px;
+    color: #f0dbb5;
+    font-weight: 700;
+    text-align: left;
+    font-family: 'Philosopher', serif;
+    font-size: 13px;
+    border-bottom: 2px solid #4a2f1a;
+}
+
+.scroll-table tbody td {
+    padding: 8px;
+    color: #3a2a15;
+    border-bottom: 1px solid rgba(139, 90, 43, 0.2);
+}
+
+.scroll-table tbody tr:nth-child(even) {
+    background: rgba(139, 90, 43, 0.06);
+}
+
+.scroll-table tbody tr:hover {
+    background: rgba(255, 215, 0, 0.12);
+}
+
+.scroll-table .row-current {
+    background: rgba(255, 215, 0, 0.2) !important;
+    font-weight: 700;
+}
+
+.scroll-table .row-current td {
+    color: #4a2f1a;
+    border-bottom: 2px solid #d4a017;
+}
+
+/* ============================================
+   ИНФО-ПАНЕЛЬ ЭПОХИ — СВИТОК
+   ============================================ */
+
+#epoch-info-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 30px auto;
+    max-width: 900px;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+    animation: scrollUnroll 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-origin: top center;
+}
+
+.epoch-roller-top,
+.epoch-roller-bottom {
+    position: relative;
+    height: 24px;
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg,
+            #2a1a0a 0%,
+            #4a2f1a 15%,
+            #6b4426 35%,
+            #8b5a2b 50%,
+            #6b4426 65%,
+            #4a2f1a 85%,
+            #2a1a0a 100%);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.7),
+        inset 0 2px 3px rgba(255, 215, 0, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.epoch-roller-top::before,
+.epoch-roller-top::after,
+.epoch-roller-bottom::before,
+.epoch-roller-bottom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 35%, #ffe680 0%, #d4a017 40%, #8b6914 70%, #4a3508 100%);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.7),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+        inset 0 2px 3px rgba(255, 235, 150, 0.6);
+    z-index: 4;
+}
+
+.epoch-roller-top::before,
+.epoch-roller-bottom::before { left: -5px; }
+
+.epoch-roller-top::after,
+.epoch-roller-bottom::after { right: -5px; }
+
+.epoch-roller-top { margin-bottom: -5px; }
+.epoch-roller-bottom { margin-top: -5px; }
+
+.epoch-parchment {
+    position: relative;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(139, 90, 43, 0.12) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(139, 90, 43, 0.10) 0%, transparent 20%),
+        radial-gradient(circle at 30% 75%, rgba(139, 90, 43, 0.08) 0%, transparent 22%),
+        radial-gradient(circle at 70% 85%, rgba(139, 90, 43, 0.11) 0%, transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(160, 110, 60, 0.06) 0%, transparent 60%),
+        linear-gradient(180deg, #f0dbb5 0%, #e8d2a6 30%, #e0c896 70%, #d8bd85 100%);
+    border-radius: 2px;
+    padding: 32px 46px 36px;
+    margin: 0 -5px;
+    box-shadow:
+        inset 0 0 60px rgba(139, 90, 43, 0.18),
+        inset 0 0 120px rgba(90, 60, 20, 0.08),
+        inset 0 0 0 1px rgba(120, 80, 30, 0.25);
+    z-index: 1;
+    color: #3a2a15;
+    font-family: 'Philosopher', serif;
+}
+
+.epoch-parchment::before,
+.epoch-parchment::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.epoch-parchment::before {
+    top: 0;
+    background: linear-gradient(180deg,
+        rgba(90, 60, 20, 0.25) 0%,
+        rgba(120, 80, 30, 0.08) 40%,
+        transparent 100%);
+}
+
+.epoch-parchment::after {
+    bottom: 0;
+    background: linear-gradient(0deg,
+        rgba(90, 60, 20, 0.25) 0%,
+        rgba(120, 80, 30, 0.08) 40%,
+        transparent 100%);
+}
+
+#epoch-info-panel .close-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: rgba(139, 90, 43, 0.15);
+    border: 1px solid rgba(139, 90, 43, 0.4);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    color: #4a2f1a;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#epoch-info-panel .close-btn:hover {
+    background: #8b5a2b;
+    color: #f5e6c8;
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(139, 90, 43, 0.6);
+}
+
+.epoch-info-content h2 {
+    font-family: 'Philosopher', serif;
+    font-size: 26px;
+    color: #4a2f1a;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.epoch-info-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, #8b5a2b, #c9a86a, transparent);
+    border-radius: 2px;
+}
+
+.epoch-info-content .epoch-sub {
+    color: #7a5a3a;
+    font-size: 14px;
+    margin-bottom: 18px;
+    font-style: italic;
+    font-family: 'Philosopher', serif;
+}
+
+.epoch-info-content .epoch-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(139, 90, 43, 0.2);
+    font-size: 14px;
+    color: #3a2a15;
+    font-family: 'Roboto', sans-serif;
+}
+
+.epoch-info-content .epoch-row strong {
+    color: #6b4426;
+    font-weight: 700;
+}
+
+.epoch-info-content .epoch-desc {
+    margin-top: 14px;
+    font-size: 14px;
+    color: #3a2a15;
+    line-height: 1.7;
+    background: rgba(255, 250, 235, 0.4);
+    padding: 14px;
+    border-radius: 6px;
+    border-left: 3px solid #8b5a2b;
+    box-shadow: inset 0 0 20px rgba(139, 90, 43, 0.05);
+    font-family: 'Roboto', sans-serif;
+}
+
+.epoch-info-content .epoch-current-badge {
+    display: inline-block;
+    background: rgba(68, 255, 136, 0.25);
+    color: #1a5a30;
+    border: 1px solid rgba(68, 200, 100, 0.5);
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.epoch-info-content .epoch-future-badge {
+    display: inline-block;
+    background: rgba(136, 187, 255, 0.25);
+    color: #1a3a6a;
+    border: 1px solid rgba(100, 150, 220, 0.5);
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.epoch-info-content .epoch-past-badge {
+    display: inline-block;
+    background: rgba(136, 136, 136, 0.2);
+    color: #4a4a4a;
+    border: 1px solid rgba(136, 136, 136, 0.4);
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+/* ============================================
+   ЛЕГЕНДА ФАЗ
+   ============================================ */
+
+#phases-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 14px 24px;
+    border-radius: 14px;
+    margin: 0 auto 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    max-width: 900px;
+}
+
+.phase-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #ccc;
+}
+
+.phase-color {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   АНИМАЦИИ
+   ============================================ */
+
+@keyframes scrollUnroll {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.05);
+        filter: brightness(0.6);
+    }
+    40% {
+        opacity: 1;
+        transform: scaleY(0.5);
+        filter: brightness(0.85);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        filter: brightness(1);
+    }
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+
+@media (max-width: 768px) {
+    #galactic-clock-wrap {
+        max-width: 100%;
+    }
+
+    #phases-legend {
+        gap: 12px;
+        padding: 10px 14px;
+    }
+
+    .phase-legend-item {
+        font-size: 12px;
+    }
+
+    .phase-color {
+        width: 16px;
+        height: 16px;
+    }
+
+    #galactic-scroll {
+        margin: 0 12px 30px;
+    }
+
+    .scroll-roller {
+        height: 20px;
+        padding: 0 16px;
+    }
+
+    .scroll-roller::before,
+    .scroll-roller::after {
+        width: 14px;
+        height: 14px;
+    }
+
+    .scroll-rune {
+        font-size: 11px;
+    }
+
+    .scroll-parchment {
+        padding: 18px 22px 20px;
+    }
+
+    .scroll-tie {
+        width: 9px;
+        height: 42px;
+    }
+
+    .scroll-toggle {
+        font-size: 16px;
+        padding: 10px 14px;
+        gap: 8px;
+    }
+
+    .scroll-toggle-icon {
+        font-size: 18px;
+    }
+
+    .scroll-content {
+        padding: 14px 4px 4px;
+    }
+
+    .scroll-text {
+        font-size: 14px;
+    }
+
+    .scroll-text-scrollable {
+        max-height: 400px;
+        padding-right: 12px;
+    }
+
+    .scroll-text h3 {
+        font-size: 16px;
+    }
+
+    .scroll-list li {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    .scroll-table {
+        font-size: 11px;
+    }
+
+    .scroll-table thead th {
+        padding: 8px 4px;
+        font-size: 11px;
+    }
+
+    .scroll-table tbody td {
+        padding: 6px 4px;
+    }
+
+    #epoch-info-panel {
+        margin: 20px 12px;
+    }
+
+    .epoch-roller-top,
+    .epoch-roller-bottom {
+        height: 20px;
+        padding: 0 16px;
+    }
+
+    .epoch-roller-top::before,
+    .epoch-roller-top::after,
+    .epoch-roller-bottom::before,
+    .epoch-roller-bottom::after {
+        width: 14px;
+        height: 14px;
+    }
+
+    .epoch-parchment {
+        padding: 24px 20px 28px;
+    }
+
+    .epoch-info-content h2 {
+        font-size: 20px;
+    }
+
+    .epoch-info-content .epoch-desc {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    #epoch-info-panel .close-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+}

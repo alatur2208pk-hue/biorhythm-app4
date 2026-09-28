@@ -1,0 +1,814 @@
+/* ============================================
+   СТИЛИ ДЛЯ СТРАНИЦЫ СВАРОЖИЙ КРУГ
+   ============================================ */
+
+/* ===== 1. ОБЩИЕ СТИЛИ ===== */
+#svarogApp {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ #svarogApp ===== */
+@media (max-width: 768px) {
+    #svarogApp {
+        padding: 4px;
+    }
+}
+
+.svarog-header {
+    text-align: center;
+    padding: 30px 0 20px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.svarog-header h1 {
+    color: #ffd700;
+    font-size: 36px;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.svarog-header-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.svarog-header-icon {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.35));
+    flex-shrink: 0;
+}
+
+.svarog-header .subtitle {
+    color: #888;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+/* ===== 2. НАВИГАЦИЯ ===== */
+.svarog-nav {
+    margin-bottom: 30px;
+}
+
+.svarog-nav .nav-link {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.svarog-nav .nav-link:hover {
+    color: #ffd700;
+    border-color: #ffd70044;
+    background: rgba(255, 215, 0, 0.05);
+}
+
+/* ===== 3. КАЛЬКУЛЯТОР ===== */
+.svarog-calculator {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.svarog-calculator h2 {
+    color: #ffd700;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.input-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    flex: 1;
+    min-width: 120px;
+}
+
+.input-field label {
+    display: block;
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: #e0e0e0;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+.input-field input:focus {
+    border-color: #ffd700;
+    outline: none;
+    background: rgba(255, 215, 0, 0.03);
+}
+
+.input-field input::placeholder {
+    color: #555;
+}
+
+#calculateBtn {
+    background: linear-gradient(135deg, #ffd70033, #ffd70011);
+    border: 1px solid #ffd70044;
+    color: #ffd700;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+#calculateBtn:hover {
+    background: #ffd700;
+    color: #0a0e1a;
+    transform: scale(1.01);
+    box-shadow: 0 4px 30px rgba(255, 215, 0, 0.15);
+}
+
+/* ===== 4. РЕЗУЛЬТАТ ===== */
+.svarog-result {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 30px;
+    animation: fadeInUp 0.6s ease;
+}
+
+.svarog-result .result-header {
+    margin-bottom: 20px;
+}
+
+.svarog-result .result-block {
+    margin-bottom: 16px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== 5. ПОДВАЛ ===== */
+.svarog-footer {
+    text-align: center;
+    padding: 30px 0 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    margin-top: 40px;
+    color: #444;
+    font-size: 13px;
+}
+
+/* ===== 6. ПРИВЕТСТВИЕ С ИМЕНЕМ ===== */
+#svarog-greeting-text {
+    font-family: 'Philosopher', serif !important;
+    font-weight: 700;
+}
+
+/* ===== 7. AI БЛОК В СВАРОЖЬЕМ КРУГЕ ===== */
+.svarog-ai {
+    animation: fadeInUp 0.6s ease;
+}
+
+.svarog-ai-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.svarog-ai-header h3 {
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.svarog-ai .svarog-ai-chat-area::-webkit-scrollbar {
+    width: 10px;
+}
+
+.svarog-ai .svarog-ai-chat-area::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    margin: 4px 0;
+}
+
+.svarog-ai .svarog-ai-chat-area::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 215, 0, 0.5), rgba(255, 180, 0, 0.35));
+    border-radius: 5px;
+    border: 2px solid rgba(10, 14, 26, 0.8);
+}
+
+.svarog-ai .svarog-ai-chat-area::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(255, 215, 0, 0.75), rgba(255, 180, 0, 0.55));
+}
+
+/* Firefox */
+.svarog-ai .svarog-ai-chat-area {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 215, 0, 0.5) rgba(255, 255, 255, 0.05);
+}
+
+.svarog-ai .ai-message {
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    animation: fadeInUp 0.5s ease;
+}
+
+.svarog-ai .ai-bot {
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.08);
+}
+
+.svarog-ai .ai-bot strong {
+    color: #ffd700;
+    font-size: 15px;
+    font-family: 'Philosopher', serif;
+}
+
+.svarog-ai .ai-user {
+    background: rgba(68, 255, 136, 0.05);
+    border: 1px solid rgba(68, 255, 136, 0.08);
+    text-align: right;
+}
+
+.svarog-ai .ai-user strong {
+    color: #44ff88;
+}
+
+.svarog-ai .ai-text {
+    color: #ddd;
+    font-size: 14px;
+    line-height: 1.7;
+    display: block;
+    margin-top: 4px;
+    white-space: pre-wrap;
+}
+
+.svarog-ai .ai-text span {
+    color: #ffd700;
+}
+
+.svarog-ai .svarog-ai-chat-input input:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+}
+
+.svarog-ai .svarog-ai-chat-input input::placeholder {
+    color: #666;
+}
+
+.svarog-ai .svarog-ai-chat-input button:hover {
+    background: #ffd700;
+    color: #0a0e1a;
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+}
+
+/* ============================================
+   8. СТРАНИЦА СОВМЕСТИМОСТИ ЧЕРТОГОВ
+   ============================================ */
+
+.sovmestimost-form {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.sovmestimost-form h2 {
+    color: #ffd700;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.sovmestimost-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.sovmestimost-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+}
+
+.sovmestimost-card:hover {
+    border-color: rgba(255, 215, 0, 0.15);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.04);
+}
+
+.sovmestimost-card h3 {
+    font-family: 'Philosopher', serif;
+    font-size: 20px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(255, 215, 0, 0.15);
+}
+
+.sovmestimost-he h3 {
+    color: #88bbff;
+}
+
+.sovmestimost-she h3 {
+    color: #ff88bb;
+}
+
+#calculateSovmestimostBtn {
+    background: linear-gradient(135deg, #ffd70033, #ffd70011);
+    border: 1px solid #ffd70044;
+    color: #ffd700;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+#calculateSovmestimostBtn:hover {
+    background: #ffd700;
+    color: #0a0e1a;
+    transform: scale(1.01);
+    box-shadow: 0 4px 30px rgba(255, 215, 0, 0.15);
+}
+
+/* ===== РЕЗУЛЬТАТ СОВМЕСТИМОСТИ — СВИТОК ===== */
+#sovmestimostResult {
+    background: rgba(255, 215, 0, 0.03);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease;
+}
+
+#sovmestimostResult h2 {
+    color: #ffd700;
+    font-family: 'Philosopher', serif;
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+#sovmestimostResult .sovmestimost-sub {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+#sovmestimostResult .sovmestimost-pair {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+#sovmestimostResult .sovmestimost-pair-item {
+    text-align: center;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    min-width: 160px;
+}
+
+#sovmestimostResult .sovmestimost-pair-icon {
+    font-size: 44px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+}
+
+#sovmestimostResult .sovmestimost-pair-name {
+    font-family: 'Philosopher', serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+#sovmestimostResult .sovmestimost-pair-chertog {
+    font-size: 13px;
+    color: #aaa;
+}
+
+#sovmestimostResult .sovmestimost-heart {
+    font-size: 36px;
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+#sovmestimostResult .sovmestimost-text {
+    color: #ddd;
+    font-size: 15px;
+    line-height: 1.8;
+    background: rgba(255, 250, 235, 0.04);
+    padding: 18px 22px;
+    border-radius: 10px;
+    border-left: 3px solid #ffd700;
+    font-family: 'Roboto', sans-serif;
+    white-space: pre-wrap;
+}
+
+/* ============================================
+   9. ШАПКА ЧЕРТОГА — 6 КОЛОНОК
+   ============================================ */
+
+.chertog-info-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.chertog-info-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 100px;
+}
+
+.chertog-info-label {
+    font-family: 'Philosopher', serif;
+    font-size: 13px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed rgba(255, 215, 0, 0.2);
+    width: 100%;
+}
+
+.chertog-info-value {
+    font-family: 'Philosopher', serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chertog-info-img {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.35));
+    display: block;
+}
+
+.chertog-info-img-placeholder {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    border: 1px dashed rgba(255, 215, 0, 0.25);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.chertog-rune-img-small {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+    flex-shrink: 0;
+}
+
+/* ============================================
+   10. МОБИЛЬНАЯ АДАПТАЦИЯ (max-width: 600px)
+   ============================================ */
+
+@media (max-width: 600px) {
+    /* ===== КОНТЕЙНЕР ===== */
+    #svarogApp {
+        padding: 4px;
+    }
+
+    /* ===== ШАПКА ===== */
+    .svarog-header {
+        padding: 8px 0 8px;
+        margin-bottom: 8px;
+    }
+
+    .svarog-header h1 {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    
+    .svarog-header-title {
+        gap: 8px;
+    }
+    
+    .svarog-header-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .svarog-header .subtitle {
+        font-size: 12px;
+    }
+
+    /* ===== НАВИГАЦИЯ ===== */
+    .svarog-nav {
+        margin-bottom: 10px;
+    }
+
+    .svarog-nav .nav-link {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    /* ===== КАЛЬКУЛЯТОР ===== */
+    .svarog-calculator {
+        padding: 8px;
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+
+    .svarog-calculator h2 {
+        font-size: 17px;
+        margin-bottom: 4px;
+    }
+
+    .svarog-calculator p {
+        font-size: 12px;
+        margin-bottom: 10px !important;
+    }
+
+    .input-group {
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .input-field {
+        min-width: 70px;
+    }
+
+    .input-field label {
+        font-size: 12px;
+    }
+
+    .input-field input {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+
+    #calculateBtn {
+        font-size: 15px;
+        padding: 10px 16px;
+    }
+
+    #goToSovmestimostBtn {
+        font-size: 14px !important;
+        padding: 10px 16px !important;
+        margin-top: 8px !important;
+    }
+
+    /* ===== РЕЗУЛЬТАТ ===== */
+    .svarog-result {
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    .result-block {
+        padding: 8px !important;
+        border-radius: 8px !important;
+        margin-top: 8px !important;
+    }
+
+    .result-block h3 {
+        font-size: 14px !important;
+    }
+
+    .result-block p {
+        font-size: 12px !important;
+        line-height: 1.6 !important;
+    }
+
+    /* ===== AI БЛОК ===== */
+    .svarog-ai-content {
+        padding: 8px !important;
+    }
+
+    .svarog-ai-header h3 {
+        font-size: 16px !important;
+    }
+
+    .svarog-ai-header p {
+        font-size: 12px !important;
+    }
+
+    .svarog-ai .svarog-ai-chat-area {
+        max-height: 300px;
+    }
+
+    .svarog-ai .ai-message {
+        padding: 8px 10px;
+        border-radius: 8px;
+    }
+
+    .svarog-ai .ai-text {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .svarog-ai .svarog-ai-chat-input input {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
+    .svarog-ai .svarog-ai-chat-input button {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+
+    .vedagor-spinner {
+        width: 26px !important;
+        height: 26px !important;
+    }
+
+    /* ===== ШАПКА РЕЗУЛЬТАТА: 6 КОЛОНОК ===== */
+    .chertog-info-grid {
+        gap: 6px;
+        justify-content: center;
+    }
+
+    .chertog-info-col {
+        min-width: 60px;
+        flex: 1 1 30%;
+    }
+
+    .chertog-info-label {
+        font-size: 9px;
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+        padding-bottom: 4px;
+    }
+
+    .chertog-info-value {
+        font-size: 13px;
+        min-height: 30px;
+        margin-bottom: 6px;
+    }
+
+    .chertog-info-img,
+    .chertog-info-img-placeholder {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+    }
+
+    .chertog-rune-img-small {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+        min-height: 30px;
+    }
+
+    /* ===== ПОДВАЛ ===== */
+    .svarog-footer {
+        padding: 12px 0 6px;
+        margin-top: 16px;
+        font-size: 11px;
+    }
+
+    /* ===== СОВМЕСТИМОСТЬ ===== */
+    .sovmestimost-form {
+        padding: 8px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .sovmestimost-form h2 {
+        font-size: 17px;
+    }
+
+    .sovmestimost-form p {
+        font-size: 12px;
+        margin-bottom: 12px !important;
+    }
+
+    .sovmestimost-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .sovmestimost-card {
+        padding: 10px;
+    }
+
+    .sovmestimost-card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        padding-bottom: 6px;
+    }
+
+    .sovmestimost-card label {
+        font-size: 12px;
+    }
+
+    .sovmestimost-card input {
+        font-size: 14px !important;
+        padding: 8px 10px !important;
+    }
+
+    #calculateSovmestimostBtn {
+        font-size: 15px;
+        padding: 10px 16px;
+    }
+
+    #sovmestimostResult {
+        padding: 10px;
+    }
+
+    #sovmestimostResult h2 {
+        font-size: 17px;
+    }
+
+    #sovmestimostResult .sovmestimost-sub {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    #sovmestimostResult .sovmestimost-pair {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    #sovmestimostResult .sovmestimost-pair-item {
+        padding: 8px 10px !important;
+        min-width: 110px !important;
+    }
+
+    #sovmestimostResult .sovmestimost-pair-name {
+        font-size: 15px;
+    }
+
+    #sovmestimostResult .sovmestimost-pair-chertog {
+        font-size: 11px;
+    }
+
+    #sovmestimostResult .sovmestimost-heart {
+        font-size: 26px !important;
+    }
+
+    #sovmestimostResult .sovmestimost-text {
+        padding: 10px;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .svarog-ai-content {
+        padding: 8px !important;
+    }
+}

@@ -39,32 +39,38 @@
     stroke: rgba(255, 215, 0, 0.08) !important;
 }
 
-/* ===== 4. КВАНТОВЫЕ РУБЕЖИ ===== */
+/* ===== 4. КВАНТОВЫЕ РУБЕЖИ (1–4) — белые с фильтром ===== */
 .atlas-border {
     fill: none;
-    stroke: #FFD700;
-    stroke-width: 4;
+    stroke: #FFFFFF;
+    stroke-width: 14;
+    stroke-opacity: 0.85;
     pointer-events: stroke;
-    transition: stroke-width 0.25s ease;
-    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+    transition: all 0.25s ease;
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
 }
 
 .atlas-border:hover {
-    stroke-width: 6;
+    stroke: #FFD700;
+    stroke-opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)) drop-shadow(0 0 35px rgba(255, 215, 0, 0.7));
 }
 
-/* ===== 5. ГРАНЬ МИРОВ ===== */
+/* ===== 5. ГРАНЬ МИРОВ (border5) — красная ===== */
 .atlas-edge {
     fill: none;
-    stroke: #888;
-    stroke-width: 3;
+    stroke: #FFFFFF;
+    stroke-width: 14;
+    stroke-opacity: 0.85;
     pointer-events: stroke;
-    transition: stroke-width 0.25s ease;
+    transition: all 0.25s ease;
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
 }
 
 .atlas-edge:hover {
-    stroke-width: 5;
-    stroke: #fff;
+    stroke: #FFD700;
+    stroke-opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)) drop-shadow(0 0 35px rgba(255, 215, 0, 0.7));
 }
 
 /* ===== 6. ЯРГА (прозрачная зона поверх градиента) ===== */
@@ -90,80 +96,86 @@
     filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
 }
 
-/* ===== 7. ПВД ===== */
+/* ===== 7. НАСТОЯЩЕЕ МГНОВЕНИЕ (ПВД) — бирюзовый треугольник ===== */
 .atlas-pvd {
-    fill: #1E90FF;
-    stroke: #FFD700;
-    stroke-width: 2;
+    fill: #00CED1;
+    stroke: #44FF44;
+    stroke-width: 1.5;
     pointer-events: all;
     transition: all 0.25s ease;
-    filter: drop-shadow(0 0 15px rgba(30, 144, 255, 0.8));
+    filter: drop-shadow(0 0 10px rgba(0, 206, 209, 0.9));
 }
 
 .atlas-pvd:hover {
-    fill: #44AAFF;
-    filter: drop-shadow(0 0 25px rgba(30, 144, 255, 1));
+    fill: #20E0E0;
+    stroke: #66FF66;
+    filter: drop-shadow(0 0 20px rgba(0, 206, 209, 1)) drop-shadow(0 0 30px rgba(68, 255, 68, 0.5));
 }
 
-/* ===== 8. ТОЧКИ ВЫБОРА ===== */
+/* ===== 8. ТОЧКИ ВЫБОРА — фиолетовые 6-гранники с зелёной обводкой ===== */
 .atlas-choice {
     fill: #8B00FF;
-    stroke: #fff;
+    stroke: #44FF44;
     stroke-width: 2;
     pointer-events: all;
     transition: all 0.25s ease;
-    filter: drop-shadow(0 0 12px rgba(139, 0, 255, 0.8));
+    filter: drop-shadow(0 0 8px rgba(139, 0, 255, 0.8));
 }
 
 .atlas-choice:hover {
     fill: #B040FF;
-    filter: drop-shadow(0 0 20px rgba(139, 0, 255, 1));
+    stroke: #66FF66;
+    filter: drop-shadow(0 0 15px rgba(139, 0, 255, 1)) drop-shadow(0 0 25px rgba(68, 255, 68, 0.6));
 }
 
-/* ===== 9. ТОЧКА ВОПЛОЩЕНИЯ ===== */
+/* ===== 9. ТОЧКА ВОПЛОЩЕНИЯ — красный треугольник с зелёной обводкой ===== */
 .atlas-incarnation {
-    fill: #fff;
-    stroke: #1E90FF;
-    stroke-width: 2;
+    fill: #FF2222;
+    stroke: #44FF44;
+    stroke-width: 1.5;
     pointer-events: all;
     transition: all 0.25s ease;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+    filter: drop-shadow(0 0 8px rgba(255, 34, 34, 0.8));
 }
 
 .atlas-incarnation:hover {
-    fill: #FFFFCC;
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 1));
+    fill: #FF5555;
+    stroke: #66FF66;
+    filter: drop-shadow(0 0 15px rgba(255, 34, 34, 1)) drop-shadow(0 0 25px rgba(68, 255, 68, 0.6));
 }
 
 /* ===== 10. ЛИНИЯ ЖИЗНИ ===== */
 .atlas-life-line {
     fill: none;
     stroke: #44FF44;
-    stroke-width: 3;
+    stroke-width: 6;
     pointer-events: stroke;
-    filter: drop-shadow(0 0 8px rgba(68, 255, 68, 0.6));
+    filter: drop-shadow(0 0 10px rgba(68, 255, 68, 0.7));
     transition: stroke-width 0.25s ease;
 }
 
 .atlas-life-line:hover {
-    stroke-width: 5;
-    filter: drop-shadow(0 0 15px rgba(68, 255, 68, 1));
+    stroke-width: 9;
+    filter: drop-shadow(0 0 18px rgba(68, 255, 68, 1));
 }
 
-/* ===== 11. ЛИНИЯ ПРОШЛОЙ ЖИЗНИ ===== */
+/* ===== 11. ЛИНИЯ ПРОШЛОЙ ЖИЗНИ — оранжевый пунктир ===== */
 .atlas-past-line {
     fill: none;
-    stroke: #FFFFFF;
-    stroke-width: 2;
+    stroke: #FF8C00;
+    stroke-width: 2.5;
     stroke-dasharray: 8 6;
     pointer-events: stroke;
-    opacity: 0.7;
-    transition: opacity 0.25s ease;
+    opacity: 0.85;
+    transition: all 0.25s ease;
+    filter: drop-shadow(0 0 6px rgba(255, 140, 0, 0.6));
 }
 
 .atlas-past-line:hover {
     opacity: 1;
-    stroke-width: 3;
+    stroke: #FFA500;
+    stroke-width: 3.5;
+    filter: drop-shadow(0 0 12px rgba(255, 165, 0, 1));
 }
 
 /* ===== 12. ВЕКТОР СИЛ СВЕТА ===== */
@@ -482,7 +494,7 @@
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
 }
 
-/* ===== ВАЛИКИ (сверху и снизу) — УМЕНЬШЕНА ВЫСОТА ===== */
+/* ===== ВАЛИКИ (сверху и снизу) ===== */
 .scroll-roller {
     position: relative;
     height: 24px;
@@ -571,7 +583,7 @@
     z-index: 1;
 }
 
-/* ===== КРАЯ ПЕРГАМЕНТА (потёртости) ===== */
+/* ===== КРАЯ ПЕРГАМЕНТА ===== */
 .scroll-parchment::before,
 .scroll-parchment::after {
     content: '';
@@ -599,7 +611,7 @@
         transparent 100%);
 }
 
-/* ===== БЕЧЁВКА (навязанная по бокам) ===== */
+/* ===== БЕЧЁВКА ===== */
 .scroll-tie {
     position: absolute;
     top: 50%;
@@ -692,7 +704,7 @@
     color: #8b5a2b;
 }
 
-/* ===== ТЕЛО СВИТКА (раскрывающийся контент) ===== */
+/* ===== ТЕЛО СВИТКА ===== */
 .scroll-body {
     max-height: 0;
     overflow: hidden;
@@ -772,7 +784,7 @@
 .dot-dark  { background: #1a1a1a; box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); }
 
 /* ============================================
-   17. АНИМАЦИЯ ОБЩАЯ
+   АНИМАЦИЯ ОБЩАЯ
    ============================================ */
 
 @keyframes fadeSlideIn {
@@ -787,108 +799,105 @@
 }
 
 /* ============================================
-   18. АДАПТИВНОСТЬ
+   АДАПТИВНОСТЬ
    ============================================ */
 
 @media (max-width: 768px) {
     #atlas-wrap {
         max-width: 100%;
-        padding: 0;
-        margin: 10px auto 16px;
+        padding: 5px;
     }
 
     #atlas-info-panel {
-        margin: 12px 4px;
+        margin: 20px 12px;
     }
 
     .atlas-info-roller-top,
     .atlas-info-roller-bottom {
-        height: 16px;
-        padding: 0 12px;
+        height: 20px;
+        padding: 0 16px;
     }
 
     .atlas-info-roller-top::before,
     .atlas-info-roller-top::after,
     .atlas-info-roller-bottom::before,
     .atlas-info-roller-bottom::after {
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
     }
 
     .atlas-info-parchment {
-        padding: 14px 14px 16px;
+        padding: 24px 20px 28px;
     }
 
     .atlas-info-content h2 {
-        font-size: 18px;
+        font-size: 22px;
     }
 
     .atlas-info-content .atlas-desc {
-        font-size: 13px;
-        padding: 12px 14px;
+        font-size: 14px;
+        padding: 14px 16px;
     }
 
     #atlas-info-panel .close-btn {
-        width: 26px;
-        height: 26px;
-        font-size: 13px;
-        top: 8px;
-        right: 10px;
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
     }
 
-    /* ===== СВИТОК "ЧТО ТАКОЕ АТЛАС СУТЬБЫ" ===== */
+    /* ===== АДАПТИВ СВИТКА "ЧТО ТАКОЕ АТЛАС СУТЬБЫ" ===== */
     #atlas-scroll {
-        margin: 0 4px 16px;
+        margin: 0 12px 30px;
     }
 
     .scroll-roller {
-        height: 16px;
-        padding: 0 12px;
+        height: 20px;
+        padding: 0 16px;
     }
 
     .scroll-roller::before,
     .scroll-roller::after {
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
     }
 
     .scroll-rune {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .scroll-parchment {
-        padding: 14px 14px 16px;
+        padding: 18px 22px 20px;
     }
 
     .scroll-tie {
-        width: 8px;
-        height: 36px;
+        width: 9px;
+        height: 42px;
     }
 
     .scroll-toggle {
-        font-size: 14px;
-        padding: 8px 10px;
-        gap: 6px;
+        font-size: 16px;
+        padding: 10px 14px;
+        gap: 8px;
     }
 
     .scroll-toggle-icon {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .scroll-content {
-        padding: 10px 4px 4px;
+        padding: 14px 4px 4px;
     }
 
     .scroll-text {
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .scroll-text h3 {
-        font-size: 15px;
+        font-size: 16px;
     }
 
     .scroll-list li {
-        font-size: 12px;
-        padding: 8px 10px;
+        font-size: 13px;
+        padding: 8px 12px;
     }
 }

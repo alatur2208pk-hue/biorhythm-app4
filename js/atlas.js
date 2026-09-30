@@ -1,5 +1,5 @@
 // ============================================
-// АТЛАС СУДЬБЫ — ФИНАЛЬНАЯ ВЕРСИЯ 9
+// АТЛАС СУДЬБЫ — ФИНАЛЬНАЯ ВЕРСИЯ 10
 // ============================================
 
 // ============================================
@@ -46,8 +46,8 @@ const ATLAS_ITEMS = {
         desc: 'ЯрГа — центральное ядро Атласа Судьбы, сердце Золотого Пути. Это не просто точка, а состояние пребывания в Божественной любви и мудрости. Здесь дух соединяется с Творцом, исчезает разделение на «я» и «не-я». Человек, достигший Ярги, становится проводником Божественной воли — «Асом», Богом живущим и созидающим на земле. Его воля сливается с волей Богов, его душа — кристально чистое озеро, отражающее небо Прави. В Ярге человек обретает власть над природой через единство с ней, освобождается от негативной кармы и получает истинную свободу — от страхов, желаний и иллюзий.'
     },
     pvd: {
-        name: 'ПВД — Пространственно-Временная Дислокация',
-        desc: 'ПВД — это Настоящее Мгновение, острие наконечника стрелы духа, Точка Силы. Здесь пересекаются все нити: прошлое встречается с будущим, квантовый поток времени замирает на миг, чтобы дать нам возможность выбора. В этой точке человек реализует свою свободную волю. Степень правильности принимаемых решений зависит от его осознанности и нравственности — от способности видеть не только внешнюю оболочку событий, но и их глубинную суть. Позади ПВД — прошлое с его наследием. Впереди — будущее как квантовое поле потенциала, где мыслью и действием зарождаются грядущие события. В ПВД мы либо поднимаемся к свету, либо опускаемся во тьму. В нём решается всё.'
+        name: 'Настоящее Мгновение',
+        desc: 'Настоящее Мгновение — это острие наконечника стрелы духа, Точка Силы, Зеркало Реальности. Здесь пересекаются все нити: прошлое встречается с будущим, квантовый поток времени замирает на миг, чтобы дать нам возможность выбора. В этой точке человек реализует свою свободную волю. Степень правильности принимаемых решений зависит от его осознанности и нравственности — от способности видеть не только внешнюю оболочку событий, но и их глубинную суть. Позади — прошлое с его наследием. Впереди — будущее как квантовое поле потенциала, где мыслью и действием зарождаются грядущие события. В этом мгновении мы либо поднимаемся к свету, либо опускаемся во тьму. В нём решается всё.'
     },
     border1: {
         name: '1-й Квантовый Рубеж',
@@ -87,7 +87,7 @@ const ATLAS_ITEMS = {
     },
     lifeLine: {
         name: 'Линия Жизни',
-        desc: 'Линия Жизни — зелёная спираль событийного ряда, прожитый жизненный путь от точки воплощения до ПВД. На этой спирали отмечены ключевые события — фиолетовые точки. От каждой такой точки расходятся ветви — возможные траектории, которые могли бы быть выбраны. Таких точек в судьбе человека бесчисленное множество, как и путей от них, но иногда выбор бывает ограничен, ибо карма — неутомимый следопыт, который всегда догоняет и диктует свои условия исхода. Линия Жизни показывает, как человек движется по Атласу: к центру (к свету, к Ярге) или к краю (во тьму, к Грани Миров). Каждый поворот спирали — это результат свободного выбора человека в точке ПВД.'
+        desc: 'Линия Жизни — зелёная спираль событийного ряда, прожитый жизненный путь от точки воплощения до Настоящего Мгновения. На этой спирали отмечены ключевые события — фиолетовые точки. От каждой такой точки расходятся ветви — возможные траектории, которые могли бы быть выбраны. Таких точек в судьбе человека бесчисленное множество, как и путей от них, но иногда выбор бывает ограничен, ибо карма — неутомимый следопыт, который всегда догоняет и диктует свои условия исхода. Линия Жизни показывает, как человек движется по Атласу: к центру (к свету, к Ярге) или к краю (во тьму, к Грани Миров). Каждый поворот спирали — это результат свободного выбора человека в Настоящем Мгновении.'
     },
     pastLine: {
         name: 'Линия Прошлой Жизни',
@@ -144,12 +144,7 @@ function drawAtlas() {
     // ===== 4.1. DEFS =====
     const defs = el('defs');
 
-    const glow = el('radialGradient', { id: 'centerGlow' });
-    glow.appendChild(el('stop', { offset: '0%', 'stop-color': '#FFD700', 'stop-opacity': '0.25' }));
-    glow.appendChild(el('stop', { offset: '50%', 'stop-color': '#FFD700', 'stop-opacity': '0.06' }));
-    glow.appendChild(el('stop', { offset: '100%', 'stop-color': '#000000', 'stop-opacity': '0' }));
-    defs.appendChild(glow);
-
+    // Градиент: яркий золотой в центре → прозрачный к краю
     const atlasGrad = el('radialGradient', {
         id: 'atlasGradient',
         cx: '50%',
@@ -157,20 +152,17 @@ function drawAtlas() {
         r: '50%'
     });
 
-    atlasGrad.appendChild(el('stop', { offset: '0%',   'stop-color': '#FFD700', 'stop-opacity': '0.55' }));
-    atlasGrad.appendChild(el('stop', { offset: '15%',  'stop-color': '#FFD700', 'stop-opacity': '0.45' }));
-    atlasGrad.appendChild(el('stop', { offset: '20%',  'stop-color': '#E6C200', 'stop-opacity': '0.38' }));
-    atlasGrad.appendChild(el('stop', { offset: '35%',  'stop-color': '#C9A800', 'stop-opacity': '0.30' }));
-    atlasGrad.appendChild(el('stop', { offset: '40%',  'stop-color': '#A89650', 'stop-opacity': '0.24' }));
-    atlasGrad.appendChild(el('stop', { offset: '55%',  'stop-color': '#888060', 'stop-opacity': '0.18' }));
-    atlasGrad.appendChild(el('stop', { offset: '60%',  'stop-color': '#5A5A5A', 'stop-opacity': '0.14' }));
-    atlasGrad.appendChild(el('stop', { offset: '75%',  'stop-color': '#333333', 'stop-opacity': '0.12' }));
-    atlasGrad.appendChild(el('stop', { offset: '80%',  'stop-color': '#1A1A1A', 'stop-opacity': '0.10' }));
-    atlasGrad.appendChild(el('stop', { offset: '95%',  'stop-color': '#000000', 'stop-opacity': '0.08' }));
-    atlasGrad.appendChild(el('stop', { offset: '100%', 'stop-color': '#000000', 'stop-opacity': '0.05' }));
+    atlasGrad.appendChild(el('stop', { offset: '0%',   'stop-color': '#FFD700', 'stop-opacity': '0.9' }));
+    atlasGrad.appendChild(el('stop', { offset: '20%',  'stop-color': '#FFD700', 'stop-opacity': '0.65' }));
+    atlasGrad.appendChild(el('stop', { offset: '40%',  'stop-color': '#E6C200', 'stop-opacity': '0.4' }));
+    atlasGrad.appendChild(el('stop', { offset: '60%',  'stop-color': '#A89650', 'stop-opacity': '0.22' }));
+    atlasGrad.appendChild(el('stop', { offset: '80%',  'stop-color': '#5A5A5A', 'stop-opacity': '0.12' }));
+    atlasGrad.appendChild(el('stop', { offset: '95%',  'stop-color': '#1A1A1A', 'stop-opacity': '0.08' }));
+    atlasGrad.appendChild(el('stop', { offset: '100%', 'stop-color': '#000000', 'stop-opacity': '0.07' }));
 
     defs.appendChild(atlasGrad);
 
+    // Маркеры стрелок (крылья)
     ['Light', 'Dark'].forEach(function(name) {
         const color = name === 'Light' ? '#FFFFFF' : '#FF4444';
         const marker = el('marker', {
@@ -188,16 +180,38 @@ function drawAtlas() {
         defs.appendChild(marker);
     });
 
+    // Фильтр "сухой маркер" (feTurbulence)
+    const dryMarker = el('filter', {
+        id: 'dryMarker',
+        x: '-5%',
+        y: '-5%',
+        width: '110%',
+        height: '110%'
+    });
+    
+    const turbulence = el('feTurbulence', {
+        type: 'fractalNoise',
+        baseFrequency: '0.05',
+        numOctaves: '3',
+        seed: '5',
+        result: 'noise'
+    });
+    dryMarker.appendChild(turbulence);
+    
+    const displacement = el('feDisplacementMap', {
+        in: 'SourceGraphic',
+        in2: 'noise',
+        scale: '4',
+        xChannelSelector: 'R',
+        yChannelSelector: 'G'
+    });
+    dryMarker.appendChild(displacement);
+
+    defs.appendChild(dryMarker);
+
     svg.appendChild(defs);
 
-    // ===== 4.2. ФОНОВОЕ СВЕЧЕНИЕ =====
-    svg.appendChild(el('circle', {
-        cx: CX, cy: CY, r: R_MAX * 0.7,
-        fill: 'url(#centerGlow)',
-        'pointer-events': 'none'
-    }));
-
-    // ===== 4.3. ПОЯСА =====
+    // ===== 4.2. ГРАДИЕНТНЫЙ ФОН (под всеми элементами) =====
     const gradientCircle = el('circle', {
         cx: CX, cy: CY, r: R.border5,
         fill: 'url(#atlasGradient)',
@@ -205,6 +219,7 @@ function drawAtlas() {
     });
     svg.appendChild(gradientCircle);
 
+    // ===== 4.3. ПОЯСА (прозрачные кликабельные зоны) =====
     const rings = [
         { key: 'ringZabvenia',  r1: R.border4, r2: R.border5 },
         { key: 'ringPoroka',    r1: R.border3, r2: R.border4 },
@@ -243,26 +258,28 @@ function drawAtlas() {
     yargaText.textContent = 'ЯрГа';
     svg.appendChild(yargaText);
 
-    // ===== 4.5. КВАНТОВЫЕ РУБЕЖИ (1–4) =====
+    // ===== 4.5. КВАНТОВЫЕ РУБЕЖИ (1–4) — белые с фильтром =====
     [1, 2, 3, 4].forEach(function(n) {
         const r = R['border' + n];
         const circle = el('circle', {
             cx: CX, cy: CY, r: r,
             class: 'atlas-item atlas-border',
-            'data-key': 'border' + n
+            'data-key': 'border' + n,
+            filter: 'url(#dryMarker)'
         });
         svg.appendChild(circle);
     });
 
-    // ===== 4.6. ГРАНЬ МИРОВ =====
+    // ===== 4.6. ГРАНЬ МИРОВ (border5) — красная с фильтром =====
     const edgeCircle = el('circle', {
         cx: CX, cy: CY, r: R.border5,
         class: 'atlas-item atlas-edge',
-        'data-key': 'border5'
+        'data-key': 'border5',
+        filter: 'url(#dryMarker)'
     });
     svg.appendChild(edgeCircle);
 
-    // ===== 4.7. ЛИНИЯ ПРОШЛОЙ ЖИЗНИ =====
+    // ===== 4.7. ЛИНИЯ ПРОШЛОЙ ЖИЗНИ (оранжевая пунктирная) =====
     const pastPath = buildPastLine(CX, CY);
     const pastLine = el('path', {
         d: pastPath,
@@ -271,7 +288,7 @@ function drawAtlas() {
     });
     svg.appendChild(pastLine);
 
-    // ===== 4.8. ЛИНИЯ ЖИЗНИ =====
+    // ===== 4.8. ЛИНИЯ ЖИЗНИ (зелёная спираль) =====
     const lifePath = buildSpiral(
         CX, CY,
         SPIRAL.rStart,
@@ -286,17 +303,12 @@ function drawAtlas() {
     });
     svg.appendChild(lifeLine);
 
-    // ===== 4.9. ФИОЛЕТОВЫЕ ТОЧКИ =====
+    // ===== 4.9. ТОЧКИ ВЫБОРА (6-гранники) =====
     const choicePoints = drawChoicePoints();
 
-    // ===== 4.10. ТОЧКА ВОПЛОЩЕНИЯ =====
+    // ===== 4.10. ТОЧКА ВОПЛОЩЕНИЯ (треугольник по ходу линии) =====
     const incPos = polarToCartesian(CX, CY, INCARNATION.r, INCARNATION.angle);
-    const incarnation = el('circle', {
-        cx: incPos.x, cy: incPos.y, r: 10,
-        class: 'atlas-item atlas-incarnation',
-        'data-key': 'incarnation'
-    });
-    svg.appendChild(incarnation);
+    drawIncarnationTriangle(incPos, INCARNATION.angle);
 
     // ===== 4.11. КРЫЛЬЯ =====
     const targetPoint = choicePoints[VECTOR_TARGET_INDEX];
@@ -304,13 +316,8 @@ function drawAtlas() {
         drawWings(targetPoint);
     }
 
-    // ===== 4.12. ПВД =====
-    const pvd = el('circle', {
-        cx: CX, cy: CY, r: 14,
-        class: 'atlas-item atlas-pvd',
-        'data-key': 'pvd'
-    });
-    svg.appendChild(pvd);
+    // ===== 4.12. НАСТОЯЩЕЕ МГНОВЕНИЕ (треугольник) =====
+    drawPresentMoment(CX, CY);
 }
 
 // ============================================
@@ -357,7 +364,7 @@ function buildPastLine(cx, cy) {
 }
 
 // ============================================
-// 7. ФИОЛЕТОВЫЕ ТОЧКИ + ОТРОСТКИ
+// 7. ТОЧКИ ВЫБОРА (6-гранники)
 // ============================================
 
 function drawChoicePoints() {
@@ -373,6 +380,7 @@ function drawChoicePoints() {
 
         points.push({ x: pos.x, y: pos.y, r: r, angle: angle, index: i + 1 });
 
+        // Ветви (оставляем)
         const tNext = t + 0.005;
         const rNext = SPIRAL.rStart + (SPIRAL.rEnd - SPIRAL.rStart) * tNext;
         const angleNext = SPIRAL.startAngle + SPIRAL.turns * 360 * tNext;
@@ -414,8 +422,15 @@ function drawChoicePoints() {
             svg.appendChild(branch);
         });
 
-        const choice = el('circle', {
-            cx: pos.x, cy: pos.y, r: 8,
+        // 6-гранник
+        const hexPoints = [];
+        for (let k = 0; k < 6; k++) {
+            const a = (60 * k - 30) * Math.PI / 180;
+            hexPoints.push((pos.x + 16 * Math.cos(a)).toFixed(2) + ',' + (pos.y + 16 * Math.sin(a)).toFixed(2));
+        }
+        
+        const choice = el('polygon', {
+            points: hexPoints.join(' '),
             class: 'atlas-item atlas-choice',
             'data-key': 'choice',
             'data-index': i + 1
@@ -427,7 +442,41 @@ function drawChoicePoints() {
 }
 
 // ============================================
-// 8. КРЫЛЬЯ
+// 8. ТРЕУГОЛЬНИК ВОПЛОЩЕНИЯ
+// ============================================
+
+// ============================================
+// 8. ТРЕУГОЛЬНИК ВОПЛОЩЕНИЯ (равносторонний, по ходу линии)
+// ============================================
+
+function drawIncarnationTriangle(pos, angleDeg) {
+    // Равносторонний треугольник со стороной size
+    const size = 20;
+    const circumR = size / Math.sqrt(3);  // радиус описанной окружности
+    
+    // Острие — по ходу линии (угол tangent)
+    const tipAngle = angleDeg * Math.PI / 180;
+    
+    // Три вершины: острие + две у основания, разнесённые на 120°
+    const vertices = [];
+    for (let i = 0; i < 3; i++) {
+        const a = tipAngle + i * (2 * Math.PI / 3);
+        vertices.push({
+            x: pos.x + circumR * Math.cos(a),
+            y: pos.y + circumR * Math.sin(a)
+        });
+    }
+    
+    const triangle = el('polygon', {
+        points: vertices.map(v => v.x.toFixed(2) + ',' + v.y.toFixed(2)).join(' '),
+        class: 'atlas-item atlas-incarnation',
+        'data-key': 'incarnation'
+    });
+    svg.appendChild(triangle);
+}
+
+// ============================================
+// 9. КРЫЛЬЯ
 // ============================================
 
 function drawWings(target) {
@@ -520,7 +569,40 @@ function drawWings(target) {
 }
 
 // ============================================
-// 9. ВСПЛЫВАЮЩАЯ КАРТОЧКА
+// 10. НАСТОЯЩЕЕ МГНОВЕНИЕ (треугольник)
+// ============================================
+
+// ============================================
+// 10. НАСТОЯЩЕЕ МГНОВЕНИЕ (равносторонний треугольник, остриём вверх)
+// ============================================
+
+function drawPresentMoment(cx, cy) {
+    // Равносторонний треугольник со стороной size
+    const size = 20;
+    const circumR = size / Math.sqrt(3);
+    
+    // Острие — вверх (к Ярге, к свету), угол -90° в SVG-координатах
+    const tipAngle = -Math.PI / 2;
+    
+    const vertices = [];
+    for (let i = 0; i < 3; i++) {
+        const a = tipAngle + i * (2 * Math.PI / 3);
+        vertices.push({
+            x: cx + circumR * Math.cos(a),
+            y: cy + circumR * Math.sin(a)
+        });
+    }
+    
+    const triangle = el('polygon', {
+        points: vertices.map(v => v.x.toFixed(2) + ',' + v.y.toFixed(2)).join(' '),
+        class: 'atlas-item atlas-pvd',
+        'data-key': 'pvd'
+    });
+    svg.appendChild(triangle);
+}
+
+// ============================================
+// 11. ВСПЛЫВАЮЩАЯ КАРТОЧКА
 // ============================================
 
 function initTooltip() {
@@ -556,7 +638,7 @@ function getItemName(key, index) {
 }
 
 // ============================================
-// 10. КЛИКИ
+// 12. КЛИКИ
 // ============================================
 
 function initClicks() {
@@ -571,7 +653,7 @@ function initClicks() {
 }
 
 // ============================================
-// 11. ИНФО-ПАНЕЛЬ
+// 13. ИНФО-ПАНЕЛЬ
 // ============================================
 
 function showInfo(key, index) {
@@ -597,7 +679,7 @@ function showInfo(key, index) {
 }
 
 // ============================================
-// 12. ЗАКРЫТИЕ ПАНЕЛИ
+// 14. ЗАКРЫТИЕ ПАНЕЛИ
 // ============================================
 
 function initCloseButton() {
@@ -610,7 +692,7 @@ function initCloseButton() {
 }
 
 // ============================================
-// 13. СВИТОК "ЧТО ТАКОЕ АТЛАС СУТЬБЫ"
+// 15. СВИТОК "ЧТО ТАКОЕ АТЛАС СУТЬБЫ"
 // ============================================
 
 function initScrollToggle() {
@@ -644,7 +726,7 @@ function initScrollToggle() {
 }
 
 // ============================================
-// 14. ЗАПУСК
+// 16. ЗАПУСК
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {

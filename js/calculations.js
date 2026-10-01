@@ -75,3 +75,23 @@ export function getMoonPhase(date, MOON_PHASES) {
     const phaseIndex = Math.floor((lunarAge / 29.53) * 8) % 8;
     return MOON_PHASES[phaseIndex];
 }
+
+// ============================================
+// 5. ВОЗРАСТ ЛУНЫ И НОМЕР КАРТИНКИ (0..14)
+// ============================================
+
+export function getMoonAge(date) {
+    const knownNewMoon = new Date(2000, 0, 6);
+    const days = daysBetween(knownNewMoon, date);
+    const lunarAge = ((days % 29.53) + 29.53) % 29.53;
+    return lunarAge;
+}
+
+export function getMoonImageIndex(date) {
+    const lunarAge = getMoonAge(date);
+    // 29.53 дней делим на 15 отрезков ≈ 1.97 дня на картинку
+    // Округляем: floor(lunarAge / 2) → 0..14 (максимум 14)
+    let idx = Math.floor(lunarAge / 2);
+    if (idx > 14) idx = 14;
+    return idx;
+}

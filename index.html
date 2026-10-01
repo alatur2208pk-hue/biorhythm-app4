@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Жизненные циклы (биоритмы)</title>
+    <title>Жизненные циклы</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Philosopher:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
@@ -13,7 +13,7 @@
     <div id="user-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 99999; backdrop-filter: blur(10px);">
         <div style="background: rgba(20,30,50,0.95); border: 1px solid rgba(255,215,0,0.15); border-radius: 20px; padding: 40px; max-width: 420px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.8);">
             <div style="text-align: center; margin-bottom: 30px;">
-                <img src="images/vedagor.png" alt="Ведагор" style="width: 64px; height: 64px; object-fit: contain; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.35));">
+                <div style="font-size: 64px;">🧙‍♂️</div>
                 <h2 style="color: #ffd700; font-size: 24px; margin: 10px 0 6px; font-family: 'Philosopher', serif;">Добро пожаловать!</h2>
                 <p style="color: #888; font-size: 14px;">Ведагор хочет знать, с кем говорит</p>
             </div>
@@ -72,8 +72,31 @@
 
     <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
     <main class="main-content">
-        <h1>🌙 Жизненные циклы (биоритмы)</h1>
-        <p class="subtitle">5 циклов: физический, эмоциональный, интеллектуальный, психокинетический, астро-ментальный</p>
+        <!-- ===== ЗАГОЛОВОК С КНОПКОЙ "?" ===== -->
+        <div class="title-row">
+            <h1>🌙 Жизненные циклы</h1>
+            <button id="infoToggleBtn" class="info-toggle-btn" aria-label="Информация о циклах">?</button>
+        </div>
+
+        <!-- ===== РАСКРЫВАЮЩИЙСЯ БЛОК: ИНФО + ЛЕГЕНДА ===== -->
+        <div id="info-block-collapsible" class="info-block-collapsible">
+            <!-- Сверху — ИНФО -->
+            <div class="info-section">
+                <strong>📖 Как читать график:</strong><br>
+                • <strong>Ось X</strong> — дни от выбранной даты<br>
+                • <strong>Ось Y</strong> — положительная (+) и отрицательная (-) зоны<br>
+                • <strong>Пересечение с осью X</strong> — <strong style="color:#ffd700;">критический день</strong> (отмечен золотыми точками)<br>
+                • Если <strong>3 цикла</strong> пересекают ось в одной точке — будьте осторожнее<br>
+                • Если <strong>5 циклов</strong> пересекают в одной точке — день <strong style="color:#ff4444;">опасный для жизни</strong><br>
+                • Если все графики в <strong>отрицательной зоне</strong> — лучше сменить деятельность
+            </div>
+
+            <!-- Разделитель -->
+            <div class="info-divider"></div>
+
+            <!-- Снизу — ЛЕГЕНДА -->
+            <div id="legend"></div>
+        </div>
 
         <!-- ===== ПРИВЕТСТВИЕ С ИМЕНЕМ ===== -->
         <div id="greeting-block" style="text-align: center; margin-bottom: 25px; display: none;">
@@ -91,10 +114,9 @@
             <div>
                 <label>📊 Период: 
                     <select id="periodSelect">
-                        <option value="30">30 дней</option>
+                        <option value="30" selected>30 дней</option>
                         <option value="60">60 дней</option>
-                        <option value="90" selected>90 дней</option>
-                        <option value="180">180 дней</option>
+                        <option value="90">90 дней</option>
                         <option value="365">Год</option>
                     </select>
                 </label>
@@ -102,9 +124,6 @@
             <button id="todayBtn">📍 Сегодня</button>
             <button id="updateBtn">🔄 Обновить</button>
         </div>
-
-        <!-- ===== ЛЕГЕНДА ===== -->
-        <div id="legend"></div>
 
         <!-- ===== ВСПЛЫВАЮЩЕЕ ОКНО ДЛЯ ЦИКЛА ===== -->
         <div id="cycle-tooltip">
@@ -158,17 +177,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- ===== ИНФО БЛОК ===== -->
-        <div id="info-block">
-            <strong>📖 Как читать график:</strong><br>
-            • <strong>Ось X</strong> — дни от выбранной даты<br>
-            • <strong>Ось Y</strong> — положительная (+) и отрицательная (-) зоны<br>
-            • <strong>Пересечение с осью X</strong> — <strong style="color:#ffd700;">критический день</strong> (отмечен золотыми точками)<br>
-            • Если <strong>3 цикла</strong> пересекают ось в одной точке — будьте осторожнее<br>
-            • Если <strong>5 циклов</strong> пересекают в одной точке — день <strong style="color:#ff4444;">опасный для жизни</strong><br>
-            • Если все графики в <strong>отрицательной зоне</strong> — лучше сменить деятельность
-        </div>
     </main>
 
     <script type="module" src="js/app.js"></script>
@@ -189,6 +197,18 @@
                 star.style.top = Math.random() * 100 + '%';
                 container.appendChild(star);
             }
+        })();
+
+        // ===== РАСКРЫТИЕ ИНФО-БЛОКА =====
+        (function initInfoToggle() {
+            const btn = document.getElementById('infoToggleBtn');
+            const block = document.getElementById('info-block-collapsible');
+            if (!btn || !block) return;
+
+            btn.addEventListener('click', function() {
+                block.classList.toggle('open');
+                btn.classList.toggle('active');
+            });
         })();
     </script>
 </body>

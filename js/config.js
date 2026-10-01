@@ -109,7 +109,29 @@ export const MOON_PHASES = [
 ];
 
 // ============================================
-// 3. НАСТРОЙКИ DEEPSEEK API
+// 3. 15 ЛУННЫХ КАРТИНОК (ПО 2 ДНЯ НА КАЖДУЮ)
+// ============================================
+
+export const MOON_IMAGES = [
+    'images/moon/moon-new.png',
+    'images/moon/moon-waxing-crescent.png',
+    'images/moon/moon-waxing-crescent1.png',
+    'images/moon/moon-first-quarter.png',
+    'images/moon/moon-waxing-gibbous.png',
+    'images/moon/moon-waxing-gibbous1.png',
+    'images/moon/moon-waxing-gibbous2.png',
+    'images/moon/moon-full.png',
+    'images/moon/moon-waning-gibbous.png',
+    'images/moon/moon-waning-gibbous1.png',
+    'images/moon/moon-waning-gibbous2.png',
+    'images/moon/moon-last-quarter.png',
+    'images/moon/moon-waning-crescent.png',
+    'images/moon/moon-waning-crescent1.png',
+    'images/moon/moon-new1.png'
+];
+
+// ============================================
+// 4. НАСТРОЙКИ DEEPSEEK API
 // ============================================
 
 export const DEEPSEEK_CONFIG = {

@@ -48,20 +48,32 @@ export function renderLegend(CYCLES) {
 // 2. ОТРИСОВКА ЛУННОЙ ДОРОГИ
 // ============================================
 
+// ============================================
+// 2. ОТРИСОВКА ЛУННОЙ ДОРОГИ
+// ============================================
+
 export function renderLunarRoad(data, todayDate, getMoonPhase, MOON_PHASES, showDay, CYCLES) {
     const container = document.getElementById('lunar-road');
     container.innerHTML = '';
+
+    // Импорт картинок луны
+    // MOON_IMAGES пробрасывается через аргумент (см. app.js) — но для простоты используем window
+    const MOON_IMAGES_LOCAL = window._MOON_IMAGES || [];
 
     data.forEach(function(dayData, index) {
         const date = dayData.date;
         const phase = getMoonPhase(date, MOON_PHASES);
         const isToday = date.toDateString() === todayDate.toDateString();
 
+        // Номер картинки луны (0..14)
+        const moonIdx = window._getMoonImageIndex ? window._getMoonImageIndex(date) : 0;
+        const moonSrc = MOON_IMAGES_LOCAL[moonIdx] || '';
+
         const dayEl = document.createElement('div');
         dayEl.className = 'lunar-day' + (isToday ? ' today' : '');
         dayEl.dataset.index = index;
         dayEl.innerHTML = 
-            '<span>' + phase.icon + '</span>' +
+            '<img src="' + moonSrc + '" alt="' + phase.name + '" class="moon-icon">' +
             '<span class="date-label">' + date.getDate() + '</span>';
 
         dayEl.addEventListener('mouseenter', function(e) {

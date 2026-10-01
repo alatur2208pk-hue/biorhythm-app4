@@ -2,8 +2,8 @@
 // ИМПОРТЫ
 // ============================================
 
-import { CYCLES, MOON_PHASES } from './config.js';
-import { calculateAllCycles, findCriticalDays, getMoonPhase } from './calculations.js';
+import { CYCLES, MOON_PHASES, MOON_IMAGES } from './config.js';
+import { calculateAllCycles, findCriticalDays, getMoonPhase, getMoonImageIndex } from './calculations.js';
 import { renderLegend, renderLunarRoad, drawChart, renderCriticalDays } from './render.js';
 import { showCriticalInfo, initCloseButtons } from './ui.js';
 import { showDayWithAI, askQuestion } from './ai.js';
@@ -72,7 +72,6 @@ function initUserModal() {
         const name = nameInput.value.trim();
         const gender = genderInput.value;
         if (name && gender) {
-            // Сохраняем в localStorage
             localStorage.setItem('userName', name);
             localStorage.setItem('userGender', gender);
             
@@ -155,6 +154,10 @@ window.getUserPossessive3 = function() {
 // ============================================
 
 function updateApp() {
+    // ===== ПРОБРАСЫВАЕМ КАРТИНКИ ЛУНЫ И ФУНКЦИЮ ИНДЕКСА В WINDOW =====
+    window._MOON_IMAGES = MOON_IMAGES;
+    window._getMoonImageIndex = getMoonImageIndex;
+
     var birthInput = document.getElementById('birthdate');
     var viewInput = document.getElementById('viewdate');
     var periodSelect = document.getElementById('periodSelect');

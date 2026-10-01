@@ -322,6 +322,15 @@ h1::after {
     border-radius: 12px;
 }
 
+.moon-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
+    pointer-events: none;
+}
+
 .lunar-day .date-label {
     font-size: 8px;
     color: #666;
@@ -774,20 +783,6 @@ h1::after {
     100% { transform: rotate(360deg); }
 }
 
-/* ===== 14. ИНФО БЛОК ===== */
-#info-block {
-    padding: 15px 20px;
-    background: rgba(255, 215, 0, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 215, 0, 0.08);
-    color: #aaa;
-    font-size: 13px;
-    line-height: 1.6;
-    position: relative;
-    z-index: 1;
-}
 
 #info-block strong {
     color: #ffd700;
@@ -1151,4 +1146,195 @@ h1::after {
     #biorhythmChart {
         height: 320px !important;
     }
+}
+
+/* ============================================
+   ЗАГОЛОВОК С КНОПКОЙ "?"
+   ============================================ */
+
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.title-row h1 {
+    margin-bottom: 0;
+}
+
+.info-toggle-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1.5px solid rgba(255, 215, 0, 0.4);
+    color: #ffd700;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Philosopher', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 0;
+    padding-bottom: 2px;
+}
+
+.info-toggle-btn:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 35px rgba(255, 215, 0, 0.25);
+    transform: scale(1.08);
+}
+
+.info-toggle-btn.active {
+    background: #ffd700;
+    color: #0a0e1a;
+    border-color: #ffd700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+}
+
+/* ============================================
+   РАСКРЫВАЮЩИЙСЯ ИНФО-БЛОК
+   ============================================ */
+
+.info-block-collapsible {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), 
+                opacity 0.3s ease,
+                padding 0.3s ease,
+                margin 0.3s ease;
+    opacity: 0;
+    padding: 0 20px;
+    margin-bottom: 0;
+    background: rgba(255, 215, 0, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 215, 0, 0.08);
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.info-block-collapsible strong {
+    color: #ffd700;
+}
+
+.info-block-collapsible.open {
+    max-height: 500px;
+    opacity: 1;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+/* ============================================
+   ЗАГОЛОВОК С КНОПКОЙ "?"
+   ============================================ */
+
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.title-row h1 {
+    margin-bottom: 0;
+}
+
+.info-toggle-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1.5px solid rgba(255, 215, 0, 0.4);
+    color: #ffd700;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Philosopher', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 0;
+    padding-bottom: 2px;
+}
+
+.info-toggle-btn:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 35px rgba(255, 215, 0, 0.25);
+    transform: scale(1.08);
+}
+
+.info-toggle-btn.active {
+    background: #ffd700;
+    color: #0a0e1a;
+    border-color: #ffd700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+}
+
+/* ============================================
+   РАСКРЫВАЮЩИЙСЯ БЛОК (ИНФО + ЛЕГЕНДА)
+   ============================================ */
+
+.info-block-collapsible {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
+                opacity 0.3s ease,
+                padding 0.3s ease,
+                margin 0.3s ease;
+    opacity: 0;
+    padding: 0 20px;
+    margin-bottom: 0;
+    background: rgba(255, 215, 0, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 215, 0, 0.08);
+    position: relative;
+    z-index: 1;
+}
+
+.info-block-collapsible.open {
+    max-height: 900px;
+    opacity: 1;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* ===== ИНФО СЕКЦИЯ ===== */
+.info-block-collapsible .info-section {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.info-block-collapsible .info-section strong {
+    color: #ffd700;
+}
+
+/* ===== РАЗДЕЛИТЕЛЬ ===== */
+.info-block-collapsible .info-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+    margin: 16px 0;
 }

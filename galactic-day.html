@@ -13,38 +13,41 @@
     <!-- ===== ЗВЁЗДЫ ===== -->
     <div class="stars" id="stars"></div>
 
-    <!-- ===== БОКОВОЕ МЕНЮ ===== -->
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <img src="images/alatyr.png" alt="Алатырь" class="sidebar-logo-img">
-            <span class="sidebar-title">Ведаем РА</span>
+    <!-- ===== ВЕРХНЕЕ ВЫПАДАЮЩЕЕ МЕНЮ ===== -->
+    <nav class="top-nav" id="topNav">
+        <div class="top-nav-header">
+            <button class="top-nav-trigger" aria-label="Открыть меню">
+                <img src="images/alatyr.png" alt="Алатырь">
+            </button>
+            <span class="top-nav-title">Меню</span>
         </div>
-        <nav class="sidebar-nav">
-            <a href="index.html" class="sidebar-link">
+
+        <div class="top-nav-menu">
+            <a href="index.html" class="top-nav-link">
                 <span class="sidebar-icon">📊</span>
                 <span class="sidebar-text">Биоритмы</span>
             </a>
-            <a href="svarog-circle.html" class="sidebar-link">
+            <a href="svarog-circle.html" class="top-nav-link">
                 <img src="images/svarog-circle/circle-icon.png" alt="Сварожий круг" class="sidebar-icon-img">
                 <span class="sidebar-text">Сварожий круг</span>
             </a>
-            <a href="galactic-day.html" class="sidebar-link active">
+            <a href="galactic-day.html" class="top-nav-link active">
                 <img src="images/galactic-day/icon.png" alt="Галактические сутки" class="sidebar-icon-img">
                 <span class="sidebar-text">Галактические сутки</span>
             </a>
-            <a href="atlas.html" class="sidebar-link">
+            <a href="atlas.html" class="top-nav-link">
                 <span class="sidebar-icon">🗺️</span>
                 <span class="sidebar-text">Атлас Судьбы</span>
             </a>
-        </nav>
-        <div class="sidebar-footer">
-            <button onclick="logoutUser()" class="sidebar-logout">
+
+            <button class="top-nav-logout">
                 <span class="sidebar-icon">🚪</span>
                 <span class="sidebar-text">Выйти</span>
             </button>
-            <span style="color: #444; font-size: 11px; display: block; margin-top: 10px;">v1.0</span>
+
+            <div class="top-nav-version">v1.0</div>
         </div>
-    </aside>
+    </nav>
 
     <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
     <main class="main-content">
@@ -257,7 +260,6 @@
     <script type="module" src="js/galactic-day.js"></script>
     
     <script>
-        // ===== ГЕНЕРАЦИЯ ЗВЁЗД =====
         (function createStars() {
             const container = document.getElementById('stars');
             if (!container) return;
@@ -273,15 +275,9 @@
                 container.appendChild(star);
             }
         })();
-
-        // ===== ФУНКЦИЯ ВЫХОДА (СБРОС ДАННЫХ) =====
-        window.logoutUser = function() {
-            localStorage.removeItem('userName');
-            localStorage.removeItem('userGender');
-            window._userName = null;
-            window._userGender = null;
-            window.location.href = 'index.html';
-        };
     </script>
+
+    <!-- ===== ВЕРХНЕЕ МЕНЮ ===== -->
+    <script src="js/nav.js"></script>
 </body>
 </html>

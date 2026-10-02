@@ -1,5 +1,4 @@
 /* ===== 0. ПОДКЛЮЧЕНИЕ ШРИФТОВ ===== */
-/* Шрифты подключены через Google Fonts в HTML */
 
 /* ===== 1. ОБЩИЕ СТИЛИ ===== */
 * {
@@ -19,7 +18,13 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== 1.1. ЗВЁЗДЫ (СТАТИЧНЫЕ, БЕЗ АНИМАЦИИ) ===== */
+/* ===== ФОН-КАРТИНКА ДЛЯ ГЛАВНОЙ ===== */
+body.bg-main {
+    background: #0a0e1a url('../images/backgrounds/main-bg.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* ===== 1.1. ЗВЁЗДЫ ===== */
 .stars {
     position: fixed;
     top: 0;
@@ -36,11 +41,6 @@ body {
     background: white;
     border-radius: 50%;
     opacity: 0.7;
-}
-
-/* ===== 1.2. ЗОЛОТЫЕ АКЦЕНТЫ ===== */
-.gold-glow {
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
 }
 
 /* ===== 2. ЗАГОЛОВКИ ===== */
@@ -94,12 +94,6 @@ h1::after {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     position: relative;
     z-index: 1;
-    transition: all 0.3s ease;
-}
-
-.controls:hover {
-    border-color: rgba(255, 215, 0, 0.2);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
 }
 
 .controls label {
@@ -112,24 +106,7 @@ h1::after {
     font-weight: 300;
 }
 
-.controls input[type="date"] {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #e0e0e0;
-    padding: 6px 10px;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Roboto', sans-serif;
-}
-
-.controls input[type="date"]:focus {
-    border-color: #ffd700;
-    outline: none;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
-}
-
+.controls input[type="date"],
 .controls select {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -138,10 +115,10 @@ h1::after {
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
-    transition: all 0.3s ease;
     font-family: 'Roboto', sans-serif;
 }
 
+.controls input[type="date"]:focus,
 .controls select:focus {
     border-color: #ffd700;
     outline: none;
@@ -157,26 +134,6 @@ h1::after {
     font-size: 14px;
     transition: all 0.3s ease;
     font-family: 'Roboto', sans-serif;
-    position: relative;
-    overflow: hidden;
-}
-
-.controls button::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 215, 0, 0.1);
-    border-radius: 50%;
-    transition: all 0.5s ease;
-    transform: translate(-50%, -50%);
-}
-
-.controls button:hover::after {
-    width: 300px;
-    height: 300px;
 }
 
 .controls button:hover {
@@ -196,12 +153,6 @@ h1::after {
 #todayBtn:hover {
     background: #ffd700;
     color: #0a0e1a;
-    border-color: #ffd700;
-}
-
-#updateBtn {
-    background: rgba(255, 215, 0, 0.12);
-    border-color: rgba(255, 215, 0, 0.2);
 }
 
 /* ===== 4. ЛЕГЕНДА ===== */
@@ -210,13 +161,8 @@ h1::after {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     padding: 12px 20px;
     border-radius: 16px;
-    margin-bottom: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
     position: relative;
     z-index: 1;
 }
@@ -228,7 +174,6 @@ h1::after {
     font-size: 13px;
     color: #ccc;
     cursor: pointer;
-    position: relative;
     padding: 4px 10px;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -244,7 +189,6 @@ h1::after {
     width: 24px;
     height: 4px;
     border-radius: 4px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
 .legend-days {
@@ -259,12 +203,11 @@ h1::after {
     z-index: 9998;
     background: rgba(20, 30, 50, 0.95);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 215, 0, 0.15);
     border-radius: 16px;
     padding: 16px 20px;
     max-width: 300px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.05);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
     pointer-events: none;
     color: #e0e0e0;
     transform: translate(-50%, -110%);
@@ -293,7 +236,6 @@ h1::after {
 #lunar-road {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 15px 10px;
     margin-bottom: 20px;
@@ -322,15 +264,6 @@ h1::after {
     border-radius: 12px;
 }
 
-.moon-icon {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    display: block;
-    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
-    pointer-events: none;
-}
-
 .lunar-day .date-label {
     font-size: 8px;
     color: #666;
@@ -341,7 +274,15 @@ h1::after {
     background: rgba(255, 215, 0, 0.12);
     border-radius: 12px;
     padding: 4px 6px;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+}
+
+.moon-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
+    pointer-events: none;
 }
 
 /* ===== 7. ВСПЛЫВАЮЩЕЕ ОКНО ДЛЯ ЛУНЫ ===== */
@@ -351,63 +292,26 @@ h1::after {
     z-index: 9999;
     background: rgba(20, 30, 50, 0.95);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border: 2px solid rgba(255, 215, 0, 0.2);
     border-radius: 16px;
     padding: 16px 20px;
     max-width: 280px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.05);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
     pointer-events: none;
     transform: translate(-50%, -110%);
     color: #e0e0e0;
 }
 
-#moon-tooltip .phase-icon {
-    font-size: 40px;
-    text-align: center;
-    display: block;
-    margin-bottom: 6px;
-}
-
-#moon-tooltip .phase-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffd700;
-    text-align: center;
-    margin-bottom: 6px;
-    font-family: 'Philosopher', serif;
-}
-
-#moon-tooltip .phase-short {
-    font-size: 13px;
-    color: #aaa;
-    text-align: center;
-    margin-bottom: 8px;
-    font-style: italic;
-}
-
-#moon-tooltip .phase-influence {
-    font-size: 14px;
-    color: #bbb;
-    text-align: center;
-    line-height: 1.4;
-}
-
-#moon-tooltip .phase-history {
-    font-size: 12px;
-    color: #888;
-    text-align: center;
-    line-height: 1.4;
-    margin-top: 8px;
-    border-top: 1px solid rgba(255, 215, 0, 0.1);
-    padding-top: 8px;
-}
+#moon-tooltip .phase-icon { font-size: 40px; text-align: center; display: block; margin-bottom: 6px; }
+#moon-tooltip .phase-name { font-size: 18px; font-weight: bold; color: #ffd700; text-align: center; margin-bottom: 6px; font-family: 'Philosopher', serif; }
+#moon-tooltip .phase-short { font-size: 13px; color: #aaa; text-align: center; margin-bottom: 8px; font-style: italic; }
+#moon-tooltip .phase-influence { font-size: 14px; color: #bbb; text-align: center; line-height: 1.4; }
+#moon-tooltip .phase-history { font-size: 12px; color: #888; text-align: center; line-height: 1.4; margin-top: 8px; border-top: 1px solid rgba(255, 215, 0, 0.1); padding-top: 8px; }
 
 /* ===== 8. ГРАФИК ===== */
 #chart-container {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 15px;
     margin-bottom: 20px;
@@ -416,7 +320,6 @@ h1::after {
     position: relative;
     overflow-x: auto;
     z-index: 1;
-    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.3);
 }
 
 #biorhythmChart {
@@ -427,16 +330,10 @@ h1::after {
     max-width: none !important;
 }
 
-#chart-container canvas {
-    cursor: default;
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.02));
-}
-
 /* ===== 9. КРИТИЧЕСКИЕ ДНИ ===== */
 #critical-days {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 15px 20px;
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -448,9 +345,7 @@ h1::after {
     z-index: 1;
 }
 
-#critical-days strong {
-    color: #ffd700;
-}
+#critical-days strong { color: #ffd700; }
 
 .critical-item {
     display: inline-block;
@@ -468,7 +363,6 @@ h1::after {
 .critical-item:hover {
     background: rgba(255, 215, 0, 0.2);
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
 }
 
 /* ===== 10. ИНФО-ОКНО КРИТИЧЕСКОГО ДНЯ ===== */
@@ -476,7 +370,6 @@ h1::after {
     display: none;
     background: rgba(255, 215, 0, 0.04);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 215, 0, 0.15);
     border-radius: 16px;
     padding: 20px 24px;
@@ -485,80 +378,15 @@ h1::after {
     line-height: 1.6;
     position: relative;
     z-index: 1;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
     animation: fadeSlideIn 0.4s ease;
 }
 
 @keyframes fadeSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-#critical-info .close-btn {
-    float: right;
-    background: none;
-    border: none;
-    color: #888;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#critical-info .close-btn:hover {
-    color: #ffd700;
-    transform: rotate(90deg);
-}
-
-#critical-info .critical-date {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffd700;
-    margin-bottom: 10px;
-    font-family: 'Philosopher', serif;
-}
-
-#critical-info .critical-desc {
-    font-size: 14px;
-    color: #bbb;
-}
-
-#critical-info .critical-cycles {
-    margin-top: 10px;
-    font-size: 13px;
-}
-
-#critical-info .critical-cycles span {
-    display: inline-block;
-    margin-right: 12px;
-    padding: 3px 10px;
-    border-radius: 8px;
-    font-size: 12px;
-}
-
-/* ===== 11. ИНФО-ОКНО ДЛЯ ЛЮБОГО ДНЯ ===== */
-#day-info {
-    display: none;
-    background: rgba(255, 215, 0, 0.04);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 215, 0, 0.15);
-    border-radius: 16px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
-    color: #ddd;
-    line-height: 1.8;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
-    animation: fadeSlideIn 0.4s ease;
-}
-
+#critical-info .close-btn,
 #day-info .close-btn {
     float: right;
     background: none;
@@ -569,63 +397,44 @@ h1::after {
     transition: all 0.3s ease;
 }
 
+#critical-info .close-btn:hover,
 #day-info .close-btn:hover {
     color: #ffd700;
     transform: rotate(90deg);
 }
 
-#day-info .day-date {
-    font-size: 22px;
-    font-weight: bold;
-    color: #ffd700;
-    margin-bottom: 12px;
-    font-family: 'Philosopher', serif;
+#critical-info .critical-date { font-size: 20px; font-weight: bold; color: #ffd700; margin-bottom: 10px; font-family: 'Philosopher', serif; }
+#critical-info .critical-desc { font-size: 14px; color: #bbb; }
+#critical-info .critical-cycles { margin-top: 10px; font-size: 13px; }
+#critical-info .critical-cycles span { display: inline-block; margin-right: 12px; padding: 3px 10px; border-radius: 8px; font-size: 12px; }
+
+/* ===== 11. ИНФО-ОКНО ДЛЯ ЛЮБОГО ДНЯ ===== */
+#day-info {
+    display: none;
+    background: rgba(255, 215, 0, 0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    color: #ddd;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    animation: fadeSlideIn 0.4s ease;
 }
 
-#day-info .day-moon {
-    background: rgba(255, 215, 0, 0.06);
-    border-radius: 12px;
-    padding: 10px 14px;
-    margin-bottom: 12px;
-    text-align: center;
-    border: 1px solid rgba(255, 215, 0, 0.08);
-}
+#day-info .day-date { font-size: 22px; font-weight: bold; color: #ffd700; margin-bottom: 12px; font-family: 'Philosopher', serif; }
+#day-info .day-moon { background: rgba(255, 215, 0, 0.06); border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; text-align: center; border: 1px solid rgba(255, 215, 0, 0.08); }
+#day-info .day-moon strong { color: #ffd700; }
+#day-info .day-cycles { background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 8px 14px; margin-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.06); }
+#day-info .day-recommendation { background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.06); font-size: 15px; }
+#day-info .day-history { background: rgba(255, 215, 0, 0.03); border-radius: 12px; padding: 10px 14px; font-size: 13px; color: #aaa; border: 1px solid rgba(255, 215, 0, 0.06); }
 
-#day-info .day-moon strong {
-    color: #ffd700;
-}
-
-#day-info .day-cycles {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    padding: 8px 14px;
-    margin-bottom: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-#day-info .day-recommendation {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    padding: 10px 14px;
-    margin-bottom: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    font-size: 15px;
-}
-
-#day-info .day-history {
-    background: rgba(255, 215, 0, 0.03);
-    border-radius: 12px;
-    padding: 10px 14px;
-    font-size: 13px;
-    color: #aaa;
-    border: 1px solid rgba(255, 215, 0, 0.06);
-}
-
-/* ===== 12. ДИАЛОГОВОЕ ОКНО С AI (ВЕДАГОР) ===== */
+/* ===== 12. ДИАЛОГОВОЕ ОКНО С AI ===== */
 .day-ai-advice {
     background: rgba(68, 255, 136, 0.04);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(68, 255, 136, 0.08);
     border-radius: 12px;
     padding: 12px 16px;
@@ -634,135 +443,29 @@ h1::after {
     min-height: 50px;
 }
 
-.day-ai-advice .ai-loading {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    color: #888;
-    font-style: italic;
-}
-
-.day-ai-advice .ai-chat-area {
-    max-height: 350px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-    padding-right: 4px;
-}
-
-.day-ai-advice .ai-chat-area::-webkit-scrollbar {
-    width: 4px;
-}
-
-.day-ai-advice .ai-chat-area::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 4px;
-}
-
-.day-ai-advice .ai-chat-area::-webkit-scrollbar-thumb {
-    background: rgba(255, 215, 0, 0.2);
-    border-radius: 4px;
-}
-
-.day-ai-advice .ai-message {
-    padding: 10px 14px;
-    margin-bottom: 10px;
-    border-radius: 12px;
-    animation: fadeInUp 0.5s ease;
-}
+.day-ai-advice .ai-loading { display: flex; align-items: center; gap: 12px; padding: 10px 0; color: #888; font-style: italic; }
+.day-ai-advice .ai-chat-area { max-height: 350px; overflow-y: auto; margin-bottom: 10px; padding-right: 4px; }
+.day-ai-advice .ai-chat-area::-webkit-scrollbar { width: 4px; }
+.day-ai-advice .ai-chat-area::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 4px; }
+.day-ai-advice .ai-chat-area::-webkit-scrollbar-thumb { background: rgba(255, 215, 0, 0.2); border-radius: 4px; }
+.day-ai-advice .ai-message { padding: 10px 14px; margin-bottom: 10px; border-radius: 12px; animation: fadeInUp 0.5s ease; }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.day-ai-advice .ai-bot {
-    background: rgba(255, 215, 0, 0.05);
-    border: 1px solid rgba(255, 215, 0, 0.08);
-}
-
-.day-ai-advice .ai-bot strong {
-    color: #ffd700;
-    font-size: 15px;
-    font-family: 'Philosopher', serif;
-}
-
-.day-ai-advice .ai-user {
-    background: rgba(68, 255, 136, 0.05);
-    border: 1px solid rgba(68, 255, 136, 0.08);
-    text-align: right;
-}
-
-.day-ai-advice .ai-user strong {
-    color: #44ff88;
-}
-
-.day-ai-advice .ai-text {
-    color: #ddd;
-    font-size: 14px;
-    line-height: 1.7;
-    display: block;
-    margin-top: 4px;
-    white-space: pre-wrap;
-}
-
-.day-ai-advice .ai-text span {
-    color: #ffd700;
-}
-
-.day-ai-advice .ai-chat-input {
-    display: flex;
-    gap: 8px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding-top: 10px;
-    margin-top: 4px;
-}
-
-.day-ai-advice .ai-chat-input input {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    padding: 8px 14px;
-    color: #e0e0e0;
-    font-size: 14px;
-    outline: none;
-    transition: all 0.3s ease;
-    font-family: 'Roboto', sans-serif;
-}
-
-.day-ai-advice .ai-chat-input input:focus {
-    border-color: #ffd700;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
-}
-
-.day-ai-advice .ai-chat-input input::placeholder {
-    color: #666;
-}
-
-.day-ai-advice .ai-chat-input button {
-    background: rgba(255, 215, 0, 0.1);
-    border: 1px solid rgba(255, 215, 0, 0.15);
-    border-radius: 8px;
-    padding: 8px 16px;
-    color: #ffd700;
-    cursor: pointer;
-    font-size: 18px;
-    transition: all 0.3s ease;
-}
-
-.day-ai-advice .ai-chat-input button:hover {
-    background: #ffd700;
-    color: #0a0e1a;
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
-}
+.day-ai-advice .ai-bot { background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.08); }
+.day-ai-advice .ai-bot strong { color: #ffd700; font-size: 15px; font-family: 'Philosopher', serif; }
+.day-ai-advice .ai-user { background: rgba(68, 255, 136, 0.05); border: 1px solid rgba(68, 255, 136, 0.08); text-align: right; }
+.day-ai-advice .ai-user strong { color: #44ff88; }
+.day-ai-advice .ai-text { color: #ddd; font-size: 14px; line-height: 1.7; display: block; margin-top: 4px; white-space: pre-wrap; }
+.day-ai-advice .ai-chat-input { display: flex; gap: 8px; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 10px; margin-top: 4px; }
+.day-ai-advice .ai-chat-input input { flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 8px 14px; color: #e0e0e0; font-size: 14px; outline: none; font-family: 'Roboto', sans-serif; }
+.day-ai-advice .ai-chat-input input:focus { border-color: #ffd700; }
+.day-ai-advice .ai-chat-input input::placeholder { color: #666; }
+.day-ai-advice .ai-chat-input button { background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 8px; padding: 8px 16px; color: #ffd700; cursor: pointer; font-size: 18px; transition: all 0.3s ease; }
+.day-ai-advice .ai-chat-input button:hover { background: #ffd700; color: #0a0e1a; transform: scale(1.05); }
 
 /* ===== 13. АНИМАЦИЯ ВЕДАГОРА ===== */
 .vedagor-spinner {
@@ -774,7 +477,6 @@ h1::after {
     border-radius: 50%;
     animation: spin 1s linear infinite;
     display: inline-block;
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
     flex-shrink: 0;
 }
 
@@ -783,56 +485,279 @@ h1::after {
     100% { transform: rotate(360deg); }
 }
 
-
-#info-block strong {
-    color: #ffd700;
-}
-
-/* ===== 15. БОКОВОЕ МЕНЮ ===== */
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 200px;
-    height: 100vh;
-    background: rgba(10, 14, 26, 0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-right: 1px solid rgba(255, 215, 0, 0.06);
-    display: flex;
-    flex-direction: column;
-    padding: 20px 0;
-    z-index: 1000;
-    box-shadow: 4px 0 40px rgba(0, 0, 0, 0.6);
-}
-
-.sidebar-header {
+/* ===== 14. ЗАГОЛОВОК С КНОПКОЙ "?" ===== */
+.title-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 0 20px 20px;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.06);
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.title-row h1 {
+    margin-bottom: 0;
+}
+
+.info-toggle-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1.5px solid rgba(255, 215, 0, 0.4);
+    color: #ffd700;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Philosopher', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 0;
+    padding-bottom: 2px;
+}
+
+.info-toggle-btn:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 35px rgba(255, 215, 0, 0.25);
+    transform: scale(1.08);
+}
+
+.info-toggle-btn.active {
+    background: #ffd700;
+    color: #0a0e1a;
+    border-color: #ffd700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+}
+
+/* ===== 15. РАСКРЫВАЮЩИЙСЯ БЛОК ===== */
+.info-block-collapsible {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease, padding 0.3s ease, margin 0.3s ease;
+    opacity: 0;
+    padding: 0 20px;
+    margin-bottom: 0;
+    background: rgba(255, 215, 0, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 215, 0, 0.08);
+    position: relative;
+    z-index: 1;
+}
+
+.info-block-collapsible.open {
+    max-height: 900px;
+    opacity: 1;
+    padding: 20px;
     margin-bottom: 20px;
 }
 
-.sidebar-logo {
-    font-size: 28px;
+.info-block-collapsible .info-section {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.7;
 }
 
-.sidebar-logo-img {
-    width: 32px;
-    height: 32px;
+.info-block-collapsible .info-section strong {
+    color: #ffd700;
+}
+
+.info-block-collapsible .info-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+    margin: 16px 0;
+}
+
+/* ============================================
+   16. ВЕРХНЕЕ ВЫПАДАЮЩЕЕ МЕНЮ
+   ============================================ */
+
+.top-nav {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 9999;
+    font-family: 'Roboto', sans-serif;
+    user-select: none;
+}
+
+.top-nav-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.top-nav-trigger {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.top-nav-trigger img {
+    width: 34px;
+    height: 34px;
     object-fit: contain;
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+    animation: alatyrSpin 20s linear infinite, alatyrPulse 2.5s ease-in-out infinite;
+}
+
+.top-nav-trigger:hover img {
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)) drop-shadow(0 0 25px rgba(255, 215, 0, 0.6));
+}
+
+.top-nav.open .top-nav-trigger img {
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1)) drop-shadow(0 0 30px rgba(255, 215, 0, 0.7));
+}
+
+@keyframes alatyrSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes alatyrPulse {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5)); }
+    50% { filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.85)) drop-shadow(0 0 22px rgba(255, 215, 0, 0.5)); }
+}
+
+.top-nav-title {
+    color: #ffd700;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: 'Philosopher', serif;
+    white-space: nowrap;
+    padding-right: 4px;
+}
+
+.top-nav-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    width: 200px;
+    background-image: url('../images/menu-bg.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 14px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: 
+        grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.4s ease,
+        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.4s ease;
+    padding: 0 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Тёмный слой поверх картинки — чтобы текст читался */
+.top-nav-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 14, 26, 0.2);
+    border-radius: 14px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ссылки и кнопки — над тёмным слоем */
+.top-nav-menu > * {
+    position: relative;
+    z-index: 1;
+    min-height: 0;
+}
+
+.top-nav-menu > * {
+    min-height: 0;
+}
+
+.top-nav.open .top-nav-menu {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    padding: 8px;
+}
+
+.top-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.25s ease;
+}
+
+.top-nav-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #e0e0e0;
+    transform: translateX(4px);
+}
+
+.top-nav-link.active {
+    background: rgba(255, 215, 0, 0.08);
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.top-nav-link .sidebar-icon {
+    font-size: 20px;
+    width: 28px;
+    text-align: center;
     flex-shrink: 0;
 }
 
-.sidebar-logout {
+.top-nav-link .sidebar-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.25));
+}
+
+.top-nav-link .sidebar-text {
+    font-size: 14px;
+}
+
+.top-nav-logout {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 10px 14px;
+    margin-top: 6px;
     background: rgba(255, 68, 68, 0.06);
     border: 1px solid rgba(255, 68, 68, 0.15);
     border-radius: 10px;
@@ -840,147 +765,79 @@ h1::after {
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 10px;
+    transition: all 0.25s ease;
+    text-align: left;
 }
 
-.sidebar-logout:hover {
+.top-nav-logout:hover {
     background: rgba(255, 68, 68, 0.15);
     border-color: rgba(255, 68, 68, 0.4);
     color: #ffaaaa;
     transform: translateX(4px);
 }
 
-.sidebar-title {
-    color: #ffd700;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    font-family: 'Philosopher', serif;
-}
-
-.sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 0 12px;
-    flex: 1;
-}
-
-.sidebar-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    color: #888;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.sidebar-link:hover {
-    background: rgba(255, 255, 255, 0.04);
-    color: #e0e0e0;
-    transform: translateX(4px);
-}
-
-.sidebar-link.active {
-    background: rgba(255, 215, 0, 0.06);
-    color: #ffd700;
-    border: 1px solid rgba(255, 215, 0, 0.08);
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.03);
-}
-
-.sidebar-link .sidebar-icon {
-    font-size: 20px;
-    width: 28px;
+.top-nav-version {
+    color: #444;
+    font-size: 11px;
     text-align: center;
+    padding: 6px 0 2px;
 }
 
-.sidebar-link .sidebar-icon-img {
-    width: 33px;
-    height: 33px;
-    object-fit: contain;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.25));
-}
-
-.sidebar-link .sidebar-text {
-    font-size: 14px;
-}
-
-.sidebar-footer {
-    padding: 20px 20px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    margin-top: auto;
-    text-align: center;
-}
-
-/* ===== 16. ОСНОВНОЙ КОНТЕНТ С ОТСТУПОМ ПОД МЕНЮ ===== */
+/* ===== 17. ОСНОВНОЙ КОНТЕНТ ===== */
 .main-content {
-    margin-left: 200px;
-    padding: 20px 30px;
+    margin-left: 0;
+    padding: 80px 20px 20px;
     min-height: 100vh;
     position: relative;
     z-index: 1;
 }
 
-/* ===== 17. ПРИВЕТСТВИЕ С ИМЕНЕМ (шрифт Philosopher) ===== */
+/* ===== 18. ПРИВЕТСТВИЕ С ИМЕНЕМ ===== */
 #greeting-text,
 #svarog-greeting-text {
     font-family: 'Philosopher', serif !important;
     font-weight: 700;
 }
 
+/* ============================================
+   19. АДАПТИВНОСТЬ
+   ============================================ */
+
 @media (max-width: 768px) {
-    .sidebar {
-        width: 60px;
-        padding: 16px 0;
-    }
-    
-    .sidebar-header {
-        padding: 0 12px 16px;
-        justify-content: center;
-    }
-    
-    .sidebar-title {
-        display: none;
-    }
-    
-    .sidebar-link {
-        padding: 10px 12px;
-        justify-content: center;
-    }
-    
-    .sidebar-link .sidebar-text {
-        display: none;
-    }
-    
-    .sidebar-link .sidebar-icon {
-        font-size: 24px;
-        width: auto;
-    }
-    
-    .sidebar-logout {
-        justify-content: center;
-        padding: 10px 12px;
-    }
-    
-    .sidebar-logout .sidebar-text {
-        display: none;
-    }
-    
-    .sidebar-footer {
-        padding: 16px 8px 0;
-    }
-    
-    .main-content {
-        margin-left: 60px;
-        padding: 6px;
+    body {
+        padding: 10px;
     }
 
-    body {
-        padding: 0;
+    .main-content {
+        padding: 70px 6px 6px;
+    }
+
+    .top-nav {
+        top: 10px;
+        left: 10px;
+    }
+
+    .top-nav-header {
+        padding: 4px 10px 4px 4px;
+        gap: 8px;
+    }
+
+    .top-nav-trigger {
+        width: 34px;
+        height: 34px;
+    }
+
+    .top-nav-trigger img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .top-nav-title {
+        font-size: 14px;
+    }
+
+    .top-nav-menu {
+        width: 180px;
     }
 
     h1 {
@@ -995,12 +852,12 @@ h1::after {
         margin-bottom: 12px;
         border-radius: 10px;
     }
-    
+
     .controls label {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .controls input[type="date"],
     .controls select {
         width: 100%;
@@ -1009,8 +866,6 @@ h1::after {
     #legend {
         gap: 10px;
         padding: 10px;
-        border-radius: 10px;
-        margin-bottom: 12px;
     }
 
     .legend-item {
@@ -1024,84 +879,34 @@ h1::after {
         border-radius: 10px;
         margin-bottom: 12px;
     }
-    
+
     .lunar-day {
         font-size: 18px;
-        min-width: 32px;
+        min-width: 36px;
     }
-    
+
+    .moon-icon {
+        width: 34px;
+        height: 34px;
+    }
+
     #chart-container {
         padding: 6px;
         border-radius: 10px;
         margin-bottom: 12px;
     }
 
-    #critical-days {
-        padding: 10px;
-        border-radius: 10px;
-        margin-bottom: 12px;
-    }
-
-    #critical-info {
-        padding: 12px;
-        border-radius: 10px;
-        margin-bottom: 12px;
-    }
-    
-    #critical-info .critical-date {
-        font-size: 17px;
-    }
-    
+    #critical-days,
+    #critical-info,
     #day-info {
         padding: 12px;
         border-radius: 10px;
         margin-bottom: 12px;
     }
-    
+
+    #critical-info .critical-date,
     #day-info .day-date {
-        font-size: 18px;
-    }
-
-    #day-info .day-moon,
-    #day-info .day-cycles,
-    #day-info .day-recommendation,
-    #day-info .day-history {
-        padding: 8px 10px;
-        border-radius: 8px;
-    }
-
-    .day-ai-advice {
-        padding: 10px;
-        border-radius: 8px;
-    }
-    
-    .day-ai-advice .ai-chat-area {
-        max-height: 250px;
-    }
-    
-    .day-ai-advice .ai-text {
-        font-size: 13px;
-    }
-    
-    .day-ai-advice .ai-chat-input input {
-        font-size: 13px;
-        padding: 6px 10px;
-    }
-    
-    .day-ai-advice .ai-chat-input button {
-        font-size: 16px;
-        padding: 6px 12px;
-    }
-    
-    .vedagor-spinner {
-        width: 30px;
-        height: 30px;
-    }
-
-    #info-block {
-        padding: 10px;
-        border-radius: 10px;
-        font-size: 12px;
+        font-size: 17px;
     }
 
     #moon-tooltip,
@@ -1109,232 +914,50 @@ h1::after {
         max-width: 240px;
         padding: 12px 14px;
     }
+
+    #moon-tooltip .phase-icon {
+        font-size: 30px;
+    }
+
+    #moon-tooltip .phase-name {
+        font-size: 15px;
+    }
 }
 
 @media (max-width: 480px) {
-    .sidebar {
-        width: 50px;
-        padding: 12px 0;
+    .top-nav {
+        top: 8px;
+        left: 8px;
     }
-    
-    .sidebar-link {
-        padding: 8px 10px;
+
+    .top-nav-trigger {
+        width: 30px;
+        height: 30px;
     }
-    
-    .sidebar-link .sidebar-icon {
-        font-size: 20px;
+
+    .top-nav-trigger img {
+        width: 24px;
+        height: 24px;
     }
-    
-    .sidebar-logout {
-        padding: 8px 10px;
+
+    .top-nav-title {
+        font-size: 13px;
     }
-    
+
     .main-content {
-        margin-left: 50px;
-        padding: 4px;
+        padding: 62px 4px 4px;
     }
 
     h1 {
         font-size: 18px;
     }
-    
+
     #chart-container {
         padding: 4px;
         min-height: 320px;
     }
-    
+
     #biorhythmChart {
         height: 320px !important;
     }
-}
-
-/* ============================================
-   ЗАГОЛОВОК С КНОПКОЙ "?"
-   ============================================ */
-
-.title-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 10px;
-}
-
-.title-row h1 {
-    margin-bottom: 0;
-}
-
-.info-toggle-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 215, 0, 0.1);
-    border: 1.5px solid rgba(255, 215, 0, 0.4);
-    color: #ffd700;
-    font-size: 20px;
-    font-weight: 700;
-    font-family: 'Philosopher', serif;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    line-height: 1;
-    padding: 0;
-    padding-bottom: 2px;
-}
-
-.info-toggle-btn:hover {
-    background: rgba(255, 215, 0, 0.2);
-    border-color: #ffd700;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 35px rgba(255, 215, 0, 0.25);
-    transform: scale(1.08);
-}
-
-.info-toggle-btn.active {
-    background: #ffd700;
-    color: #0a0e1a;
-    border-color: #ffd700;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
-}
-
-/* ============================================
-   РАСКРЫВАЮЩИЙСЯ ИНФО-БЛОК
-   ============================================ */
-
-.info-block-collapsible {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), 
-                opacity 0.3s ease,
-                padding 0.3s ease,
-                margin 0.3s ease;
-    opacity: 0;
-    padding: 0 20px;
-    margin-bottom: 0;
-    background: rgba(255, 215, 0, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 215, 0, 0.08);
-    color: #aaa;
-    font-size: 13px;
-    line-height: 1.6;
-    position: relative;
-    z-index: 1;
-}
-
-.info-block-collapsible strong {
-    color: #ffd700;
-}
-
-.info-block-collapsible.open {
-    max-height: 500px;
-    opacity: 1;
-    padding: 15px 20px;
-    margin-bottom: 20px;
-}
-
-/* ============================================
-   ЗАГОЛОВОК С КНОПКОЙ "?"
-   ============================================ */
-
-.title-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 10px;
-}
-
-.title-row h1 {
-    margin-bottom: 0;
-}
-
-.info-toggle-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 215, 0, 0.1);
-    border: 1.5px solid rgba(255, 215, 0, 0.4);
-    color: #ffd700;
-    font-size: 20px;
-    font-weight: 700;
-    font-family: 'Philosopher', serif;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    line-height: 1;
-    padding: 0;
-    padding-bottom: 2px;
-}
-
-.info-toggle-btn:hover {
-    background: rgba(255, 215, 0, 0.2);
-    border-color: #ffd700;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 35px rgba(255, 215, 0, 0.25);
-    transform: scale(1.08);
-}
-
-.info-toggle-btn.active {
-    background: #ffd700;
-    color: #0a0e1a;
-    border-color: #ffd700;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
-}
-
-/* ============================================
-   РАСКРЫВАЮЩИЙСЯ БЛОК (ИНФО + ЛЕГЕНДА)
-   ============================================ */
-
-.info-block-collapsible {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
-                opacity 0.3s ease,
-                padding 0.3s ease,
-                margin 0.3s ease;
-    opacity: 0;
-    padding: 0 20px;
-    margin-bottom: 0;
-    background: rgba(255, 215, 0, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 215, 0, 0.08);
-    position: relative;
-    z-index: 1;
-}
-
-.info-block-collapsible.open {
-    max-height: 900px;
-    opacity: 1;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-/* ===== ИНФО СЕКЦИЯ ===== */
-.info-block-collapsible .info-section {
-    color: #aaa;
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-.info-block-collapsible .info-section strong {
-    color: #ffd700;
-}
-
-/* ===== РАЗДЕЛИТЕЛЬ ===== */
-.info-block-collapsible .info-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-    margin: 16px 0;
 }

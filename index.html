@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Philosopher:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="bg-main"></body>
 
     <!-- ===== МОДАЛЬНОЕ ОКНО ВВОДА ИМЕНИ И ПОЛА ===== -->
     <div id="user-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 99999; backdrop-filter: blur(10px);">
@@ -34,41 +34,41 @@
         </div>
     </div>
 
-    <!-- ===== ЗВЁЗДЫ ===== -->
-    <div class="stars" id="stars"></div>
-
-    <!-- ===== БОКОВОЕ МЕНЮ ===== -->
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <img src="images/alatyr.png" alt="Алатырь" class="sidebar-logo-img">
-            <span class="sidebar-title">Ведаем РА</span>
+    <!-- ===== ВЕРХНЕЕ ВЫПАДАЮЩЕЕ МЕНЮ ===== -->
+    <nav class="top-nav" id="topNav">
+        <div class="top-nav-header">
+            <button class="top-nav-trigger" aria-label="Открыть меню">
+                <img src="images/alatyr.png" alt="Алатырь">
+            </button>
+            <span class="top-nav-title">Меню</span>
         </div>
-        <nav class="sidebar-nav">
-            <a href="index.html" class="sidebar-link active">
+
+        <div class="top-nav-menu">
+            <a href="index.html" class="top-nav-link active">
                 <span class="sidebar-icon">📊</span>
                 <span class="sidebar-text">Биоритмы</span>
             </a>
-            <a href="svarog-circle.html" class="sidebar-link">
+            <a href="svarog-circle.html" class="top-nav-link">
                 <img src="images/svarog-circle/circle-icon.png" alt="Сварожий круг" class="sidebar-icon-img">
                 <span class="sidebar-text">Сварожий круг</span>
             </a>
-            <a href="galactic-day.html" class="sidebar-link">
+            <a href="galactic-day.html" class="top-nav-link">
                 <img src="images/galactic-day/icon.png" alt="Галактические сутки" class="sidebar-icon-img">
                 <span class="sidebar-text">Галактические сутки</span>
             </a>
-            <a href="atlas.html" class="sidebar-link">
+            <a href="atlas.html" class="top-nav-link">
                 <span class="sidebar-icon">🗺️</span>
                 <span class="sidebar-text">Атлас Судьбы</span>
             </a>
-        </nav>
-        <div class="sidebar-footer">
-            <button onclick="logoutUser()" class="sidebar-logout">
+
+            <button class="top-nav-logout">
                 <span class="sidebar-icon">🚪</span>
                 <span class="sidebar-text">Выйти</span>
             </button>
-            <span style="color: #444; font-size: 11px; display: block; margin-top: 10px;">v1.0</span>
+
+            <div class="top-nav-version">v1.0</div>
         </div>
-    </aside>
+    </nav>
 
     <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
     <main class="main-content">
@@ -80,7 +80,6 @@
 
         <!-- ===== РАСКРЫВАЮЩИЙСЯ БЛОК: ИНФО + ЛЕГЕНДА ===== -->
         <div id="info-block-collapsible" class="info-block-collapsible">
-            <!-- Сверху — ИНФО -->
             <div class="info-section">
                 <strong>📖 Как читать график:</strong><br>
                 • <strong>Ось X</strong> — дни от выбранной даты<br>
@@ -91,10 +90,8 @@
                 • Если все графики в <strong>отрицательной зоне</strong> — лучше сменить деятельность
             </div>
 
-            <!-- Разделитель -->
             <div class="info-divider"></div>
 
-            <!-- Снизу — ЛЕГЕНДА -->
             <div id="legend"></div>
         </div>
 
@@ -160,7 +157,7 @@
             <div class="critical-cycles"></div>
         </div>
 
-        <!-- ===== ИНФО-ОКНО ДЛЯ ЛЮБОГО ДНЯ (ПОЛНОЕ ОПИСАНИЕ) ===== -->
+        <!-- ===== ИНФО-ОКНО ДЛЯ ЛЮБОГО ДНЯ ===== -->
         <div id="day-info">
             <button class="close-btn" id="closeDayInfo">✕</button>
             <div class="day-date"></div>
@@ -181,23 +178,6 @@
 
     <script type="module" src="js/app.js"></script>
     
-    <script>
-        // ===== ГЕНЕРАЦИЯ ЗВЁЗД =====
-        (function createStars() {
-            const container = document.getElementById('stars');
-            if (!container) return;
-            const count = 150;
-            for (let i = 0; i < count; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                const size = Math.random() * 3 + 1;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                container.appendChild(star);
-            }
-        })();
 
         // ===== РАСКРЫТИЕ ИНФО-БЛОКА =====
         (function initInfoToggle() {
@@ -211,5 +191,8 @@
             });
         })();
     </script>
+
+    <!-- ===== ВЕРХНЕЕ МЕНЮ ===== -->
+    <script src="js/nav.js"></script>
 </body>
 </html>

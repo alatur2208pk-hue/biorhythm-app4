@@ -3,6 +3,7 @@
 // ============================================
 
 import { showDayWithAI } from './ai.js';
+import { calcCycleValue, daysBetween } from './calculations.js';
 
 // ============================================
 // 1. ОТРИСОВКА ЛЕГЕНДЫ
@@ -144,7 +145,7 @@ export function getCycleStatus(value, prevValue) {
 // 4. ОТРИСОВКА ГРАФИКА (С ВЫДВИЖЕНИЕМ ДАТ ПОВЕРХ)
 // ============================================
 
-export function drawChart(data, criticalMap, CYCLES, showCriticalInfo, showDay, getMoonPhase, MOON_PHASES) {
+export function drawChart(data, criticalMap, CYCLES, showCriticalInfo, showDay, getMoonPhase, MOON_PHASES, birthDate) {
     const canvas = document.getElementById('biorhythmChart');
     const ctx = canvas.getContext('2d');
     
@@ -470,12 +471,16 @@ export function drawChart(data, criticalMap, CYCLES, showCriticalInfo, showDay, 
             ctx.fillText('🌙 ' + details.moon, infoX + 12, infoY + 50);
             
             // ===== СПИСОК ЦИКЛОВ В КАРТОЧКЕ (ВСЕ 5, С УЧЁТОМ ПРОИЗВОДНОЙ) =====
-            const prevDayData = highlightIndex > 0 ? data[highlightIndex - 1] : null;
+            // Считаем "вчерашнее" значение через birthDate — работает для любого дня, включая сегодня
+            const baseDaysLived = daysBetween(birthDate, data[0].date);
             let cycleY = infoY + 70;
             
             CYCLES.forEach(function(cycle) {
                 const value = dayData.cycles[cycle.name];
-                const prevValue = prevDayData ? prevDayData.cycles[cycle.name] : value;
+                
+                // Значение цикла в предыдущий день (день раньше)
+                const daysLivedYesterday = baseDaysLived - 1 + highlightIndex;
+                const prevValue = calcCycleValue(daysLivedYesterday, cycle.days);
                 
                 // Определяем статус с учётом направления и экстремумов
                 const status = getCycleStatus(value, prevValue);

@@ -2,7 +2,7 @@
 // 1. ИМПОРТЫ
 // ============================================
 
-import { DEEPSEEK_CONFIG } from './config.js';
+import { DEEPSEEK_CONFIG, MOON_IMAGES } from './config.js';
 import { getCycleStatus } from './render.js';
 
 // ============================================
@@ -265,8 +265,12 @@ export async function showDayWithAI(data, index, CYCLES, getMoonPhase, MOON_PHAS
     document.querySelector('#day-info .day-date').textContent = 
         '📅 ' + date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
     
+    // Определяем индекс картинки луны для этой даты
+    const moonIdx = window._getMoonImageIndex ? window._getMoonImageIndex(date) : 0;
+    const moonSrc = MOON_IMAGES[moonIdx] || '';
+
     document.querySelector('#day-info .day-moon').innerHTML = 
-        '<span style="font-size:28px;">' + phase.icon + '</span> ' +
+        '<img src="' + moonSrc + '" alt="' + phase.name + '" style="width: 60px; height: 60px; object-fit: contain; vertical-align: middle; filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.35)); margin-right: 10px;">' +
         '<strong>' + phase.name + '</strong> — ' + phase.short + '<br>' +
         '<span style="color:#aaa;font-size:13px;">' + phase.influence + '</span>';
     

@@ -1,0 +1,344 @@
+/* ============================================
+   СТИЛИ ДЛЯ СТРАНИЦЫ ПАНТЕОН БОГОВ
+   ============================================ */
+
+#pantheonApp {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== ПОИСК ===== */
+.pantheon-search-wrap {
+    max-width: 500px;
+    margin: 0 auto 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.pantheon-search-input {
+    width: 100%;
+    padding: 14px 20px 14px 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 12px;
+    color: #e0e0e0;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.pantheon-search-input:focus {
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.04);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+}
+
+.pantheon-search-input::placeholder {
+    color: #666;
+}
+
+.pantheon-search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ffd700;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* ===== СЕКЦИЯ ===== */
+.pantheon-section {
+    margin-bottom: 50px;
+}
+
+.pantheon-section-title {
+    font-family: 'Philosopher', serif;
+    font-size: 28px;
+    color: #ffd700;
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.pantheon-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+}
+
+.pantheon-section-desc {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.75;
+    text-align: justify;
+    max-width: 900px;
+    margin: 0 auto 30px;
+    padding: 16px 22px;
+    background: rgba(255, 215, 0, 0.03);
+    border-radius: 10px;
+    border-left: 3px solid rgba(255, 215, 0, 0.3);
+}
+
+/* ===== СЕТКА КАРТОЧЕК ===== */
+.pantheon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.pantheon-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 20px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pantheon-card:hover {
+    background: rgba(255, 215, 0, 0.08);
+    border-color: rgba(255, 215, 0, 0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.15);
+}
+
+.pantheon-card-icon {
+    font-size: 38px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
+    transition: all 0.3s ease;
+}
+
+.pantheon-card:hover .pantheon-card-icon {
+    filter: drop-shadow(0 0 18px rgba(255, 215, 0, 0.9));
+    transform: scale(1.1);
+}
+
+.pantheon-card-name {
+    font-family: 'Philosopher', serif;
+    font-size: 14px;
+    color: #ddd;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.3px;
+}
+
+.pantheon-card:hover .pantheon-card-name {
+    color: #ffd700;
+}
+
+/* ===== МОДАЛЬНОЕ ОКНО БОГА ===== */
+.god-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: godModalFadeIn 0.3s ease;
+}
+
+@keyframes godModalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.god-modal-content {
+    position: relative;
+    width: min(90vw, 90vh, 900px);
+    height: min(90vw, 90vh, 900px);
+    background-image: url('../images/scrolls/god-scroll.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    animation: godModalSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    padding: 0;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+@keyframes godModalSlideIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.god-modal-close {
+    position: absolute;
+    top: 12%;
+    right: 12%;
+    background: rgba(60, 30, 10, 0.7);
+    border: 1px solid rgba(139, 90, 43, 0.5);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    color: #f0dbb5;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.god-modal-close:hover {
+    background: #8b5a2b;
+    color: #f5e6c8;
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(139, 90, 43, 0.6);
+}
+
+.god-modal-close:hover {
+    background: #ffd700;
+    color: #0a0e1a;
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.god-modal-icon {
+    font-size: 50px;
+    filter: drop-shadow(0 0 18px rgba(255, 215, 0, 0.6));
+    animation: godIconPulse 2.5s ease-in-out infinite;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 12px;
+    pointer-events: none;
+}
+
+@keyframes godIconPulse {
+    0%, 100% { filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.5)); }
+    50% { filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.9)); }
+}
+
+.god-modal-name {
+    font-family: 'Philosopher', serif;
+    font-size: 22px;
+    color: #4a2f1a;
+    margin: 0 0 16px 0;
+    letter-spacing: 1.5px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+    text-align: center;
+    line-height: 1.2;
+}
+
+.god-modal-desc {
+    color: #3a2a15;
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+}
+
+.god-modal-desc p {
+    margin-bottom: 12px;
+}
+
+.god-modal-desc p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== СКРОЛЛБАР МОДАЛКИ ===== */
+.god-modal-scroll::-webkit-scrollbar {
+    width: 10px;
+}
+
+.god-modal-scroll::-webkit-scrollbar-track {
+    background: rgba(139, 90, 43, 0.15);
+    border-radius: 5px;
+}
+
+.god-modal-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8b5a2b, #6b4426);
+    border-radius: 5px;
+    border: 1px solid rgba(74, 47, 26, 0.6);
+}
+
+.god-modal-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #a06a30, #7b5028);
+}
+
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+    .pantheon-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 12px;
+    }
+
+    .pantheon-card {
+        padding: 16px 10px;
+    }
+
+    .pantheon-card-icon {
+        font-size: 32px;
+    }
+
+    .pantheon-card-name {
+        font-size: 13px;
+    }
+
+    .pantheon-section-title {
+        font-size: 22px;
+    }
+
+    .pantheon-section-desc {
+        font-size: 13px;
+        padding: 14px 18px;
+    }
+
+    .god-modal-content {
+        padding: 30px 20px;
+    }
+
+    .god-modal-icon {
+        font-size: 70px;
+    }
+
+    .god-modal-name {
+        font-size: 24px;
+    }
+
+    .god-modal-desc {
+        font-size: 14px;
+    }
+}
+
+/* ===== КОНТЕЙНЕР ПРОКРУТКИ СВИТКА ===== */
+.god-modal-scroll {
+    position: absolute;
+    top: 20%;
+    bottom: 25%;
+    left: 22%;
+    right: 22%;
+    overflow-y: auto;
+    padding: 0 10px;
+    z-index: 4;
+}

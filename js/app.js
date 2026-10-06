@@ -186,7 +186,7 @@ function updateApp() {
 
     renderLegend(CYCLES);
     renderLunarRoad(data, viewDate, getMoonPhase, MOON_PHASES, showDay, CYCLES);
-    drawChart(data, criticalMap, CYCLES, showInfo, showDay, getMoonPhase, MOON_PHASES);
+    drawChart(data, criticalMap, CYCLES, showInfo, showDay, getMoonPhase, MOON_PHASES, birthDate);
     renderCriticalDays(data, criticalMap, showInfo);
 
     document.getElementById('critical-info').style.display = 'none';

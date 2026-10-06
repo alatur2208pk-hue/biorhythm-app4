@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пантеон Богов — Ведаем РА</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pantheon.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Philosopher:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===== ЗВЁЗДЫ ===== -->
+    <div class="stars" id="stars"></div>
+
+    <!-- ===== ВЕРХНЕЕ ВЫПАДАЮЩЕЕ МЕНЮ ===== -->
+    <nav class="top-nav" id="topNav">
+        <div class="top-nav-header">
+            <button class="top-nav-trigger" aria-label="Открыть меню">
+                <img src="images/alatyr.png" alt="Алатырь">
+            </button>
+            <span class="top-nav-title">Меню</span>
+        </div>
+
+        <div class="top-nav-menu">
+            <a href="index.html" class="top-nav-link">
+                <span class="sidebar-icon">📊</span>
+                <span class="sidebar-text">Биоритмы</span>
+            </a>
+            <a href="svarog-circle.html" class="top-nav-link">
+                <img src="images/svarog-circle/circle-icon.png" alt="Сварожий круг" class="sidebar-icon-img">
+                <span class="sidebar-text">Сварожий круг</span>
+            </a>
+            <a href="pantheon.html" class="top-nav-link active">
+                <span class="sidebar-icon">🔆</span>
+                <span class="sidebar-text">Пантеон богов</span>
+            </a>
+            <a href="galactic-day.html" class="top-nav-link">
+                <img src="images/galactic-day/icon.png" alt="Галактические сутки" class="sidebar-icon-img">
+                <span class="sidebar-text">Галактические сутки</span>
+            </a>
+            <a href="atlas.html" class="top-nav-link">
+                <span class="sidebar-icon">🗺️</span>
+                <span class="sidebar-text">Атлас Судьбы</span>
+            </a>
+
+            <button class="top-nav-logout">
+                <span class="sidebar-icon">🚪</span>
+                <span class="sidebar-text">Выйти</span>
+            </button>
+
+            <div class="top-nav-version">v1.0</div>
+        </div>
+    </nav>
+
+    <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
+    <main class="main-content">
+        <div id="pantheonApp">
+            <h1>🔆 Пантеон Богов</h1>
+            <p class="subtitle">Светлые Боги славян и ариев</p>
+
+            <!-- ===== ПОИСК ===== -->
+            <div class="pantheon-search-wrap">
+                <span class="pantheon-search-icon">🔍</span>
+                <input type="text" id="pantheonSearchInput" class="pantheon-search-input" placeholder="Найти бога по имени...">
+            </div>
+
+            <!-- ===== СЕКЦИИ БОГОВ ===== -->
+            <div id="pantheonContainer"></div>
+        </div>
+
+        <!-- ===== МОДАЛЬНОЕ ОКНО БОГА ===== -->
+        <div id="godModal" class="god-modal">
+            <div class="god-modal-content">
+                <button id="closeGodModal" class="god-modal-close">✕</button>
+                <div class="god-modal-scroll">
+                    <div class="god-modal-icon">🔆</div>
+                    <h2 class="god-modal-name"></h2>
+                    <div class="god-modal-desc"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="js/pantheon.js"></script>
+
+    <!-- ===== ВЕРХНЕЕ МЕНЮ ===== -->
+    <script src="js/nav.js"></script>
+</body>
+</html>

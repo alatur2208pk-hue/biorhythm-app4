@@ -18,12 +18,6 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== ФОН-КАРТИНКА ДЛЯ ГЛАВНОЙ ===== */
-body.bg-main {
-    background: #0a0e1a url('../images/backgrounds/main-bg.png') no-repeat center center fixed;
-    background-size: cover;
-}
-
 /* ===== 1.1. ЗВЁЗДЫ ===== */
 .stars {
     position: fixed;
@@ -32,7 +26,7 @@ body.bg-main {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     overflow: hidden;
 }
 
@@ -47,7 +41,7 @@ body.bg-main {
 h1 {
     text-align: center;
     color: #ffd700;
-    font-size: 28px;
+    font-size: 38px;
     margin-bottom: 10px;
     text-shadow: 0 0 30px rgba(255, 215, 0, 0.2), 0 0 60px rgba(255, 215, 0, 0.05);
     letter-spacing: 2px;
@@ -84,14 +78,14 @@ h1::after {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.001);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
     padding: 15px 20px;
     border-radius: 16px;
     margin-bottom: 25px;
-    border: 1px solid rgba(255, 215, 0, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 215, 0, 0.07);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.11);
     position: relative;
     z-index: 1;
 }
@@ -841,7 +835,7 @@ h1::after {
     }
 
     h1 {
-        font-size: 22px;
+        font-size: 26px;
     }
 
     .controls {
@@ -949,7 +943,7 @@ h1::after {
     }
 
     h1 {
-        font-size: 18px;
+        font-size: 22px;
     }
 
     #chart-container {

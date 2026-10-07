@@ -144,7 +144,10 @@
     color: #ffd700;
 }
 
-/* ===== МОДАЛЬНОЕ ОКНО БОГА ===== */
+/* ============================================
+   МОДАЛЬНОЕ ОКНО БОГА — ПЕРГАМЕНТ (HTML)
+   ============================================ */
+
 .god-modal {
     display: none;
     position: fixed;
@@ -167,21 +170,53 @@
     to { opacity: 1; }
 }
 
+/* ===== ЛИСТ ПЕРГАМЕНТА ===== */
 .god-modal-content {
     position: relative;
-    width: min(90vw, 90vh, 900px);
-    height: min(90vw, 90vh, 900px);
-    background-image: url('../images/scrolls/god-scroll.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
+    width: 600px;
+    max-width: 95vw;
+    height: 800px;
+    max-height: 95vh;
+    aspect-ratio: 600 / 800;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(60, 30, 10, 0.35) 0%, transparent 18%),
+        radial-gradient(circle at 85% 25%, rgba(60, 30, 10, 0.3) 0%, transparent 15%),
+        radial-gradient(circle at 20% 80%, rgba(60, 30, 10, 0.35) 0%, transparent 20%),
+        radial-gradient(circle at 80% 85%, rgba(60, 30, 10, 0.3) 0%, transparent 16%),
+        radial-gradient(circle at 50% 50%, rgba(212, 167, 106, 0.4) 0%, transparent 70%),
+        linear-gradient(180deg, #d4a76a 0%, #c39655 30%, #a87d44 65%, #8b5a2b 100%);
+    border-radius: 4px;
+    box-shadow:
+        inset 0 0 80px rgba(60, 30, 10, 0.55),
+        inset 0 0 200px rgba(40, 20, 5, 0.35),
+        0 20px 60px rgba(0, 0, 0, 0.8);
     animation: godModalSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     padding: 0;
     overflow: hidden;
     flex-shrink: 0;
+}
+
+/* ===== ПОТЁРТОСТИ И ОБОЖЖЁННЫЕ КРАЯ ===== */
+.god-modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    background:
+        radial-gradient(circle at 0% 0%, rgba(20, 10, 5, 0.9) 0%, rgba(20, 10, 5, 0.6) 3%, transparent 8%),
+        radial-gradient(circle at 100% 0%, rgba(20, 10, 5, 0.9) 0%, rgba(20, 10, 5, 0.6) 3%, transparent 8%),
+        radial-gradient(circle at 0% 100%, rgba(20, 10, 5, 0.9) 0%, rgba(20, 10, 5, 0.6) 3%, transparent 8%),
+        radial-gradient(circle at 100% 100%, rgba(20, 10, 5, 0.9) 0%, rgba(20, 10, 5, 0.6) 3%, transparent 8%),
+        radial-gradient(ellipse at 5% 15%, rgba(40, 20, 5, 0.5) 0%, transparent 12%),
+        radial-gradient(ellipse at 95% 45%, rgba(40, 20, 5, 0.5) 0%, transparent 10%),
+        radial-gradient(ellipse at 10% 60%, rgba(40, 20, 5, 0.4) 0%, transparent 14%),
+        radial-gradient(ellipse at 90% 75%, rgba(40, 20, 5, 0.45) 0%, transparent 12%),
+        radial-gradient(ellipse at 25% 95%, rgba(40, 20, 5, 0.4) 0%, transparent 10%),
+        radial-gradient(ellipse at 70% 5%, rgba(40, 20, 5, 0.4) 0%, transparent 10%);
 }
 
 @keyframes godModalSlideIn {
@@ -189,11 +224,38 @@
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* ===== ОРНАМЕНТ (меандровый узор) ===== */
+.god-scroll-ornament {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    height: 32px;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.god-scroll-ornament svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.god-scroll-ornament-top {
+    top: 5%;
+}
+
+.god-scroll-ornament-bottom {
+    bottom: 5%;
+    transform: scaleY(-1);
+}
+
+/* ===== КНОПКА ЗАКРЫТИЯ ===== */
 .god-modal-close {
     position: absolute;
-    top: 12%;
-    right: 12%;
-    background: rgba(60, 30, 10, 0.7);
+    top: 3%;
+    right: 5%;
+    background: rgba(60, 30, 10, 0.75);
     border: 1px solid rgba(139, 90, 43, 0.5);
     border-radius: 50%;
     width: 38px;
@@ -216,45 +278,74 @@
     box-shadow: 0 0 20px rgba(139, 90, 43, 0.6);
 }
 
-.god-modal-close:hover {
-    background: #ffd700;
-    color: #0a0e1a;
-    transform: rotate(90deg);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+/* ===== КОНТЕЙНЕР ПРОКРУТКИ ===== */
+.god-modal-scroll {
+    position: absolute;
+    top: 13%;
+    bottom: 13%;
+    left: 10%;
+    right: 10%;
+    overflow-y: auto;
+    padding: 0 12px;
+    z-index: 4;
 }
 
+.god-modal-scroll::-webkit-scrollbar {
+    width: 10px;
+}
+
+.god-modal-scroll::-webkit-scrollbar-track {
+    background: rgba(60, 30, 10, 0.25);
+    border-radius: 5px;
+}
+
+.god-modal-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8b5a2b, #4a2f1a);
+    border-radius: 5px;
+    border: 1px solid rgba(30, 15, 5, 0.6);
+}
+
+.god-modal-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #a06a30, #5a3a20);
+}
+
+/* ===== ИКОНКА ===== */
 .god-modal-icon {
-    font-size: 50px;
-    filter: drop-shadow(0 0 18px rgba(255, 215, 0, 0.6));
+    font-size: 56px;
+    filter: drop-shadow(0 0 15px rgba(255, 200, 80, 0.7));
     animation: godIconPulse 2.5s ease-in-out infinite;
     line-height: 1;
     text-align: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     pointer-events: none;
 }
 
 @keyframes godIconPulse {
-    0%, 100% { filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.5)); }
-    50% { filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.9)); }
+    0%, 100% { filter: drop-shadow(0 0 15px rgba(255, 200, 80, 0.7)); }
+    50% { filter: drop-shadow(0 0 25px rgba(255, 220, 120, 1)); }
 }
 
+/* ===== ИМЯ ===== */
 .god-modal-name {
     font-family: 'Philosopher', serif;
-    font-size: 22px;
-    color: #4a2f1a;
-    margin: 0 0 16px 0;
-    letter-spacing: 1.5px;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+    font-size: 24px;
+    color: #2a1a0a;
+    margin: 0 0 18px 0;
+    letter-spacing: 2px;
+    text-shadow: 0 1px 1px rgba(255, 230, 180, 0.4);
     text-align: center;
     line-height: 1.2;
+    font-weight: 700;
 }
 
+/* ===== ТЕКСТ ===== */
 .god-modal-desc {
-    color: #3a2a15;
-    font-size: 14px;
-    line-height: 1.7;
+    color: #2a1a0a;
+    font-size: 15px;
+    line-height: 1.75;
     text-align: justify;
     font-family: 'Roboto', sans-serif;
+    text-shadow: 0 1px 1px rgba(255, 230, 180, 0.2);
 }
 
 .god-modal-desc p {
@@ -265,80 +356,66 @@
     margin-bottom: 0;
 }
 
-/* ===== СКРОЛЛБАР МОДАЛКИ ===== */
-.god-modal-scroll::-webkit-scrollbar {
-    width: 10px;
-}
+/* ============================================
+   АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ
+   ============================================ */
 
-.god-modal-scroll::-webkit-scrollbar-track {
-    background: rgba(139, 90, 43, 0.15);
-    border-radius: 5px;
-}
-
-.god-modal-scroll::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #8b5a2b, #6b4426);
-    border-radius: 5px;
-    border: 1px solid rgba(74, 47, 26, 0.6);
-}
-
-.god-modal-scroll::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #a06a30, #7b5028);
-}
-
-
-/* ===== АДАПТИВНОСТЬ ===== */
-@media (max-width: 768px) {
-    .pantheon-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 12px;
-    }
-
-    .pantheon-card {
-        padding: 16px 10px;
-    }
-
-    .pantheon-card-icon {
-        font-size: 32px;
-    }
-
-    .pantheon-card-name {
-        font-size: 13px;
-    }
-
-    .pantheon-section-title {
-        font-size: 22px;
-    }
-
-    .pantheon-section-desc {
-        font-size: 13px;
-        padding: 14px 18px;
+@media (max-width: 700px) {
+    .god-modal {
+        padding: 10px;
     }
 
     .god-modal-content {
-        padding: 30px 20px;
+        width: 100vw;
+        max-width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+        aspect-ratio: auto;
+    }
+
+    .god-scroll-ornament {
+        left: 5%;
+        right: 5%;
+        height: 24px;
+    }
+
+    .god-scroll-ornament-top {
+        top: 4%;
+    }
+
+    .god-scroll-ornament-bottom {
+        bottom: 4%;
+    }
+
+    .god-modal-scroll {
+        top: 11%;
+        bottom: 11%;
+        left: 6%;
+        right: 6%;
+        padding: 0 8px;
+    }
+
+    .god-modal-close {
+        top: 2%;
+        right: 3%;
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
     }
 
     .god-modal-icon {
-        font-size: 70px;
+        font-size: 44px;
+        margin-bottom: 10px;
     }
 
     .god-modal-name {
-        font-size: 24px;
+        font-size: 20px;
+        margin-bottom: 14px;
     }
 
     .god-modal-desc {
         font-size: 14px;
+        line-height: 1.65;
     }
-}
-
-/* ===== КОНТЕЙНЕР ПРОКРУТКИ СВИТКА ===== */
-.god-modal-scroll {
-    position: absolute;
-    top: 20%;
-    bottom: 25%;
-    left: 22%;
-    right: 22%;
-    overflow-y: auto;
-    padding: 0 10px;
-    z-index: 4;
 }

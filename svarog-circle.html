@@ -6,6 +6,7 @@
     <title>Сварожий круг — Славянская астрология</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/svarog-circle.css">
+    <link rel="stylesheet" href="css/pantheon.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Philosopher:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -97,6 +98,11 @@
                     </div>
                     
                     <button id="calculateBtn">⚡ Узнать свой чертог</button>
+
+                    <!-- ===== КНОПКА "УЗНАТЬ ЧИСЛО ЖИЗНИ" ===== -->
+                    <button id="lifeNumberBtn" style="margin-top: 12px; background: linear-gradient(135deg, #ffd70033, #ffd70011); border: 1px solid #ffd70066; color: #ffd700; padding: 12px 30px; border-radius: 10px; font-size: 16px; cursor: pointer; transition: all 0.3s; width: 100%; font-family: 'Roboto', sans-serif;">
+                        ✨ Узнать число жизни
+                    </button>
                     
                     <button id="goToSovmestimostBtn" onclick="window.location.href='sovmestimost.html'" style="margin-top: 12px; background: linear-gradient(135deg, #ff448833, #ff448811); border: 1px solid #ff448844; color: #ff88bb; padding: 12px 30px; border-radius: 10px; font-size: 16px; cursor: pointer; transition: all 0.3s; width: 100%; font-family: 'Roboto', sans-serif;">
                         💞 Рассчитать совместимость
@@ -127,6 +133,18 @@
             <footer class="svarog-footer">
                 <p>🧙‍♂️ По мотивам древнеславянской системы Сварожий круг</p>
             </footer>
+        </div>
+
+        <!-- ===== МОДАЛЬНОЕ ОКНО ЧИСЛА ЖИЗНИ ===== -->
+        <div id="lifeNumberModal" class="god-modal">
+            <div class="god-modal-content">
+                <button id="closeLifeNumberModal" class="god-modal-close">✕</button>
+                <div class="god-modal-scroll">
+                    <div class="god-modal-icon">✨</div>
+                    <h2 class="god-modal-name"></h2>
+                    <div class="god-modal-desc"></div>
+                </div>
+            </div>
         </div>
     </main>
 

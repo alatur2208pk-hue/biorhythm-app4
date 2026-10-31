@@ -1,0 +1,291 @@
+/* ============================================
+   ГЛАВНАЯ СТРАНИЦА
+   ============================================ */
+
+body.home-page {
+    background: #000000;
+    background: radial-gradient(ellipse at 50% 50%, #0a0a14, #000000 80%);
+}
+
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding-top: 140px;
+}
+
+/* ===== ЗАГОЛОВОК ===== */
+.home-header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: homeFadeIn 1s ease;
+}
+
+.home-title {
+    font-family: 'Philosopher', serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: #ffd700;
+    letter-spacing: 6px;
+    margin: 0 0 12px 0;
+    text-shadow:
+        0 0 30px rgba(255, 215, 0, 0.5),
+        0 0 60px rgba(255, 215, 0, 0.25),
+        0 0 100px rgba(255, 215, 0, 0.1);
+    position: relative;
+}
+
+.home-title::after {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 2px;
+    margin: 20px auto 0;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.home-subtitle {
+    font-family: 'Philosopher', serif;
+    font-size: 22px;
+    color: #c0c0c0;
+    letter-spacing: 4px;
+    margin: 0;
+    font-weight: 400;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+@keyframes homeFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== КАРТОЧКИ-РАЗДЕЛЫ ===== */
+.home-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1100px;
+    padding: 0 20px;
+    animation: homeFadeIn 1.2s ease 0.2s backwards;
+}
+
+.home-card {
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.home-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.08), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.home-card:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+    transform: translateY(-6px);
+    box-shadow:
+        0 12px 40px rgba(255, 215, 0, 0.15),
+        0 0 0 1px rgba(255, 215, 0, 0.2) inset;
+    background: rgba(255, 215, 0, 0.03);
+}
+
+.home-card:hover::before {
+    opacity: 1;
+}
+
+.home-card-icon {
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.home-card-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+    transition: all 0.4s ease;
+}
+
+.home-card:hover .home-card-icon {
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.85));
+    transform: scale(1.1);
+}
+
+.home-card:hover .home-card-icon img {
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.85));
+}
+
+.home-card-name {
+    font-family: 'Philosopher', serif;
+    font-size: 14px;
+    color: #ddd;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-align: center;
+    transition: color 0.3s ease;
+    padding: 0 6px;
+}
+
+.home-card:hover .home-card-name {
+    color: #ffd700;
+}
+
+/* ============================================
+   ФОН МОДАЛОК (общий для всех)
+   ============================================ */
+
+.bio-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.bio-modal.active {
+    display: flex;
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+
+@media (max-width: 768px) {
+    .home-content {
+        padding-top: 100px;
+    }
+
+    .home-header {
+        margin-bottom: 40px;
+    }
+
+    .home-title {
+        font-size: 46px;
+        letter-spacing: 4px;
+    }
+
+    .home-title::after {
+        width: 140px;
+    }
+
+    .home-subtitle {
+        font-size: 16px;
+        letter-spacing: 3px;
+    }
+
+    .home-sections {
+        gap: 14px;
+    }
+
+    .home-card {
+        width: 120px;
+        height: 120px;
+        border-radius: 14px;
+    }
+
+    .home-card-icon {
+        font-size: 28px;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 10px;
+    }
+
+    .home-card-icon img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .home-card-name {
+        font-size: 13px;
+    }
+
+    .bio-modal {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-content {
+        padding-top: 80px;
+    }
+
+    .home-title {
+        font-size: 34px;
+        letter-spacing: 3px;
+    }
+
+    .home-subtitle {
+        font-size: 14px;
+    }
+
+    .home-header {
+        margin-bottom: 30px;
+    }
+
+    .home-sections {
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .home-card {
+        width: 100px;
+        height: 100px;
+        border-radius: 12px;
+    }
+
+    .home-card-icon {
+        font-size: 24px;
+        width: 30px;
+        height: 30px;
+        margin-bottom: 8px;
+    }
+
+    .home-card-icon img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .home-card-name {
+        font-size: 12px;
+        padding: 0 4px;
+    }
+}

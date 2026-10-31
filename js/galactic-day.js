@@ -428,7 +428,8 @@ function initCloseButton() {
     const btn = document.getElementById('closeEpochInfo');
     if (btn) {
         btn.addEventListener('click', function() {
-            document.getElementById('epoch-info-panel').style.display = 'none';
+            const panel = document.getElementById('epoch-info-panel');
+            if (panel) panel.style.display = 'none';
             document.querySelectorAll('.gc-sector').forEach(s => s.classList.remove('active'));
         });
     }
@@ -449,21 +450,13 @@ function initScrollToggle() {
         const isOpen = body.classList.contains('open');
 
         if (isOpen) {
-            body.style.maxHeight = '0px';
             body.classList.remove('open');
             if (arrow) arrow.textContent = '▼';
             btn.classList.remove('active');
         } else {
             body.classList.add('open');
-            body.style.maxHeight = body.scrollHeight + 'px';
             if (arrow) arrow.textContent = '▲';
             btn.classList.add('active');
-
-            setTimeout(function() {
-                if (body.classList.contains('open')) {
-                    body.style.maxHeight = 'none';
-                }
-            }, 800);
         }
     });
 }

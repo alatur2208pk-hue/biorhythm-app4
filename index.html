@@ -3,39 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Жизненные циклы</title>
+    <title>Ведаем РА — Кабинет старовера</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scroll.css">
+    <link rel="stylesheet" href="css/home.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Philosopher:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-<body></body>
+<body class="home-page">
 
     <!-- ===== ЗВЁЗДЫ ===== -->
     <div class="stars" id="stars"></div>
-
-    <!-- ===== МОДАЛЬНОЕ ОКНО ВВОДА ИМЕНИ И ПОЛА ===== -->
-    <div id="user-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 99999; backdrop-filter: blur(10px);">
-        <div style="background: rgba(20,30,50,0.95); border: 1px solid rgba(255,215,0,0.15); border-radius: 20px; padding: 40px; max-width: 420px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.8);">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <div style="font-size: 64px;">🧙‍♂️</div>
-                <h2 style="color: #ffd700; font-size: 24px; margin: 10px 0 6px; font-family: 'Philosopher', serif;">Добро пожаловать!</h2>
-                <p style="color: #888; font-size: 14px;">Ведагор хочет знать, с кем говорит</p>
-            </div>
-            <div style="margin-bottom: 20px;">
-                <label style="color: #aaa; display: block; margin-bottom: 6px; font-size: 14px;">👤 Твоё имя</label>
-                <input type="text" id="userNameInput" placeholder="Введи своё имя..." style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; color: #e0e0e0; font-size: 16px; outline: none; font-family: 'Roboto', sans-serif;">
-            </div>
-            <div style="margin-bottom: 30px;">
-                <label style="color: #aaa; display: block; margin-bottom: 6px; font-size: 14px;">⚤ Твой род</label>
-                <div style="display: flex; gap: 12px;">
-                    <button id="genderMale" style="flex: 1; padding: 10px; background: rgba(68,136,255,0.08); border: 2px solid rgba(68,136,255,0.2); border-radius: 10px; color: #88bbff; cursor: pointer; font-size: 16px; transition: all 0.3s; font-family: 'Roboto', sans-serif;">👨 Мужской</button>
-                    <button id="genderFemale" style="flex: 1; padding: 10px; background: rgba(255,68,136,0.08); border: 2px solid rgba(255,68,136,0.2); border-radius: 10px; color: #ff88bb; cursor: pointer; font-size: 16px; transition: all 0.3s; font-family: 'Roboto', sans-serif;">👩 Женский</button>
-                </div>
-                <input type="hidden" id="userGenderInput" value="">
-            </div>
-            <button id="startBtn" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #ffd70033, #ffd70011); border: 1px solid #ffd70044; border-radius: 10px; color: #ffd700; font-size: 18px; cursor: pointer; transition: all 0.3s; font-family: 'Roboto', sans-serif;" disabled>🚀 Начать</button>
-            <p style="color: #555; font-size: 12px; text-align: center; margin-top: 14px;">Данные не сохраняются и используются только для обращения</p>
-        </div>
-    </div>
 
     <!-- ===== ВЕРХНЕЕ ВЫПАДАЮЩЕЕ МЕНЮ ===== -->
     <nav class="top-nav" id="topNav">
@@ -48,6 +25,10 @@
 
         <div class="top-nav-menu">
             <a href="index.html" class="top-nav-link active">
+                <span class="sidebar-icon">🏠</span>
+                <span class="sidebar-text">Главная</span>
+            </a>
+            <a href="biorhythms.html" class="top-nav-link">
                 <span class="sidebar-icon">📊</span>
                 <span class="sidebar-text">Биоритмы</span>
             </a>
@@ -78,126 +59,253 @@
     </nav>
 
     <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
-    <main class="main-content">
-        <!-- ===== ЗАГОЛОВОК С КНОПКОЙ "?" ===== -->
-        <div class="title-row">
-            <h1> Жизненные циклы</h1>
-            <button id="infoToggleBtn" class="info-toggle-btn" aria-label="Информация о циклах">?</button>
-        </div>
+    <main class="main-content home-content">
 
-        <!-- ===== РАСКРЫВАЮЩИЙСЯ БЛОК: ИНФО + ЛЕГЕНДА ===== -->
-        <div id="info-block-collapsible" class="info-block-collapsible">
-            <div class="info-section">
-                <strong>📖 Как читать график:</strong><br>
-                • <strong>Ось X</strong> — дни от выбранной даты<br>
-                • <strong>Ось Y</strong> — положительная (+) и отрицательная (-) зоны<br>
-                • <strong>Пересечение с осью X</strong> — <strong style="color:#ffd700;">критический день</strong> (отмечен золотыми точками)<br>
-                • Если <strong>3 цикла</strong> пересекают ось в одной точке — будьте осторожнее<br>
-                • Если <strong>5 циклов</strong> пересекают в одной точке — день <strong style="color:#ff4444;">опасный для жизни</strong><br>
-                • Если все графики в <strong>отрицательной зоне</strong> — лучше сменить деятельность
-            </div>
+        <!-- ===== ЗАГОЛОВОК ===== -->
+        <header class="home-header">
+            <h1 class="home-title">Ведаем РА</h1>
+            <p class="home-subtitle">Кабинет старовера</p>
+        </header>
 
-            <div class="info-divider"></div>
+        <!-- ===== КАРТОЧКИ-РАЗДЕЛЫ ===== -->
+        <section class="home-sections">
+            <a href="biorhythms.html" class="home-card" data-modal="bio">
+                <div class="home-card-icon">📊</div>
+                <div class="home-card-name">Биоритмы</div>
+            </a>
 
-            <div id="legend"></div>
-        </div>
-
-        <!-- ===== ПРИВЕТСТВИЕ С ИМЕНЕМ ===== -->
-        <div id="greeting-block" style="text-align: center; margin-bottom: 25px; display: none;">
-            <span id="greeting-text" style="font-family: 'Great Vibes', cursive; font-size: 32px; color: #ffd700; text-shadow: 0 0 30px rgba(255,215,0,0.15); letter-spacing: 2px;"></span>
-        </div>
-
-        <!-- ===== УПРАВЛЕНИЕ ===== -->
-        <div class="controls">
-            <div>
-                <label>📅 Дата рождения: <input type="date" id="birthdate"></label>
-            </div>
-            <div>
-                <label>🔍 Дата просмотра: <input type="date" id="viewdate"></label>
-            </div>
-            <div>
-                <label>📊 Период: 
-                    <select id="periodSelect">
-                        <option value="30" selected>30 дней</option>
-                        <option value="60">60 дней</option>
-                        <option value="90">90 дней</option>
-                        <option value="365">Год</option>
-                    </select>
-                </label>
-            </div>
-            <button id="todayBtn">📍 Сегодня</button>
-            <button id="updateBtn">🔄 Обновить</button>
-        </div>
-
-        <!-- ===== ВСПЛЫВАЮЩЕЕ ОКНО ДЛЯ ЦИКЛА ===== -->
-        <div id="cycle-tooltip">
-            <div class="cycle-name"></div>
-            <div class="cycle-desc"></div>
-            <div class="cycle-detail"></div>
-        </div>
-
-        <!-- ===== ЛУННАЯ ДОРОГА ===== -->
-        <div id="lunar-road"></div>
-
-        <!-- ===== ВСПЛЫВАЮЩЕЕ ОКНО ДЛЯ ЛУНЫ ===== -->
-        <div id="moon-tooltip">
-            <span class="phase-icon"></span>
-            <div class="phase-name"></div>
-            <div class="phase-short"></div>
-            <div class="phase-influence"></div>
-            <div class="phase-history"></div>
-        </div>
-
-        <!-- ===== ГРАФИК ===== -->
-        <div id="chart-container">
-            <canvas id="biorhythmChart"></canvas>
-        </div>
-
-        <!-- ===== КРИТИЧЕСКИЕ ДНИ (СПИСОК) ===== -->
-        <div id="critical-days"></div>
-
-        <!-- ===== ИНФО-ОКНО ДЛЯ КРИТИЧЕСКОГО ДНЯ ===== -->
-        <div id="critical-info">
-            <button class="close-btn" id="closeCriticalInfo">✕</button>
-            <div class="critical-date"></div>
-            <div class="critical-desc"></div>
-            <div class="critical-cycles"></div>
-        </div>
-
-        <!-- ===== ИНФО-ОКНО ДЛЯ ЛЮБОГО ДНЯ ===== -->
-        <div id="day-info">
-            <button class="close-btn" id="closeDayInfo">✕</button>
-            <div class="day-date"></div>
-            <div class="day-moon"></div>
-            <div class="day-cycles"></div>
-            <div class="day-recommendation"></div>
-            <div class="day-history"></div>
-            <div class="day-ai-advice">
-                <div class="ai-loading">⏳ Запрашиваю совет у DeepSeek...</div>
-                <div class="ai-chat-area"></div>
-                <div class="ai-chat-input">
-                    <input type="text" id="chatInput" placeholder="Задай вопрос наставнику..." onkeypress="sendQuestionEnter(event)">
-                    <button onclick="sendQuestion()">📨</button>
+            <a href="svarog-circle.html" class="home-card" data-modal="svarog">
+                <div class="home-card-icon">
+                    <img src="images/svarog-circle/circle-icon.png" alt="Сварожий круг">
                 </div>
-            </div>
-        </div>
+                <div class="home-card-name">Сварожий круг</div>
+            </a>
+
+            <a href="pantheon.html" class="home-card" data-modal="pantheon">
+                <div class="home-card-icon">🔆</div>
+                <div class="home-card-name">Пантеон богов</div>
+            </a>
+
+            <a href="galactic-day.html" class="home-card">
+                <div class="home-card-icon">
+                    <img src="images/galactic-day/icon.png" alt="Галактические сутки">
+                </div>
+                <div class="home-card-name">Галактические сутки</div>
+            </a>
+
+            <a href="atlas.html" class="home-card">
+                <div class="home-card-icon">🗺️</div>
+                <div class="home-card-name">Атлас Судьбы</div>
+            </a>
+        </section>
+
     </main>
 
-    <script type="module" src="js/app.js"></script>
-    
-    <script>
-        // ===== РАСКРЫТИЕ ИНФО-БЛОКА =====
-        (function initInfoToggle() {
-            const btn = document.getElementById('infoToggleBtn');
-            const block = document.getElementById('info-block-collapsible');
-            if (!btn || !block) return;
+    <!-- ===== МОДАЛЬНОЕ ОКНО: БИОРИТМЫ ===== -->
+    <div id="bioModal" class="bio-modal">
+        <div class="ui-scroll">
 
-            btn.addEventListener('click', function() {
-                block.classList.toggle('open');
-                btn.classList.toggle('active');
-            });
-        })();
-    </script>
+            <div class="ui-scroll-roller ui-scroll-roller-top">
+                <span class="scroll-rune">ᚱ</span>
+                <span class="scroll-rune">ᚢ</span>
+                <span class="scroll-rune">ᚾ</span>
+                <span class="scroll-rune">ᚨ</span>
+                <span class="scroll-rune">ᛚ</span>
+                <span class="scroll-rune">ᛟ</span>
+                <span class="scroll-rune">ᚦ</span>
+                <span class="scroll-rune">ᛗ</span>
+            </div>
+
+            <div class="ui-scroll-parchment">
+                <div class="ui-scroll-tie ui-scroll-tie-left"></div>
+                <div class="ui-scroll-tie ui-scroll-tie-right"></div>
+
+                <button id="closeBioModal" class="ui-scroll-close">✕</button>
+
+                <div class="ui-scroll-body">
+                    <h2 class="ui-scroll-title">Жизненные циклы</h2>
+
+                    <div class="ui-scroll-desc">
+                        <p>С рождения и до самой смерти человек живёт в ритме. Пять независимых циклов — физический, эмоциональный, интеллектуальный, психокинетический и астро-ментальный — задают наши силы, настроение, ясность ума и даже сны. Каждый цикл начинается с рождения, идёт вверх к пику, спускается к спаду и пересекает нулевую линию. Дни пересечения — критические: в них особенно важно быть внимательным к себе.</p>
+
+                        <h3>1. Физический цикл — 23 дня (+11 / −12)</h3>
+                        <p>Отвечает за тело: силу, выносливость, скорость реакции, координацию, восстановление после нагрузок, общий тонус и здоровье.</p>
+                        <p>В положительной зоне: тело полно сил, лёгкость в движениях, высокая работоспособность, хорошее самочувствие. Лучшее время для тяжёлых нагрузок, спорта, физической работы.</p>
+                        <p>В отрицательной зоне: силы уходят, быстро наступает усталость, мышцы восстанавливаются дольше. Растёт риск травм, простуд и обострений хронических болезней. В такие дни лучше снизить нагрузки, больше спать.</p>
+
+                        <h3>2. Эмоциональный цикл — 28 дней (+14 / −14)</h3>
+                        <p>Отвечает за чувства: настроение, восприятие мира, общительность, способность к сопереживанию, творческое вдохновение, притягательность для других людей.</p>
+                        <p>В положительной зоне: душа поёт, оптимизм, лёгкость в общении, вдохновение. Время для встреч, любви, творчества, публичных выступлений.</p>
+                        <p>В отрицательной зоне: раздражительность, апатия, обидчивость, желание одиночества. Не берите на себя лишнего, не принимайте серьёзных решений на эмоциях — они могут быть искажены.</p>
+
+                        <h3>3. Интеллектуальный цикл — 33 дня (+16 / −17)</h3>
+                        <p>Отвечает за ум: мышление, логику, память, способность к обучению, концентрацию, воплощение идей в слова и образы.</p>
+                        <p>В положительной зоне: ум ясен, мысли быстры, легко читается, запоминается, придумывается. Лучшее время для учёбы, экзаменов, научной работы, написания текстов.</p>
+                        <p>В отрицательной зоне: рассеянность, забывчивость, сложно сосредоточиться, ошибки на ровном месте. В такие дни не начинайте сложные проекты — дайте уму отдых.</p>
+
+                        <h3>4. Психокинетический цикл — 54 дня (+27 / −27)</h3>
+                        <p>Отвечает за воплощение мыслей в действия: силу воли, интуицию, внутренний стержень, способность влиять на обстоятельства и достигать целей.</p>
+                        <p>В положительной зоне: цели достигаются как будто сами собой, обстоятельства помогают, интуиция подсказывает верные решения. Время для смелых шагов и начинаний.</p>
+                        <p>В отрицательной зоне: обстоятельства сопротивляются, задумки буксуют, приходится прилагать втрое больше усилий. Не сражайтесь с миром — работайте по мелочам, готовьте почву для будущего рывка.</p>
+
+                        <h3>5. Астро-ментальный цикл — 84 дня (+42 / −42)</h3>
+                        <p>Духовно-целительный цикл. Отвечает за сон, подсознание и духовное состояние. Связывает вас с тонкими мирами, через сны передаёт подсказки и предупреждения.</p>
+                        <p>В положительной зоне: сны яркие, светлые, вы их помните, в них приходят подсказки. Сознание ясное, духовные практики идут легко, восстановление во сне полное.</p>
+                        <p>В отрицательной зоне: сны тускнеют, сознание блокирует их — вы просыпаетесь и ничего не помните. Возможны кошмары и бессонница. Берегите нервы, ложитесь вовремя, избегайте переутомления.</p>
+
+                        <h3>Критические дни</h3>
+                        <p>Это дни, когда какой-либо цикл пересекает нулевую линию — переходит из плюса в минус или обратно. В такие моменты организм «переключается», и вы как будто на секунду теряете опору.</p>
+                        <p>Если линию пересекает один-два цикла — возможен лёгкий дискомфорт, лучше избегать важных дел. Если три цикла и больше — день считается критическим: будьте особенно внимательны к себе, не садитесь за руль в усталом состоянии, не принимайте судьбоносных решений. Если пересекают все пять циклов — такой день считается опасным для жизни. Постарайтесь провести его в покое и безопасности.</p>
+
+                        <h3>Что можно делать в приложении</h3>
+                        <p>Приложение рассчитывает все пять циклов на любой период — от 30 дней до года. Вы увидите графики, критические дни, сможете нажать на любую дату и получить подробный расклад: где находится каждый цикл, что он означает и как лучше провести этот день. Ведагор даст мудрый совет.</p>
+                    </div>
+                </div>
+
+                <div class="ui-scroll-footer">
+                    <a href="biorhythms.html" class="ui-scroll-btn">Начать →</a>
+                </div>
+            </div>
+
+            <div class="ui-scroll-roller ui-scroll-roller-bottom">
+                <span class="scroll-rune">ᛞ</span>
+                <span class="scroll-rune">ᚹ</span>
+                <span class="scroll-rune">ᛖ</span>
+                <span class="scroll-rune">ᚷ</span>
+                <span class="scroll-rune">ᛁ</span>
+                <span class="scroll-rune">ᛋ</span>
+                <span class="scroll-rune">ᚺ</span>
+                <span class="scroll-rune">ᛏ</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО: СВАРОЖИЙ КРУГ ===== -->
+    <div id="svarogModal" class="bio-modal">
+        <div class="ui-scroll">
+
+            <div class="ui-scroll-roller ui-scroll-roller-top">
+                <span class="scroll-rune">ᚱ</span>
+                <span class="scroll-rune">ᚢ</span>
+                <span class="scroll-rune">ᚾ</span>
+                <span class="scroll-rune">ᚨ</span>
+                <span class="scroll-rune">ᛚ</span>
+                <span class="scroll-rune">ᛟ</span>
+                <span class="scroll-rune">ᚦ</span>
+                <span class="scroll-rune">ᛗ</span>
+            </div>
+
+            <div class="ui-scroll-parchment">
+                <div class="ui-scroll-tie ui-scroll-tie-left"></div>
+                <div class="ui-scroll-tie ui-scroll-tie-right"></div>
+
+                <button id="closeSvarogModal" class="ui-scroll-close">✕</button>
+
+                <div class="ui-scroll-body">
+                    <h2 class="ui-scroll-title">Сварожий круг</h2>
+
+                    <div class="ui-scroll-desc">
+                        <p>Сварожий круг — древняя система чертогов, по которой наши Предки определяли судьбу человека по дню его рождения. Шестнадцать чертогов, шестнадцать богов-покровителей, шестнадцать священных деревьев — и всё это связано с движением Ярилы-Солнца по небесному своду.</p>
+
+                        <p>Введи свою дату рождения — и Ведагор переведёт её на древнеславянский Круголет Числобога. Ты узнаешь свою настоящую дату рождения — ту, что записана в Харатьи Бога Рода, без всяких искусственных вставок и чуждых календарей. А затем приложение рассчитает твой чертог, зал, четверть месяца и стихию, покажет число жизни, совместимость с другими чертогами и даст совет от Ведагора.</p>
+
+                        <h3>Что увидишь</h3>
+
+                        <ul class="ui-scroll-list">
+                            <li>🔮 Свой чертог и его покровителя</li>
+                            <li>🏛️ Зал рождения и его дар</li>
+                            <li>🌿 Священное дерево и стихию</li>
+                            <li>📜 Настоящую древнеславянскую дату — по Круголету Числобога</li>
+                            <li>✨ Число жизни и его образ</li>
+                            <li>💞 Совместимость с другими чертогами</li>
+                            <li>🧙 Совет от Ведагора</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ui-scroll-footer">
+                    <a href="svarog-circle.html" class="ui-scroll-btn">Начать →</a>
+                </div>
+            </div>
+
+            <div class="ui-scroll-roller ui-scroll-roller-bottom">
+                <span class="scroll-rune">ᛞ</span>
+                <span class="scroll-rune">ᚹ</span>
+                <span class="scroll-rune">ᛖ</span>
+                <span class="scroll-rune">ᚷ</span>
+                <span class="scroll-rune">ᛁ</span>
+                <span class="scroll-rune">ᛋ</span>
+                <span class="scroll-rune">ᚺ</span>
+                <span class="scroll-rune">ᛏ</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО: ПАНТЕОН ===== -->
+    <div id="pantheonModal" class="bio-modal">
+        <div class="ui-scroll">
+
+            <div class="ui-scroll-roller ui-scroll-roller-top">
+                <span class="scroll-rune">ᚱ</span>
+                <span class="scroll-rune">ᚢ</span>
+                <span class="scroll-rune">ᚾ</span>
+                <span class="scroll-rune">ᚨ</span>
+                <span class="scroll-rune">ᛚ</span>
+                <span class="scroll-rune">ᛟ</span>
+                <span class="scroll-rune">ᚦ</span>
+                <span class="scroll-rune">ᛗ</span>
+            </div>
+
+            <div class="ui-scroll-parchment">
+                <div class="ui-scroll-tie ui-scroll-tie-left"></div>
+                <div class="ui-scroll-tie ui-scroll-tie-right"></div>
+
+                <button id="closePantheonModal" class="ui-scroll-close">✕</button>
+
+                <div class="ui-scroll-body">
+                    <h2 class="ui-scroll-title">Пантеон богов</h2>
+
+                    <div class="ui-scroll-desc">
+                        <p>Пантеон богов — это собрание Светлых Богов славян и ариев: Вышних, Покровителей, Управителей и Охранителей. Каждый из них выполняет своё Небесное деяние и помогает людям, идущим по Путям Духовного Развития, Творческого Созидания и Искренней Любви — по Праведным Путям, в которых Чистая Совесть является мерилом всего.</p>
+
+                        <p>Здесь собраны все 70 Богов, почитаемых Православными Староверами-Инглингами. О каждом можно прочесть его житие, гимны-правьславления и узнать, чему он покровительствует, кому помогает, в каких делах к нему обращаться.</p>
+
+                        <h3>Что увидишь</h3>
+
+                        <ul class="ui-scroll-list">
+                            <li>🔆 Вышних Богов — Ра-М-Ха, Рода, Сварога, Перуна, Велеса, Макошь и других</li>
+                            <li>🛡️ Богов-Покровителей — Тарха, Тару, Хорса, Весту, Ярило и других</li>
+                            <li>⚖️ Богов-Управителей — Варуну, Числобога, Чернобога и других</li>
+                            <li>🏠 Богов-Охранителей — Чура, Знича, Белобога и других</li>
+                            <li>📖 Житие, гимны и предназначение каждого Бога</li>
+                            <li>🔍 Поиск по имени — быстро найти любого Бога</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ui-scroll-footer">
+                    <a href="pantheon.html" class="ui-scroll-btn">Начать →</a>
+                </div>
+            </div>
+
+            <div class="ui-scroll-roller ui-scroll-roller-bottom">
+                <span class="scroll-rune">ᛞ</span>
+                <span class="scroll-rune">ᚹ</span>
+                <span class="scroll-rune">ᛖ</span>
+                <span class="scroll-rune">ᚷ</span>
+                <span class="scroll-rune">ᛁ</span>
+                <span class="scroll-rune">ᛋ</span>
+                <span class="scroll-rune">ᚺ</span>
+                <span class="scroll-rune">ᛏ</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== ВЕРХНЕЕ МЕНЮ ===== -->
+    <script src="js/nav.js"></script>
 
     <script>
         // ===== ГЕНЕРАЦИЯ ЗВЁЗД =====
@@ -216,9 +324,49 @@
                 container.appendChild(star);
             }
         })();
-    </script>
 
-    <!-- ===== ВЕРХНЕЕ МЕНЮ ===== -->
-    <script src="js/nav.js"></script>
+        // ===== УНИВЕРСАЛЬНАЯ ИНИЦИАЛИЗАЦИЯ МОДАЛОК =====
+        function initModal(modalId, closeId, triggerSelector) {
+            const modal = document.getElementById(modalId);
+            const closeBtn = document.getElementById(closeId);
+            const trigger = document.querySelector(triggerSelector);
+
+            if (!modal) return;
+
+            if (trigger) {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        }
+
+        // ===== ИНИЦИАЛИЗАЦИЯ ВСЕХ ТРЁХ МОДАЛОК =====
+        initModal('bioModal', 'closeBioModal', '[data-modal="bio"]');
+        initModal('svarogModal', 'closeSvarogModal', '[data-modal="svarog"]');
+        initModal('pantheonModal', 'closePantheonModal', '[data-modal="pantheon"]');
+    </script>
 </body>
 </html>

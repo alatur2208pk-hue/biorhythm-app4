@@ -1,0 +1,609 @@
+/* ============================================
+   ОБЩИЙ СВИТОК (UI-SCROLL)
+   Используется на всех страницах для модалок
+   ============================================ */
+
+/* ===== КОНТЕЙНЕР ===== */
+.ui-scroll {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7));
+    transform-origin: top center;
+}
+
+/* Для модалок — ограничиваем высоту */
+.bio-modal .ui-scroll,
+.god-modal .ui-scroll {
+    max-height: 90vh;
+}
+
+.ui-scroll-roller {
+    position: relative;
+    height: 30px;
+    border-radius: 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+    width: calc(100% + 30px);
+    background: linear-gradient(180deg,
+        #2a1a0a 0%,
+        #4a2f1a 15%,
+        #6b4426 35%,
+        #8b5a2b 50%,
+        #6b4426 65%,
+        #4a2f1a 85%,
+        #2a1a0a 100%);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.7),
+        inset 0 2px 3px rgba(255, 215, 0, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    z-index: 3;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.ui-scroll-roller::before,
+.ui-scroll-roller::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ffe680 0%, #d4a017 40%, #8b6914 70%, #4a3508 100%);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.7),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+        inset 0 2px 3px rgba(255, 235, 150, 0.6);
+    z-index: 4;
+}
+
+.ui-scroll-roller::before { left: -8px; }
+.ui-scroll-roller::after  { right: -8px; }
+
+.ui-scroll-roller::before { left: -5px; }
+.ui-scroll-roller::after  { right: -5px; }
+
+.ui-scroll-roller-top    { margin-bottom: -5px; }
+.ui-scroll-roller-bottom { margin-top: -5px; }
+
+/* ===== РУНЫ НА ВАЛИКАХ ===== */
+.ui-scroll-roller .scroll-rune {
+    font-family: 'Philosopher', serif;
+    font-size: 14px;
+    color: #d4a017;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.9);
+    opacity: 0.85;
+    user-select: none;
+    line-height: 1;
+}
+
+/* ===== ПЕРГАМЕНТ ===== */
+.ui-scroll-parchment {
+    position: relative;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(139, 90, 43, 0.12) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(139, 90, 43, 0.10) 0%, transparent 20%),
+        radial-gradient(circle at 30% 75%, rgba(139, 90, 43, 0.08) 0%, transparent 22%),
+        radial-gradient(circle at 70% 85%, rgba(139, 90, 43, 0.11) 0%, transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(160, 110, 60, 0.06) 0%, transparent 60%),
+        linear-gradient(180deg, #f0dbb5 0%, #e8d2a6 30%, #e0c896 70%, #d8bd85 100%);
+    border-radius: 2px;
+    padding: 30px 46px 20px;
+    margin: 0 -5px;
+    box-shadow:
+        inset 0 0 60px rgba(139, 90, 43, 0.18),
+        inset 0 0 120px rgba(90, 60, 20, 0.08),
+        inset 0 0 0 1px rgba(120, 80, 30, 0.25);
+    z-index: 1;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.ui-scroll-parchment::before,
+.ui-scroll-parchment::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.ui-scroll-parchment::before {
+    top: 0;
+    background: linear-gradient(180deg, rgba(90, 60, 20, 0.25) 0%, rgba(120, 80, 30, 0.08) 40%, transparent 100%);
+}
+
+.ui-scroll-parchment::after {
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(90, 60, 20, 0.25) 0%, rgba(120, 80, 30, 0.08) 40%, transparent 100%);
+}
+
+/* ===== БЕЧЁВКИ ===== */
+.ui-scroll-tie {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 12px;
+    border-radius: 6px;
+    background: repeating-linear-gradient(45deg,
+        #8b6a3a 0px, #8b6a3a 3px,
+        #6b4f28 3px, #6b4f28 6px,
+        #a07a44 6px, #a07a44 9px);
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.6),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+        inset 0 2px 2px rgba(255, 220, 140, 0.2);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.ui-scroll-tie::before,
+.ui-scroll-tie::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 7px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #a07a44 0%, #6b4f28 60%, #3a2a10 100%);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ui-scroll-tie::before { top: -5px; }
+.ui-scroll-tie::after  { bottom: -5px; }
+
+.ui-scroll-tie-left  { left: 6px; }
+.ui-scroll-tie-right { right: 6px; }
+
+/* ===== КНОПКА ЗАКРЫТИЯ ===== */
+.ui-scroll-close {
+    position: absolute;
+    top: 14px;
+    right: 30px;
+    background: rgba(139, 90, 43, 0.15);
+    border: 1px solid rgba(139, 90, 43, 0.4);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    color: #4a2f1a;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.ui-scroll-close:hover {
+    background: #8b5a2b;
+    color: #f5e6c8;
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(139, 90, 43, 0.6);
+}
+
+/* ===== ОБЛАСТЬ ПРОКРУТКИ ===== */
+.ui-scroll-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 12px;
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== ЗАГОЛОВОК ===== */
+.ui-scroll-title {
+    font-family: 'Philosopher', serif;
+    font-size: 24px;
+    color: #4a2f1a;
+    text-align: center;
+    margin: 0 0 18px 0;
+    letter-spacing: 1.5px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+/* ===== ТЕКСТ ===== */
+.ui-scroll-desc {
+    color: #3a2a15;
+    font-size: 14px;
+    line-height: 1.75;
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+}
+
+.ui-scroll-desc p {
+    margin-bottom: 10px;
+}
+
+.ui-scroll-desc h3 {
+    font-family: 'Philosopher', serif;
+    color: #4a2f1a;
+    font-size: 16px;
+    margin: 18px 0 8px;
+    padding-left: 10px;
+    border-left: 3px solid #8b5a2b;
+    letter-spacing: 0.5px;
+}
+
+/* ===== СПИСОК ===== */
+.ui-scroll-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+}
+
+.ui-scroll-list li {
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    background: rgba(255, 250, 235, 0.4);
+    border-radius: 6px;
+    border-left: 3px solid #8b5a2b;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #3a2a15;
+}
+
+.ui-scroll-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== ИКОНКА БОГА (В ПАНТЕОНЕ) ===== */
+.ui-scroll-god-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    pointer-events: none;
+}
+
+.ui-scroll-god-icon img {
+    max-width: 100%;
+    max-height: 330px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.4));
+}
+
+/* ===== НИЖНИЙ БЛОК С КНОПКОЙ ===== */
+.ui-scroll-footer {
+    padding: 16px 0 4px;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== КНОПКА ===== */
+.ui-scroll-btn {
+    display: inline-block;
+    text-align: center;
+    padding: 12px 28px;
+    background: linear-gradient(180deg, #8b5a2b, #6b4426);
+    color: #f0dbb5;
+    text-decoration: none;
+    border-radius: 8px;
+    font-family: 'Philosopher', serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border: 1px solid #4a2f1a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    min-width: 200px;
+    cursor: pointer;
+}
+
+.ui-scroll-btn:hover {
+    background: linear-gradient(180deg, #a06a30, #7b5028);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== СКРОЛЛБАР В СТИЛЕ ДЕРЕВА ===== */
+.ui-scroll-body::-webkit-scrollbar {
+    width: 10px;
+}
+
+.ui-scroll-body::-webkit-scrollbar-track {
+    background: rgba(139, 90, 43, 0.15);
+    border-radius: 5px;
+}
+
+.ui-scroll-body::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8b5a2b, #6b4426);
+    border-radius: 5px;
+    border: 1px solid rgba(74, 47, 26, 0.6);
+}
+
+.ui-scroll-body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #a06a30, #7b5028);
+}
+
+/* Firefox */
+.ui-scroll-body {
+    scrollbar-width: thin;
+    scrollbar-color: #8b5a2b rgba(139, 90, 43, 0.15);
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+    .ui-scroll {
+        max-height: 92vh;
+    }
+
+    .ui-scroll-parchment {
+        padding: 22px 22px 16px;
+    }
+
+    .ui-scroll-tie {
+        width: 9px;
+    }
+
+    .ui-scroll-roller {
+        height: 24px;
+        padding: 0 20px;
+        margin-left: -10px;
+        margin-right: -10px;
+        width: calc(100% + 20px);
+    }
+
+    .ui-scroll-roller::before,
+    .ui-scroll-roller::after {
+        width: 18px;
+        height: 18px;
+    }
+
+    .ui-scroll-roller .scroll-rune {
+        font-size: 11px;
+    }
+
+    .ui-scroll-close {
+        top: 10px;
+        right: 22px;
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    .ui-scroll-title {
+        font-size: 20px;
+        margin-bottom: 14px;
+    }
+
+    .ui-scroll-desc {
+        font-size: 13px;
+    }
+
+    .ui-scroll-desc h3 {
+        font-size: 15px;
+    }
+
+    .ui-scroll-btn {
+        font-size: 14px;
+        padding: 10px 22px;
+        min-width: 180px;
+    }
+
+    .ui-scroll-god-icon img {
+        max-height: 240px;
+    }
+}
+/* ============================================
+   РАСКРЫВАЮЩИЙСЯ СВИТОК (для страниц)
+   ============================================ */
+
+/* ===== КНОПКА-ЗАГОЛОВОК ===== */
+.ui-scroll-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed rgba(120, 80, 30, 0.35);
+    color: #4a2f1a;
+    font-family: 'Philosopher', serif;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+.ui-scroll-toggle:hover {
+    color: #2a1a0a;
+    background: rgba(139, 90, 43, 0.06);
+    border-bottom-color: rgba(120, 80, 30, 0.6);
+}
+
+.ui-scroll-toggle.active {
+    border-bottom-color: transparent;
+}
+
+.scroll-toggle-icon {
+    font-size: 22px;
+    filter: drop-shadow(0 0 6px rgba(139, 90, 43, 0.4));
+}
+
+.scroll-toggle-text {
+    flex: 1;
+    text-align: center;
+}
+
+.scroll-toggle-arrow {
+    font-size: 13px;
+    transition: transform 0.3s ease;
+    color: #8b5a2b;
+}
+
+/* ===== ТЕЛО РАСКРЫВАЮЩЕГОСЯ СВИТКА ===== */
+.ui-scroll-body-collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.ui-scroll-body-collapse.open {
+    max-height: 70vh;
+}
+
+.ui-scroll-body-collapse .ui-scroll-desc {
+    padding: 18px 8px 6px;
+    max-height: calc(70vh - 24px);
+    overflow-y: auto;
+    padding-right: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: #8b5a2b rgba(139, 90, 43, 0.15);
+}
+
+.ui-scroll-body-collapse .ui-scroll-desc::-webkit-scrollbar {
+    width: 10px;
+}
+
+.ui-scroll-body-collapse .ui-scroll-desc::-webkit-scrollbar-track {
+    background: rgba(139, 90, 43, 0.15);
+    border-radius: 5px;
+}
+
+.ui-scroll-body-collapse .ui-scroll-desc::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8b5a2b, #6b4426);
+    border-radius: 5px;
+    border: 1px solid rgba(74, 47, 26, 0.6);
+}
+
+.ui-scroll-body-collapse .ui-scroll-desc::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #a06a30, #7b5028);
+}
+
+/* ===== КОНТЕНТ ===== */
+.ui-scroll-body-collapse .ui-scroll-desc {
+    padding: 18px 8px 6px;
+}
+
+/* ===== ТАБЛИЦА В СВИТКЕ ===== */
+.ui-scroll-table-wrap {
+    margin: 14px 0 18px;
+    border-radius: 6px;
+    overflow-x: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.ui-scroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    background: rgba(255, 250, 235, 0.5);
+}
+
+.ui-scroll-table thead {
+    background: linear-gradient(180deg, #8b5a2b, #6b4426);
+}
+
+.ui-scroll-table thead th {
+    padding: 10px 8px;
+    color: #f0dbb5;
+    font-weight: 700;
+    text-align: left;
+    font-family: 'Philosopher', serif;
+    font-size: 13px;
+    border-bottom: 2px solid #4a2f1a;
+}
+
+.ui-scroll-table tbody td {
+    padding: 8px;
+    color: #3a2a15;
+    border-bottom: 1px solid rgba(139, 90, 43, 0.2);
+}
+
+.ui-scroll-table tbody tr:nth-child(even) {
+    background: rgba(139, 90, 43, 0.06);
+}
+
+.ui-scroll-table tbody tr:hover {
+    background: rgba(255, 215, 0, 0.12);
+}
+
+.ui-scroll-table .row-current {
+    background: rgba(255, 215, 0, 0.2) !important;
+    font-weight: 700;
+}
+
+.ui-scroll-table .row-current td {
+    color: #4a2f1a;
+    border-bottom: 2px solid #d4a017;
+}
+
+/* ===== ТОЧКИ В СПИСКЕ ===== */
+.ui-scroll-list .dot {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-top: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dot-light { background: #FFD700; box-shadow: 0 0 12px rgba(255, 215, 0, 0.8); }
+.dot-mid   { background: #888;    box-shadow: 0 0 10px rgba(136, 136, 136, 0.6); }
+.dot-dark  { background: #1a1a1a; box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); }
+
+/* Список с точками — флекс */
+.ui-scroll-list li:has(.dot) {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+    .ui-scroll-toggle {
+        font-size: 16px;
+        padding: 10px 14px;
+        gap: 8px;
+    }
+
+    .scroll-toggle-icon {
+        font-size: 18px;
+    }
+
+    .ui-scroll-table {
+        font-size: 11px;
+    }
+
+    .ui-scroll-table thead th {
+        padding: 6px 4px;
+        font-size: 10px;
+    }
+
+    .ui-scroll-table tbody td {
+        padding: 5px 4px;
+    }
+}

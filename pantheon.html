@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Пантеон Богов — Ведаем РА</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scroll.css">
     <link rel="stylesheet" href="css/pantheon.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Philosopher:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
@@ -24,6 +25,10 @@
 
         <div class="top-nav-menu">
             <a href="index.html" class="top-nav-link">
+                <span class="sidebar-icon">🏠</span>
+                <span class="sidebar-text">Главная</span>
+            </a>
+            <a href="biorhythms.html" class="top-nav-link">
                 <span class="sidebar-icon">📊</span>
                 <span class="sidebar-text">Биоритмы</span>
             </a>
@@ -69,47 +74,48 @@
             <div id="pantheonContainer"></div>
         </div>
 
-        <!-- ===== МОДАЛЬНОЕ ОКНО БОГА ===== -->
+        <!-- ===== МОДАЛЬНОЕ ОКНО БОГА (HTML-СВИТОК) ===== -->
         <div id="godModal" class="god-modal">
-            <div class="god-modal-content">
-                <button id="closeGodModal" class="god-modal-close">✕</button>
+            <div class="ui-scroll">
 
-                <!-- ===== ОРНАМЕНТ СВЕРХУ ===== -->
-                <div class="god-scroll-ornament god-scroll-ornament-top">
-                    <svg viewBox="0 0 600 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <pattern id="meanderTop" x="0" y="0" width="60" height="30" patternUnits="userSpaceOnUse">
-                                <path d="M 0 5 L 50 5 L 50 25 L 15 25 L 15 15 L 40 15 L 40 10 L 0 10"
-                                      fill="none" stroke="#3a2a15" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/>
-                                <path d="M 0 0 L 60 0" fill="none" stroke="#3a2a15" stroke-width="2"/>
-                                <path d="M 0 30 L 60 30" fill="none" stroke="#3a2a15" stroke-width="2"/>
-                            </pattern>
-                        </defs>
-                        <rect x="0" y="0" width="600" height="30" fill="url(#meanderTop)"/>
-                    </svg>
+                <!-- ВЕРХНИЙ ВАЛИК -->
+                <div class="ui-scroll-roller ui-scroll-roller-top">
+                    <span class="scroll-rune">ᚱ</span>
+                    <span class="scroll-rune">ᚢ</span>
+                    <span class="scroll-rune">ᚾ</span>
+                    <span class="scroll-rune">ᚨ</span>
+                    <span class="scroll-rune">ᛚ</span>
+                    <span class="scroll-rune">ᛟ</span>
+                    <span class="scroll-rune">ᚦ</span>
+                    <span class="scroll-rune">ᛗ</span>
                 </div>
 
-                <!-- ===== КОНТЕНТ ===== -->
-                <div class="god-modal-scroll">
-                    <div class="god-modal-icon">🔆</div>
-                    <h2 class="god-modal-name"></h2>
-                    <div class="god-modal-desc"></div>
+                <!-- ПЕРГАМЕНТ -->
+                <div class="ui-scroll-parchment">
+                    <div class="ui-scroll-tie ui-scroll-tie-left"></div>
+                    <div class="ui-scroll-tie ui-scroll-tie-right"></div>
+
+                    <button id="closeGodModal" class="ui-scroll-close">✕</button>
+
+                    <div class="ui-scroll-body">
+                        <div class="ui-scroll-god-icon">🔆</div>
+                        <h2 class="ui-scroll-title god-modal-name"></h2>
+                        <div class="ui-scroll-desc god-modal-desc"></div>
+                    </div>
                 </div>
 
-                <!-- ===== ОРНАМЕНТ СНИЗУ ===== -->
-                <div class="god-scroll-ornament god-scroll-ornament-bottom">
-                    <svg viewBox="0 0 600 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <pattern id="meanderBottom" x="0" y="0" width="60" height="30" patternUnits="userSpaceOnUse">
-                                <path d="M 0 5 L 50 5 L 50 25 L 15 25 L 15 15 L 40 15 L 40 10 L 0 10"
-                                      fill="none" stroke="#3a2a15" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/>
-                                <path d="M 0 0 L 60 0" fill="none" stroke="#3a2a15" stroke-width="2"/>
-                                <path d="M 0 30 L 60 30" fill="none" stroke="#3a2a15" stroke-width="2"/>
-                            </pattern>
-                        </defs>
-                        <rect x="0" y="0" width="600" height="30" fill="url(#meanderBottom)"/>
-                    </svg>
+                <!-- НИЖНИЙ ВАЛИК -->
+                <div class="ui-scroll-roller ui-scroll-roller-bottom">
+                    <span class="scroll-rune">ᛞ</span>
+                    <span class="scroll-rune">ᚹ</span>
+                    <span class="scroll-rune">ᛖ</span>
+                    <span class="scroll-rune">ᚷ</span>
+                    <span class="scroll-rune">ᛁ</span>
+                    <span class="scroll-rune">ᛋ</span>
+                    <span class="scroll-rune">ᚺ</span>
+                    <span class="scroll-rune">ᛏ</span>
                 </div>
+
             </div>
         </div>
     </main>

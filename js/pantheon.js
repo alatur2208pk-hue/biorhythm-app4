@@ -5,7 +5,15 @@
 import { PANTHEON } from './pantheon-data.js';
 
 // ============================================
-// 1. РЕНДЕР ВСЕХ СЕКЦИЙ
+// 1. КАРТА КАРТИНОК БОГОВ
+// ============================================
+
+const GOD_IMAGES = {
+    'Бог Род': 'images/bogi/rod.png'
+};
+
+// ============================================
+// 2. РЕНДЕР ВСЕХ СЕКЦИЙ
 // ============================================
 
 function renderPantheon() {
@@ -49,7 +57,7 @@ function renderPantheon() {
 }
 
 // ============================================
-// 2. ПОИСК
+// 3. ПОИСК
 // ============================================
 
 function initSearch() {
@@ -61,7 +69,6 @@ function initSearch() {
         const cards = document.querySelectorAll('.pantheon-card');
         const sections = document.querySelectorAll('.pantheon-section');
 
-        // Показываем/скрываем карточки
         cards.forEach(function(card) {
             const name = card.getAttribute('data-name');
             if (!query || name.indexOf(query) !== -1) {
@@ -71,7 +78,6 @@ function initSearch() {
             }
         });
 
-        // Скрываем секцию, если в ней нет видимых карточек
         sections.forEach(function(section) {
             const visibleCards = section.querySelectorAll('.pantheon-card:not([style*="display: none"])');
             if (visibleCards.length === 0) {
@@ -84,7 +90,7 @@ function initSearch() {
 }
 
 // ============================================
-// 3. МОДАЛЬНОЕ ОКНО БОГА
+// 4. МОДАЛЬНОЕ ОКНО БОГА
 // ============================================
 
 function initModal() {
@@ -96,14 +102,12 @@ function initModal() {
         modal.style.display = 'none';
     });
 
-    // Закрытие по клику вне окна
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.style.display = 'none';
         }
     });
 
-    // Закрытие по ESC
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             modal.style.display = 'none';
@@ -115,11 +119,11 @@ function openGodModal(name) {
     const modal = document.getElementById('godModal');
     if (!modal) return;
 
-    const iconEl = modal.querySelector('.god-modal-icon');
+    const iconEl = modal.querySelector('.ui-scroll-god-icon');
     const nameEl = modal.querySelector('.god-modal-name');
     const descEl = modal.querySelector('.god-modal-desc');
 
-    // Ищем бога во всех секциях — либо строку, либо объект
+    // Ищем бога во всех секциях
     let foundGod = null;
     for (const section of PANTHEON) {
         for (const god of section.gods) {
@@ -132,10 +136,16 @@ function openGodModal(name) {
         if (foundGod) break;
     }
 
-    iconEl.textContent = '🔆';
+    // ===== ПОДСТАНОВКА КАРТИНКИ =====
+    if (GOD_IMAGES[name]) {
+        iconEl.innerHTML = '<img src="' + GOD_IMAGES[name] + '" alt="' + name + '">';
+    } else {
+        iconEl.innerHTML = '🔆';
+    }
+
     nameEl.textContent = name;
 
-    // Если у бога есть description — показываем
+    // Описание
     if (foundGod && typeof foundGod === 'object' && foundGod.description) {
         descEl.innerHTML = foundGod.description.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>');
     } else {
@@ -146,7 +156,7 @@ function openGodModal(name) {
 }
 
 // ============================================
-// 4. ГЕНЕРАЦИЯ ЗВЁЗД
+// 5. ГЕНЕРАЦИЯ ЗВЁЗД
 // ============================================
 
 function createStars() {
@@ -166,7 +176,7 @@ function createStars() {
 }
 
 // ============================================
-// 5. ЗАПУСК
+// 6. ЗАПУСК
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {

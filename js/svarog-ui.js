@@ -141,15 +141,19 @@ function displayResult(result) {
                 <div class="chertog-info-col">
                     <div class="chertog-info-label">Священное дерево</div>
                     <div class="chertog-info-value" style="color: #44ff88;">${chertog.tree}</div>
-                    <div class="chertog-info-img-placeholder"></div>
+                    ${chertog.treeImg
+                        ? `<img src="${chertog.treeImg}" alt="${chertog.tree}" class="chertog-info-img">`
+                        : `<div class="chertog-info-img-placeholder"></div>`
+                    }
                 </div>
                 
-                <div class="chertog-info-col">
+                <div class="chertog-info-col" style="min-width:110px;">
                     <div class="chertog-info-label">Число жизни</div>
-                    <div class="chertog-info-value" style="color: #ffd700;">${result.lifeNumber}</div>
-                    <div class="chertog-info-img-placeholder"></div>
+                    <div style="min-height:44px; display:flex; align-items:center; justify-content:center;">
+                        <button id="lifeNumberDetailsBtn" style="background:rgba(255,215,0,0.1); border:1px solid rgba(255,215,0,0.4); border-radius:8px; cursor:pointer; padding:4px 10px; color:#ffd700; font-family:'Roboto',sans-serif; font-size:12px; white-space:nowrap; transition:all 0.3s;">Подробнее</button>
+                    </div>
+                    <div class="chertog-info-img" style="display:flex; align-items:center; justify-content:center; font-size:48px; font-weight:700; color:#ffd700; text-shadow:0 0 15px rgba(255,215,0,0.5); font-family:'Philosopher',serif; line-height:1; margin-top:8px;">${result.lifeNumber}</div>
                 </div>
-                
             </div>
         </div>
         
@@ -364,14 +368,13 @@ window.sendSvarogQuestion = async function() {
 // ============================================
 
 function initLifeNumberButton() {
-    const btn = document.getElementById('lifeNumberBtn');
     const modal = document.getElementById('lifeNumberModal');
     const closeBtn = document.getElementById('closeLifeNumberModal');
 
-    if (!btn || !modal) return;
+    if (!modal) return;
 
-    btn.addEventListener('click', function() {
-        // ===== ПРОВЕРЯЕМ ДАТУ РОЖДЕНИЯ =====
+    // ===== ОТКРЫТИЕ МОДАЛКИ "ЧИСЛО ЖИЗНИ" =====
+    function openLifeNumberModal() {
         const dateInput = document.getElementById('birthDate');
         const timeSelect = document.getElementById('birthTime');
 
@@ -380,7 +383,6 @@ function initLifeNumberButton() {
             return;
         }
 
-        // ===== ПАРСИМ ДАТУ =====
         const parts = dateInput.value.split('-');
         const year = parseInt(parts[0]);
         const month = parseInt(parts[1]);
@@ -394,9 +396,7 @@ function initLifeNumberButton() {
         const timeValue = timeSelect ? timeSelect.value : 'day';
         const hours = timeValue === 'night' ? 20 : 12;
 
-        // ===== СЧИТАЕМ ЗАНОВО ПО ВВЕДЁННОЙ ДАТЕ =====
         const result = getFullInfo(day, month, year, hours, 0);
-
         const lifeNumber = result.lifeNumber;
         const lifeData = LIFE_NUMBERS[lifeNumber - 1];
 
@@ -408,10 +408,8 @@ function initLifeNumberButton() {
         const nameEl = modal.querySelector('.god-modal-name');
         const descEl = modal.querySelector('.god-modal-desc');
 
-        // Заголовок: "Ваше число жизни: 9 — Фита"
         nameEl.textContent = 'Ваше число жизни: ' + lifeNumber + ' — ' + lifeData.name;
 
-        // Описание — большой HTML
         descEl.innerHTML = 
             '<p><strong>Вступление:</strong> У Славян и Ариев числа — это не просто абстрактные математические знаки. Каждое число от 1 до 9 (и базовые числа, из которых они сворачиваются) — это мерная волна, качественная характеристика Живы и конкретная чакральная ступень развития Души.</p>' +
             
@@ -448,8 +446,16 @@ function initLifeNumberButton() {
             '<p>Земля как вращалась вокруг Ярилы за 365–369 дней, проходя 16 Чертогов, так и вращается. Круголет Числобога опирается не на решения правителей, а на пульс Галактики.</p>';
 
         modal.style.display = 'flex';
+    }
+
+    // ===== КНОПКА "ПОДРОБНЕЕ" (делегирование — она создаётся динамически) =====
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'lifeNumberDetailsBtn') {
+            openLifeNumberModal();
+        }
     });
 
+    // ===== ЗАКРЫТИЕ =====
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
             modal.style.display = 'none';

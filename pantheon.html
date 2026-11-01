@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пантеон Богов — Ведаем РА</title>
+    <title>Пантеон Славянских Богов — Ведаем РА</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/scroll.css">
     <link rel="stylesheet" href="css/pantheon.css">
@@ -38,7 +38,7 @@
             </a>
             <a href="pantheon.html" class="top-nav-link active">
                 <span class="sidebar-icon">🔆</span>
-                <span class="sidebar-text">Пантеон богов</span>
+                <span class="sidebar-text">Пантеон Славянских богов</span>
             </a>
             <a href="galactic-day.html" class="top-nav-link">
                 <img src="images/galactic-day/icon.png" alt="Галактические сутки" class="sidebar-icon-img">
@@ -61,68 +61,78 @@
     <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
     <main class="main-content">
         <div id="pantheonApp">
-            <h1>🔆 Пантеон Богов</h1>
+            <h1>🔆 Пантеон Славянских Богов</h1>
             <p class="subtitle">Светлые Боги славян и ариев</p>
 
-            <!-- ===== ПОИСК ===== -->
-            <div class="pantheon-search-wrap">
-                <span class="pantheon-search-icon">🔍</span>
-                <input type="text" id="pantheonSearchInput" class="pantheon-search-input" placeholder="Найти бога по имени...">
+            <!-- ===== СТАРТОВЫЙ ЭКРАН С КАТЕГОРИЯМИ ===== -->
+            <div id="pantheonHome">
+                <div class="pantheon-home-grid">
+                    <div class="pantheon-home-card" data-section="vyshnie">
+                        <div class="pantheon-home-icon">🔆</div>
+                        <div class="pantheon-home-name">Вышние Боги</div>
+                        <div class="pantheon-home-count">22 Бога</div>
+                    </div>
+                    <div class="pantheon-home-card" data-section="pokroviteli">
+                        <div class="pantheon-home-icon">🛡️</div>
+                        <div class="pantheon-home-name">Боги-Покровители</div>
+                        <div class="pantheon-home-count">37 Богов</div>
+                    </div>
+                    <div class="pantheon-home-card" data-section="upraviteli">
+                        <div class="pantheon-home-icon">⚖️</div>
+                        <div class="pantheon-home-name">Боги-Управители</div>
+                        <div class="pantheon-home-count">5 Богов</div>
+                    </div>
+                    <div class="pantheon-home-card" data-section="ohraniteli">
+                        <div class="pantheon-home-icon">🏠</div>
+                        <div class="pantheon-home-name">Боги-Охранители</div>
+                        <div class="pantheon-home-count">5 Богов</div>
+                    </div>
+                    <div class="pantheon-home-card" data-section="zapovedi">
+                        <div class="pantheon-home-icon">📜</div>
+                        <div class="pantheon-home-name">Заповеди Богов</div>
+                        <div class="pantheon-home-count">9 Свитков</div>
+                    </div>
+                </div>
             </div>
 
-            <!-- ===== СЕКЦИИ БОГОВ ===== -->
-            <div id="pantheonContainer"></div>
-        </div>
+            <!-- ===== ЭКРАН С БОГАМИ / ЗАПОВЕДЯМИ ===== -->
+            <div id="pantheonSectionView" style="display: none;">
+                <button id="backToHomeBtn" class="pantheon-back-btn">← Назад к категориям</button>
 
-        <!-- ===== МОДАЛЬНОЕ ОКНО БОГА (HTML-СВИТОК) ===== -->
-        <div id="godModal" class="god-modal">
-            <div class="ui-scroll">
-
-                <!-- ВЕРХНИЙ ВАЛИК -->
-                <div class="ui-scroll-roller ui-scroll-roller-top">
-                    <span class="scroll-rune">ᚱ</span>
-                    <span class="scroll-rune">ᚢ</span>
-                    <span class="scroll-rune">ᚾ</span>
-                    <span class="scroll-rune">ᚨ</span>
-                    <span class="scroll-rune">ᛚ</span>
-                    <span class="scroll-rune">ᛟ</span>
-                    <span class="scroll-rune">ᚦ</span>
-                    <span class="scroll-rune">ᛗ</span>
+                <div class="pantheon-search-wrap" id="pantheonSearchWrap">
+                    <span class="pantheon-search-icon">🔍</span>
+                    <input type="text" id="pantheonSearchInput" class="pantheon-search-input" placeholder="Найти бога по имени...">
                 </div>
 
-                <!-- ПЕРГАМЕНТ -->
+                <div id="pantheonContainer"></div>
+                <div id="zapovediContainer" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- ===== МОДАЛЬНОЕ ОКНО (HTML-СВИТОК) ===== -->
+        <div id="godModal" class="god-modal">
+            <div class="ui-scroll">
+                <div class="ui-scroll-roller ui-scroll-roller-top">
+                    <span class="scroll-rune">ᚱ</span><span class="scroll-rune">ᚢ</span><span class="scroll-rune">ᚾ</span><span class="scroll-rune">ᚨ</span><span class="scroll-rune">ᛚ</span><span class="scroll-rune">ᛟ</span><span class="scroll-rune">ᚦ</span><span class="scroll-rune">ᛗ</span>
+                </div>
                 <div class="ui-scroll-parchment">
                     <div class="ui-scroll-tie ui-scroll-tie-left"></div>
                     <div class="ui-scroll-tie ui-scroll-tie-right"></div>
-
                     <button id="closeGodModal" class="ui-scroll-close">✕</button>
-
                     <div class="ui-scroll-body">
                         <div class="ui-scroll-god-icon">🔆</div>
                         <h2 class="ui-scroll-title god-modal-name"></h2>
                         <div class="ui-scroll-desc god-modal-desc"></div>
                     </div>
                 </div>
-
-                <!-- НИЖНИЙ ВАЛИК -->
                 <div class="ui-scroll-roller ui-scroll-roller-bottom">
-                    <span class="scroll-rune">ᛞ</span>
-                    <span class="scroll-rune">ᚹ</span>
-                    <span class="scroll-rune">ᛖ</span>
-                    <span class="scroll-rune">ᚷ</span>
-                    <span class="scroll-rune">ᛁ</span>
-                    <span class="scroll-rune">ᛋ</span>
-                    <span class="scroll-rune">ᚺ</span>
-                    <span class="scroll-rune">ᛏ</span>
+                    <span class="scroll-rune">ᛞ</span><span class="scroll-rune">ᚹ</span><span class="scroll-rune">ᛖ</span><span class="scroll-rune">ᚷ</span><span class="scroll-rune">ᛁ</span><span class="scroll-rune">ᛋ</span><span class="scroll-rune">ᚺ</span><span class="scroll-rune">ᛏ</span>
                 </div>
-
             </div>
         </div>
     </main>
 
     <script type="module" src="js/pantheon.js"></script>
-
-    <!-- ===== ВЕРХНЕЕ МЕНЮ ===== -->
     <script src="js/nav.js"></script>
 </body>
 </html>

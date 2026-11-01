@@ -2,52 +2,89 @@
 // ПАНТЕОН БОГОВ — ЛОГИКА
 // ============================================
 
-import { PANTHEON } from './pantheon-data.js';
-
-// ============================================
-// 1. КАРТА КАРТИНОК БОГОВ
-// ============================================
+import { PANTHEON, ZAPOVEDI } from './pantheon-data.js';
 
 const GOD_IMAGES = {
     'Бог Род': 'images/bogi/rod.png'
 };
 
 // ============================================
-// 2. РЕНДЕР ВСЕХ СЕКЦИЙ
+// 1. НАВИГАЦИЯ МЕЖДУ ЭКРАНАМИ
 // ============================================
 
-function renderPantheon() {
+function initHomeCards() {
+    const cards = document.querySelectorAll('.pantheon-home-card');
+    const home = document.getElementById('pantheonHome');
+    const sectionView = document.getElementById('pantheonSectionView');
+    const backBtn = document.getElementById('backToHomeBtn');
+
+    cards.forEach(function(card) {
+        card.addEventListener('click', function() {
+            const sectionId = this.getAttribute('data-section');
+            
+            // Скрываем стартовый экран, показываем контент
+            home.style.display = 'none';
+            sectionView.style.display = 'block';
+
+            // Сброс поиска
+            const searchInput = document.getElementById('pantheonSearchInput');
+            if (searchInput) searchInput.value = '';
+
+            if (sectionId === 'zapovedi') {
+                document.getElementById('pantheonSearchWrap').style.display = 'none';
+                document.getElementById('pantheonContainer').style.display = 'none';
+                document.getElementById('zapovediContainer').style.display = 'block';
+                renderZapovedi();
+            } else {
+                document.getElementById('pantheonSearchWrap').style.display = 'block';
+                document.getElementById('zapovediContainer').style.display = 'none';
+                document.getElementById('pantheonContainer').style.display = 'block';
+                renderGodsBySection(sectionId);
+            }
+        });
+    });
+
+    if (backBtn) {
+        backBtn.addEventListener('click', function() {
+            sectionView.style.display = 'none';
+            home.style.display = 'block';
+        });
+    }
+}
+
+// ============================================
+// 2. РЕНДЕР БОГОВ ПО СЕКЦИИ
+// ============================================
+
+function renderGodsBySection(sectionId) {
     const container = document.getElementById('pantheonContainer');
     if (!container) return;
 
-    let html = '';
+    const section = PANTHEON.find(function(s) { return s.id === sectionId; });
+    if (!section) return;
 
-    PANTHEON.forEach(function(section) {
+    let html = 
+        '<section class="pantheon-section" data-section="' + section.id + '">' +
+            '<h2 class="pantheon-section-title">' + section.title + '</h2>' +
+            '<p class="pantheon-section-desc">' + section.description + '</p>' +
+            '<div class="pantheon-grid">';
+
+    section.gods.forEach(function(god) {
+        const godName = typeof god === 'string' ? god : god.name;
+        const searchKey = godName.toLowerCase();
         html += 
-            '<section class="pantheon-section" data-section="' + section.id + '">' +
-                '<h2 class="pantheon-section-title">' + section.title + '</h2>' +
-                '<p class="pantheon-section-desc">' + section.description + '</p>' +
-                '<div class="pantheon-grid">';
-
-        section.gods.forEach(function(god) {
-            // god — либо строка (старый формат), либо объект { name, description }
-            const godName = typeof god === 'string' ? god : god.name;
-            const searchKey = godName.toLowerCase();
-            html += 
-                '<div class="pantheon-card" data-name="' + searchKey + '" data-section="' + section.id + '">' +
-                    '<div class="pantheon-card-icon">🔆</div>' +
-                    '<div class="pantheon-card-name">' + godName + '</div>' +
-                '</div>';
-        });
-
-        html += 
-                '</div>' +
-            '</section>';
+            '<div class="pantheon-card" data-name="' + searchKey + '">' +
+                '<div class="pantheon-card-icon">🔆</div>' +
+                '<div class="pantheon-card-name">' + godName + '</div>' +
+            '</div>';
     });
+
+    html += 
+            '</div>' +
+        '</section>';
 
     container.innerHTML = html;
 
-    // Навешиваем клики на карточки
     container.querySelectorAll('.pantheon-card').forEach(function(card) {
         card.addEventListener('click', function() {
             const name = this.querySelector('.pantheon-card-name').textContent;
@@ -57,7 +94,43 @@ function renderPantheon() {
 }
 
 // ============================================
-// 3. ПОИСК
+// 3. РЕНДЕР ЗАПОВЕДЕЙ
+// ============================================
+
+function renderZapovedi() {
+    const container = document.getElementById('zapovediContainer');
+    if (!container) return;
+
+    let html = 
+        '<section class="pantheon-section">' +
+            '<h2 class="pantheon-section-title">Заповеди Богов</h2>' +
+            '<p class="pantheon-section-desc">Заповеди Богов Светлых: Рамхата, Сварога, Перуна, Лады-Богородицы, Стрибога, Одина, Ладаада, Числобога, Даждьбога... и Два Великих Принципа, чтобы человек мог выполнять все Заповеди: Свято чтить Светлых Богов и Многомудрых Предков своих, а также жить по Совести.</p>' +
+            '<div class="pantheon-grid">';
+
+    ZAPOVEDI.forEach(function(zap) {
+        html += 
+            '<div class="pantheon-card zapoved-card" data-name="' + zap.name.toLowerCase() + '">' +
+                '<div class="pantheon-card-icon">📜</div>' +
+                '<div class="pantheon-card-name">' + zap.name + '</div>' +
+            '</div>';
+    });
+
+    html += 
+            '</div>' +
+        '</section>';
+
+    container.innerHTML = html;
+
+    container.querySelectorAll('.zapoved-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+            const name = this.querySelector('.pantheon-card-name').textContent;
+            openZapovedModal(name);
+        });
+    });
+}
+
+// ============================================
+// 4. ПОИСК
 // ============================================
 
 function initSearch() {
@@ -66,8 +139,7 @@ function initSearch() {
 
     input.addEventListener('input', function() {
         const query = this.value.trim().toLowerCase();
-        const cards = document.querySelectorAll('.pantheon-card');
-        const sections = document.querySelectorAll('.pantheon-section');
+        const cards = document.querySelectorAll('#pantheonContainer .pantheon-card');
 
         cards.forEach(function(card) {
             const name = card.getAttribute('data-name');
@@ -77,20 +149,11 @@ function initSearch() {
                 card.style.display = 'none';
             }
         });
-
-        sections.forEach(function(section) {
-            const visibleCards = section.querySelectorAll('.pantheon-card:not([style*="display: none"])');
-            if (visibleCards.length === 0) {
-                section.style.display = 'none';
-            } else {
-                section.style.display = '';
-            }
-        });
     });
 }
 
 // ============================================
-// 4. МОДАЛЬНОЕ ОКНО БОГА
+// 5. МОДАЛЬНОЕ ОКНО БОГА
 // ============================================
 
 function initModal() {
@@ -123,7 +186,6 @@ function openGodModal(name) {
     const nameEl = modal.querySelector('.god-modal-name');
     const descEl = modal.querySelector('.god-modal-desc');
 
-    // Ищем бога во всех секциях
     let foundGod = null;
     for (const section of PANTHEON) {
         for (const god of section.gods) {
@@ -136,7 +198,6 @@ function openGodModal(name) {
         if (foundGod) break;
     }
 
-    // ===== ПОДСТАНОВКА КАРТИНКИ =====
     if (GOD_IMAGES[name]) {
         iconEl.innerHTML = '<img src="' + GOD_IMAGES[name] + '" alt="' + name + '">';
     } else {
@@ -145,7 +206,6 @@ function openGodModal(name) {
 
     nameEl.textContent = name;
 
-    // Описание
     if (foundGod && typeof foundGod === 'object' && foundGod.description) {
         descEl.innerHTML = foundGod.description.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>');
     } else {
@@ -156,7 +216,34 @@ function openGodModal(name) {
 }
 
 // ============================================
-// 5. ГЕНЕРАЦИЯ ЗВЁЗД
+// 6. МОДАЛЬНОЕ ОКНО ЗАПОВЕДЕЙ
+// ============================================
+
+function openZapovedModal(name) {
+    const modal = document.getElementById('godModal');
+    if (!modal) return;
+
+    const iconEl = modal.querySelector('.ui-scroll-god-icon');
+    const nameEl = modal.querySelector('.god-modal-name');
+    const descEl = modal.querySelector('.god-modal-desc');
+
+    const zap = ZAPOVEDI.find(function(z) { return z.name === name; });
+    if (!zap) return;
+
+    iconEl.innerHTML = '📜';
+    nameEl.textContent = zap.name;
+
+    const paragraphs = zap.text.split('\n').map(function(line) {
+        return '<p>' + line + '</p>';
+    }).join('');
+
+    descEl.innerHTML = paragraphs;
+
+    modal.style.display = 'flex';
+}
+
+// ============================================
+// 7. ГЕНЕРАЦИЯ ЗВЁЗД
 // ============================================
 
 function createStars() {
@@ -176,12 +263,12 @@ function createStars() {
 }
 
 // ============================================
-// 6. ЗАПУСК
+// 8. ЗАПУСК
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
     createStars();
-    renderPantheon();
+    initHomeCards();
     initSearch();
     initModal();
 });

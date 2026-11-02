@@ -62,88 +62,60 @@ body.home-page {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== КАРТОЧКИ-РАЗДЕЛЫ ===== */
+/* ===== СЕТКА КАРТОЧЕК ===== */
 .home-sections {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    max-width: 1100px;
+    max-width: 900px;
     padding: 0 20px;
+    margin: 0 auto;
     animation: homeFadeIn 1.2s ease 0.2s backwards;
+    position: relative;
+    z-index: 10; /* Карточки ВСЕГДА поверх */
 }
 
 .home-card {
-    width: 140px;
-    height: 140px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 215, 0, 0.15);
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 215, 0, 0.2);
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    z-index: 11; /* Карточка кликабельна */
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
 }
 
-.home-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.08), transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-}
-
-.home-card:hover {
-    border-color: rgba(255, 215, 0, 0.5);
-    transform: translateY(-6px);
-    box-shadow:
-        0 12px 40px rgba(255, 215, 0, 0.15),
-        0 0 0 1px rgba(255, 215, 0, 0.2) inset;
-    background: rgba(255, 215, 0, 0.03);
-}
-
-.home-card:hover::before {
-    opacity: 1;
+.home-card:hover,
+.home-card:active {
+    background: rgba(255, 215, 0, 0.12);
+    border-color: rgba(255, 215, 0, 0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
 }
 
 .home-card-icon {
-    font-size: 32px;
+    font-size: 36px;
     line-height: 1;
     margin-bottom: 12px;
-    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
-    transition: all 0.4s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
+    pointer-events: none; /* Иконка НЕ перехватывает клик */
 }
 
 .home-card-icon img {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     object-fit: contain;
-    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
-    transition: all 0.4s ease;
-}
-
-.home-card:hover .home-card-icon {
-    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.85));
-    transform: scale(1.1);
-}
-
-.home-card:hover .home-card-icon img {
-    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.85));
+    pointer-events: none; /* Картинка НЕ перехватывает клик */
 }
 
 .home-card-name {
@@ -154,7 +126,8 @@ body.home-page {
     letter-spacing: 1px;
     text-align: center;
     transition: color 0.3s ease;
-    padding: 0 6px;
+    padding: 0 8px;
+    pointer-events: none; /* Текст НЕ перехватывает клик */
 }
 
 .home-card:hover .home-card-name {
@@ -162,7 +135,7 @@ body.home-page {
 }
 
 /* ============================================
-   ФОН МОДАЛОК (общий для всех)
+   МОДАЛЬНЫЕ ОКНА (ФОН)
    ============================================ */
 
 .bio-modal {
@@ -179,10 +152,12 @@ body.home-page {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    pointer-events: none; /* Закрытая модалка НЕ мешает кликам */
 }
 
 .bio-modal.active {
     display: flex;
+    pointer-events: auto; /* Открытая модалка перехватывает клики */
 }
 
 /* ============================================
@@ -214,24 +189,21 @@ body.home-page {
 
     .home-sections {
         gap: 14px;
+        padding: 0 12px;
     }
 
     .home-card {
-        width: 120px;
-        height: 120px;
-        border-radius: 14px;
+        width: calc(50% - 7px);
+        height: 140px;
     }
 
     .home-card-icon {
-        font-size: 28px;
-        width: 34px;
-        height: 34px;
-        margin-bottom: 10px;
+        font-size: 32px;
     }
 
     .home-card-icon img {
-        width: 34px;
-        height: 34px;
+        width: 38px;
+        height: 38px;
     }
 
     .home-card-name {
@@ -267,21 +239,17 @@ body.home-page {
     }
 
     .home-card {
-        width: 100px;
-        height: 100px;
-        border-radius: 12px;
+        width: calc(50% - 5px);
+        height: 130px;
     }
 
     .home-card-icon {
-        font-size: 24px;
-        width: 30px;
-        height: 30px;
-        margin-bottom: 8px;
+        font-size: 28px;
     }
 
     .home-card-icon img {
-        width: 30px;
-        height: 30px;
+        width: 34px;
+        height: 34px;
     }
 
     .home-card-name {

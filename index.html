@@ -38,7 +38,7 @@
             </a>
             <a href="pantheon.html" class="top-nav-link">
                 <span class="sidebar-icon">🔆</span>
-                <span class="sidebar-text">Пантеон богов</span>
+                <span class="sidebar-text">Пантеон славянских богов</span>
             </a>
             <a href="galactic-day.html" class="top-nav-link">
                 <img src="images/galactic-day/icon.png" alt="Галактические сутки" class="sidebar-icon-img">
@@ -104,7 +104,6 @@
     <!-- ===== МОДАЛЬНОЕ ОКНО: БИОРИТМЫ ===== -->
     <div id="bioModal" class="bio-modal">
         <div class="ui-scroll">
-
             <div class="ui-scroll-roller ui-scroll-roller-top">
                 <span class="scroll-rune">ᚱ</span>
                 <span class="scroll-rune">ᚢ</span>
@@ -124,7 +123,6 @@
 
                 <div class="ui-scroll-body">
                     <h2 class="ui-scroll-title">Жизненные циклы</h2>
-
                     <div class="ui-scroll-desc">
                         <p>С рождения и до самой смерти человек живёт в ритме. Пять независимых циклов — физический, эмоциональный, интеллектуальный, психокинетический и астро-ментальный — задают наши силы, настроение, ясность ума и даже сны. Каждый цикл начинается с рождения, идёт вверх к пику, спускается к спаду и пересекает нулевую линию. Дни пересечения — критические: в них особенно важно быть внимательным к себе.</p>
 
@@ -177,14 +175,12 @@
                 <span class="scroll-rune">ᚺ</span>
                 <span class="scroll-rune">ᛏ</span>
             </div>
-
         </div>
     </div>
 
     <!-- ===== МОДАЛЬНОЕ ОКНО: СВАРОЖИЙ КРУГ ===== -->
     <div id="svarogModal" class="bio-modal">
         <div class="ui-scroll">
-
             <div class="ui-scroll-roller ui-scroll-roller-top">
                 <span class="scroll-rune">ᚱ</span>
                 <span class="scroll-rune">ᚢ</span>
@@ -204,7 +200,6 @@
 
                 <div class="ui-scroll-body">
                     <h2 class="ui-scroll-title">Сварожий круг</h2>
-
                     <div class="ui-scroll-desc">
                         <p>Сварожий круг — древняя система чертогов, по которой наши Предки определяли судьбу человека по дню его рождения. Шестнадцать чертогов, шестнадцать богов-покровителей, шестнадцать священных деревьев — и всё это связано с движением Ярилы-Солнца по небесному своду.</p>
 
@@ -239,14 +234,12 @@
                 <span class="scroll-rune">ᚺ</span>
                 <span class="scroll-rune">ᛏ</span>
             </div>
-
         </div>
     </div>
 
     <!-- ===== МОДАЛЬНОЕ ОКНО: ПАНТЕОН ===== -->
     <div id="pantheonModal" class="bio-modal">
         <div class="ui-scroll">
-
             <div class="ui-scroll-roller ui-scroll-roller-top">
                 <span class="scroll-rune">ᚱ</span>
                 <span class="scroll-rune">ᚢ</span>
@@ -265,8 +258,7 @@
                 <button id="closePantheonModal" class="ui-scroll-close">✕</button>
 
                 <div class="ui-scroll-body">
-                    <h2 class="ui-scroll-title">Пантеон богов</h2>
-
+                    <h2 class="ui-scroll-title">Пантеон славянских богов</h2>
                     <div class="ui-scroll-desc">
                         <p>Пантеон богов — это собрание Светлых Богов славян и ариев: Вышних, Покровителей, Управителей и Охранителей. Каждый из них выполняет своё Небесное деяние и помогает людям, идущим по Путям Духовного Развития, Творческого Созидания и Искренней Любви — по Праведным Путям, в которых Чистая Совесть является мерилом всего.</p>
 
@@ -300,7 +292,6 @@
                 <span class="scroll-rune">ᚺ</span>
                 <span class="scroll-rune">ᛏ</span>
             </div>
-
         </div>
     </div>
 
@@ -325,7 +316,7 @@
             }
         })();
 
-        // ===== УНИВЕРСАЛЬНАЯ ИНИЦИАЛИЗАЦИЯ МОДАЛОК =====
+        // ===== ИНИЦИАЛИЗАЦИЯ МОДАЛОК =====
         function initModal(modalId, closeId, triggerSelector) {
             const modal = document.getElementById(modalId);
             const closeBtn = document.getElementById(closeId);
@@ -363,7 +354,7 @@
             });
         }
 
-        // ===== ИНИЦИАЛИЗАЦИЯ ВСЕХ ТРЁХ МОДАЛОК =====
+        // ===== ЗАПУСК =====
         initModal('bioModal', 'closeBioModal', '[data-modal="bio"]');
         initModal('svarogModal', 'closeSvarogModal', '[data-modal="svarog"]');
         initModal('pantheonModal', 'closePantheonModal', '[data-modal="pantheon"]');

@@ -26,7 +26,7 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
     overflow: hidden;
 }
 
@@ -41,7 +41,7 @@ body {
 h1 {
     text-align: center;
     color: #ffd700;
-    font-size: 38px;
+    font-size: 28px;
     margin-bottom: 10px;
     text-shadow: 0 0 30px rgba(255, 215, 0, 0.2), 0 0 60px rgba(255, 215, 0, 0.05);
     letter-spacing: 2px;
@@ -78,14 +78,14 @@ h1::after {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    background: rgba(255, 255, 255, 0.001);
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 15px 20px;
     border-radius: 16px;
     margin-bottom: 25px;
-    border: 1px solid rgba(255, 215, 0, 0.07);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.11);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     position: relative;
     z-index: 1;
 }
@@ -176,7 +176,6 @@ h1::after {
 
 .legend-item:hover {
     background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-1px);
 }
 
 .legend-color {
@@ -579,6 +578,7 @@ h1::after {
     z-index: 9999;
     font-family: 'Roboto', sans-serif;
     user-select: none;
+    pointer-events: none; /* Закрытое меню не мешает кликам */
 }
 
 .top-nav-header {
@@ -589,11 +589,12 @@ h1::after {
     background: transparent;
     border: none;
     box-shadow: none;
+    pointer-events: auto; /* Шапка кликабельна всегда */
 }
 
 .top-nav-trigger {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: transparent;
     border: none;
@@ -604,6 +605,8 @@ h1::after {
     justify-content: center;
     flex-shrink: 0;
     transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .top-nav-trigger img {
@@ -612,6 +615,7 @@ h1::after {
     object-fit: contain;
     filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
     animation: alatyrSpin 20s linear infinite, alatyrPulse 2.5s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .top-nav-trigger:hover img {
@@ -640,6 +644,7 @@ h1::after {
     font-family: 'Philosopher', serif;
     white-space: nowrap;
     padding-right: 4px;
+    pointer-events: none;
 }
 
 .top-nav-menu {
@@ -658,7 +663,7 @@ h1::after {
     grid-template-rows: 0fr;
     opacity: 0;
     transform: translateY(-6px);
-    pointer-events: none;
+    pointer-events: none; /* Закрытое меню не мешает кликам */
     transition: 
         grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
         opacity 0.4s ease,
@@ -666,10 +671,8 @@ h1::after {
         padding 0.4s ease;
     padding: 0 8px;
     overflow: hidden;
-    position: relative;
 }
 
-/* Тёмный слой поверх картинки — чтобы текст читался */
 .top-nav-menu::before {
     content: '';
     position: absolute;
@@ -677,20 +680,15 @@ h1::after {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(10, 14, 26, 0.2);
+    background: rgba(10, 14, 26, 0.75);
     border-radius: 14px;
     pointer-events: none;
     z-index: 0;
 }
 
-/* Ссылки и кнопки — над тёмным слоем */
 .top-nav-menu > * {
     position: relative;
     z-index: 1;
-    min-height: 0;
-}
-
-.top-nav-menu > * {
     min-height: 0;
 }
 
@@ -698,7 +696,7 @@ h1::after {
     grid-template-rows: 1fr;
     opacity: 1;
     transform: translateY(0);
-    pointer-events: auto;
+    pointer-events: auto; /* Открытое меню перехватывает клики */
     padding: 8px;
 }
 
@@ -743,6 +741,9 @@ h1::after {
 
 .top-nav-link .sidebar-text {
     font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .top-nav-logout {
@@ -812,18 +813,18 @@ h1::after {
     }
 
     .top-nav-header {
-        padding: 4px 10px 4px 4px;
+        padding: 0;
         gap: 8px;
     }
 
     .top-nav-trigger {
-        width: 34px;
-        height: 34px;
+        width: 44px;
+        height: 44px;
     }
 
     .top-nav-trigger img {
-        width: 28px;
-        height: 28px;
+        width: 30px;
+        height: 30px;
     }
 
     .top-nav-title {
@@ -835,7 +836,7 @@ h1::after {
     }
 
     h1 {
-        font-size: 26px;
+        font-size: 22px;
     }
 
     .controls {
@@ -925,13 +926,13 @@ h1::after {
     }
 
     .top-nav-trigger {
-        width: 30px;
-        height: 30px;
+        width: 44px;
+        height: 44px;
     }
 
     .top-nav-trigger img {
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
     }
 
     .top-nav-title {
@@ -943,7 +944,7 @@ h1::after {
     }
 
     h1 {
-        font-size: 22px;
+        font-size: 18px;
     }
 
     #chart-container {

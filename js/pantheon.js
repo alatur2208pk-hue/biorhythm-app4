@@ -5,7 +5,14 @@
 import { PANTHEON, ZAPOVEDI } from './pantheon-data.js';
 
 const GOD_IMAGES = {
-    'Бог Род': 'images/bogi/rod.png'
+    'Бог Род': 'images/bogi/rod.png',
+    'Бог Сварог': 'images/bogi/svarog.png',
+    'Бог Перун': 'images/bogi/perun1.png',
+    'Лада-Матушка': 'images/bogi/lada1.png',
+    'Богородица Макошь': 'images/bogi/makosh1.png',
+    'Даждьбог': 'images/bogi/dajdbog.png',
+    'Бог Велес': 'images/bogi/veles.png',
+    'Богиня Марена': 'images/bogi/mara.png'
 };
 
 // ============================================
@@ -72,9 +79,16 @@ function renderGodsBySection(sectionId) {
     section.gods.forEach(function(god) {
         const godName = typeof god === 'string' ? god : god.name;
         const searchKey = godName.toLowerCase();
+
+        // Проверяем, есть ли картинка для этого бога
+        let iconHtml = '🔆';
+        if (GOD_IMAGES[godName]) {
+            iconHtml = '<img src="' + GOD_IMAGES[godName] + '" alt="' + godName + '" class="pantheon-card-img">';
+        }
+
         html += 
             '<div class="pantheon-card" data-name="' + searchKey + '">' +
-                '<div class="pantheon-card-icon">🔆</div>' +
+                '<div class="pantheon-card-icon">' + iconHtml + '</div>' +
                 '<div class="pantheon-card-name">' + godName + '</div>' +
             '</div>';
     });

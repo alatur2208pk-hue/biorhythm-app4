@@ -12,7 +12,15 @@ const GOD_IMAGES = {
     'Богородица Макошь': 'images/bogi/makosh1.png',
     'Даждьбог': 'images/bogi/dajdbog.png',
     'Бог Велес': 'images/bogi/veles.png',
-    'Богиня Марена': 'images/bogi/mara.png'
+    'Богиня Марена': 'images/bogi/mara.png',
+    'Бог Коляда': 'images/bogi/kolyada1.png',
+    'Белобог': 'images/bogi/Belobog.png',
+    'Бог Крышень': 'images/bogi/kryshen1.png',
+    'Бог Рамхат': 'images/bogi/ramkhat1.png',
+    'Богиня Джива': 'images/bogi/jiva.png',
+    'Бог Семаргл': 'images/bogi/semargl1.png',
+    'Богородица Рожана': 'images/bogi/rozhana1.png',
+    'Бог Купала': 'images/bogi/kupalo.png'
 };
 
 // ============================================

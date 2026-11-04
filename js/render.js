@@ -149,8 +149,7 @@ export function drawChart(data, criticalMap, CYCLES, showCriticalInfo, showDay, 
     const canvas = document.getElementById('biorhythmChart');
     const ctx = canvas.getContext('2d');
     
-    // ===== ШИРИНА: КОНТЕЙНЕР ИЛИ БОЛЬШЕ (ДЛЯ ПРОКРУТКИ) =====
-    const PX_PER_DAY = 26;
+    const PX_PER_DAY = 36; // Увеличили расстояние между датами
     const containerWidth = canvas.parentElement.getBoundingClientRect().width - 30 || 900;
     const neededWidth = data.length * PX_PER_DAY + 80;
     canvas.width = Math.max(containerWidth, neededWidth);
